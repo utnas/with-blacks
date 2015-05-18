@@ -4,8 +4,10 @@ import spock.lang.Specification
 
 class UserRestLayerTest extends Specification {
 
-    void testFindAll() {
 
+
+    void testFindAll() {
+        deliverBusinessValue();
     }
 
     void testFindByName() {
