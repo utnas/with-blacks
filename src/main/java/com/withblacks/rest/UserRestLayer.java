@@ -12,7 +12,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 public class UserRestLayer implements IUserRestLayer {
 
-    private final IUserFacadeLayer userFacadeLayer;
+    private IUserFacadeLayer userFacadeLayer;
+
+    public UserRestLayer() {
+    }
 
     @Autowired
     public UserRestLayer(IUserFacadeLayer userFacadeLayer) {

@@ -4,11 +4,12 @@ import com.withblacks.rest.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
-public class UserRepositoryLayer implements IUserRepositoryLayer {
+public class FakeUserRepository implements IUserRepositoryLayer {
 
-    public UserRepositoryLayer() {
+    public FakeUserRepository() {
     }
 
     @Override
@@ -17,7 +18,7 @@ public class UserRepositoryLayer implements IUserRepositoryLayer {
     }
 
     @Override
-    public Iterable<UserDto> findAll() {
+    public List<UserDto> findAll() {
         return Collections.EMPTY_LIST;
     }
 

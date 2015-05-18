@@ -1,14 +1,12 @@
-package com.withblacks.repository;
+package com.withblacks.business.layers;
 
 import com.withblacks.rest.UserDto;
 
-import java.util.List;
-
-public interface IUserRepositoryLayer {
+public interface IUserLayer {
 
     UserDto find(final String userName);
 
-    List<UserDto> findAll();
+    Iterable<UserDto> findAll();
 
     UserDto find(final long id);
 

@@ -1,7 +1,9 @@
 package com.withblacks.facade;
 
 import com.withblacks.rest.UserDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface IUserFacadeLayer {
 
     UserDto getUser(final String userName);

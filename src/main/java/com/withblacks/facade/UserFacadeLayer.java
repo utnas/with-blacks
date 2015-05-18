@@ -1,6 +1,6 @@
 package com.withblacks.facade;
 
-import com.withblacks.repository.IUserRepositoryLayer;
+import com.withblacks.business.layers.IUserLayer;
 import com.withblacks.rest.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,43 +8,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserFacadeLayer implements IUserFacadeLayer {
 
-    @Autowired
-    private IUserRepositoryLayer userRepositoryLayer;
+    private IUserLayer userLayer;
 
     public UserFacadeLayer() {
     }
 
-    public UserFacadeLayer(IUserRepositoryLayer userRepositoryLayer) {
-        this.userRepositoryLayer = userRepositoryLayer;
+    @Autowired
+    public UserFacadeLayer(IUserLayer userLayer) {
+        this.userLayer = userLayer;
     }
 
     @Override
-    public UserDto getUser(final String userName) {
-        return userRepositoryLayer.find(userName);
+    public UserDto getUser(String userName) {
+        return userLayer.find(userName);
     }
 
     @Override
     public Iterable<UserDto> getUsers() {
-        return userRepositoryLayer.findAll();
+        return userLayer.findAll();
     }
 
     @Override
-    public UserDto getUser(final long id) {
-        return userRepositoryLayer.find(id);
+    public UserDto getUser(long id) {
+        return userLayer.find(id);
     }
 
     @Override
-    public UserDto create(final UserDto userDto) {
-        return userRepositoryLayer.create(userDto);
+    public UserDto create(UserDto userDto) {
+        return userLayer.create(userDto);
     }
 
     @Override
-    public UserDto update(final UserDto userDto) {
-        return userRepositoryLayer.update(userDto);
+    public UserDto update(UserDto userDto) {
+        return userLayer.update(userDto);
     }
 
     @Override
-    public void remove(final long id) {
-        userRepositoryLayer.delete(id);
+    public void remove(long id) {
+        userLayer.delete(id);
     }
 }
