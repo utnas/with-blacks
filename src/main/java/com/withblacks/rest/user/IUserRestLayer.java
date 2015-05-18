@@ -1,4 +1,4 @@
-package com.withblacks.rest;
+package com.withblacks.rest.user;
 
 import com.withblacks.business.GENDER;
 
@@ -10,7 +10,7 @@ interface IUserRestLayer {
 
     UserDto findById(final long id);
 
-    UserDto create(final String firstName, final String lastName, final GENDER gender);
+    boolean create(final String firstName, final String lastName, final GENDER gender);
 
     UserDto update(final String firstName, final String lastName, final GENDER gender);
 

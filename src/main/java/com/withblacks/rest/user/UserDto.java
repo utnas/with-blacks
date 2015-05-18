@@ -1,4 +1,4 @@
-package com.withblacks.rest;
+package com.withblacks.rest.user;
 
 import com.withblacks.business.GENDER;
 

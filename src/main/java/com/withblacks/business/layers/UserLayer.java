@@ -1,7 +1,7 @@
 package com.withblacks.business.layers;
 
 import com.withblacks.business.User;
-import com.withblacks.repository.IUserRepositoryLayer;
+import com.withblacks.repository.user.IUserRepositoryLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +32,8 @@ public class UserLayer implements IUserLayer {
         return repository.find(id);
     }
 
-    public User create(final User userDto) {
-        return new User();
+    public boolean create(final User user) {
+        return repository.create(user);
     }
 
     public User update(final User userDto) {

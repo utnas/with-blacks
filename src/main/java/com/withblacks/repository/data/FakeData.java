@@ -14,12 +14,14 @@ public class FakeData {
 
     private AtomicLong idCounter = new AtomicLong(0);
     private Faker faker = new Faker();
+    private List<User> repository = newArrayList();
 
     public FakeData() {
     }
 
     public List<User> getUsers() {
-        return newArrayList(generateUsers());
+        repository.addAll(generateUsers());
+        return repository;
     }
 
     private Collection<User> generateUsers() {
@@ -28,5 +30,9 @@ public class FakeData {
             result.add(new User(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
         }
         return result;
+    }
+
+    public boolean addUser(final User user) {
+        return repository.add(user);
     }
 }

@@ -1,7 +1,6 @@
-package com.withblacks.repository;
+package com.withblacks.repository.user;
 
 import com.withblacks.business.User;
-import com.withblacks.rest.UserDto;
 
 import java.util.List;
 
@@ -13,9 +12,9 @@ public interface IUserRepositoryLayer {
 
     User find(final long id);
 
-    User create(final UserDto userDto);
+    boolean create(final User user);
 
-    User update(final UserDto userDto);
+    User update(final User user);
 
     void delete(final long id);
 }

@@ -1,10 +1,9 @@
-package com.withblacks.repository;
+package com.withblacks.repository.user;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.User;
 import com.withblacks.repository.data.FakeData;
-import com.withblacks.rest.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
 
 
     @Override
-    public User find(long id) {
+    public User find(final long id) {
         try {
             return Iterables.find(fakeData.getUsers(), new Predicate<User>() {
                 @Override
@@ -55,17 +54,17 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     }
 
     @Override
-    public User create(UserDto userDto) {
+    public boolean create(final User user) {
+        return fakeData.addUser(user);
+    }
+
+    @Override
+    public User update(final User user) {
         return new User();
     }
 
     @Override
-    public User update(UserDto userDto) {
-        return new User();
-    }
-
-    @Override
-    public void delete(long id) {
+    public void delete(final long id) {
         // Do delete
     }
 }

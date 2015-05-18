@@ -1,5 +1,6 @@
 package com.withblacks.rest
 
+import com.withblacks.rest.user.UserRestLayer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration

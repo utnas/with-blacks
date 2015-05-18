@@ -12,7 +12,7 @@ public interface IUserLayer {
 
     User find(final long id);
 
-    User create(final User userDto);
+    boolean create(final User userDto);
 
     User update(final User userDto);
 

@@ -1,8 +1,7 @@
-package com.withblacks.rest.trasformer;
+package com.withblacks.rest.user.trasformer;
 
 import com.withblacks.business.User;
-import com.withblacks.rest.UserDto;
-import org.springframework.stereotype.Component;
+import com.withblacks.rest.user.UserDto;
 
 import java.util.List;
 
