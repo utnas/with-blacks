@@ -1,20 +1,23 @@
 package com.withblacks.facade;
 
+import com.withblacks.business.User;
 import com.withblacks.rest.UserDto;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface IUserFacadeLayer {
 
-    UserDto getUser(final String userName);
+    User getUser(final String userName);
 
-    Iterable<UserDto> getUsers();
+    List<User> getUsers();
 
-    UserDto getUser(final long id);
+    User getUser(final long id);
 
-    UserDto create(final UserDto userDto);
+    User create(final User userDto);
 
-    UserDto update(final UserDto userDto);
+    User update(final User userDto);
 
     void remove(final long id);
 }

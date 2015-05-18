@@ -1,40 +1,67 @@
 package com.withblacks.repository;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.withblacks.business.User;
+import com.withblacks.repository.data.FakeData;
 import com.withblacks.rest.UserDto;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class FakeUserRepository implements IUserRepositoryLayer {
 
+    private FakeData fakeData;
+
     public FakeUserRepository() {
+        fakeData = new FakeData();
     }
 
     @Override
-    public UserDto find(String userName) {
-        return new UserDto();
+    public User find(final String userName) {
+        try {
+            return Iterables.find(fakeData.getUsers(), new Predicate<User>() {
+                @Override
+                public boolean apply(User input) {
+                    return input.getFirstName().equals(userName) ||
+                            input.getLastName().equals(userName);
+                }
+            });
+        } catch (NoSuchElementException e) {
+            return new User();
+        }
+    }
+
+
+    @Override
+    public User find(long id) {
+        try {
+            return Iterables.find(fakeData.getUsers(), new Predicate<User>() {
+                @Override
+                public boolean apply(User input) {
+                    return input.getId() == id;
+                }
+            });
+        } catch (NoSuchElementException e) {
+            return new User();
+        }
     }
 
     @Override
-    public List<UserDto> findAll() {
-        return Collections.EMPTY_LIST;
+    public List<User> findAll() {
+        return fakeData.getUsers();
     }
 
     @Override
-    public UserDto find(long id) {
-        return new UserDto();
+    public User create(UserDto userDto) {
+        return new User();
     }
 
     @Override
-    public UserDto create(UserDto userDto) {
-        return new UserDto();
-    }
-
-    @Override
-    public UserDto update(UserDto userDto) {
-        return new UserDto();
+    public User update(UserDto userDto) {
+        return new User();
     }
 
     @Override

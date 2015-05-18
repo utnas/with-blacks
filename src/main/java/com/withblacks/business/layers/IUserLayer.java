@@ -1,18 +1,20 @@
 package com.withblacks.business.layers;
 
-import com.withblacks.rest.UserDto;
+import com.withblacks.business.User;
+
+import java.util.List;
 
 public interface IUserLayer {
 
-    UserDto find(final String userName);
+    User find(final String userName);
 
-    Iterable<UserDto> findAll();
+    List<User> findAll();
 
-    UserDto find(final long id);
+    User find(final long id);
 
-    UserDto create(final UserDto userDto);
+    User create(final User userDto);
 
-    UserDto update(final UserDto userDto);
+    User update(final User userDto);
 
     void delete(final long id);
 }

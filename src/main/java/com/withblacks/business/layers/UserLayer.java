@@ -1,52 +1,46 @@
 package com.withblacks.business.layers;
 
+import com.withblacks.business.User;
 import com.withblacks.repository.IUserRepositoryLayer;
-import com.withblacks.rest.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserLayer implements IUserLayer {
 
-    private IUserRepositoryLayer repositoryLayer;
+    private IUserRepositoryLayer repository;
 
     public UserLayer() {
     }
 
     @Autowired
-    public UserLayer( IUserRepositoryLayer repositoryLayer) {
-        this.repositoryLayer = repositoryLayer;
+    public UserLayer(final IUserRepositoryLayer repository) {
+        this.repository = repository;
     }
 
-    @Override
-    public UserDto find(String userName) {
-        return new UserDto();
+    public User find(final String userName) {
+        return repository.find(userName);
     }
 
-    @Override
-    public Iterable<UserDto> findAll() {
-        return Collections.EMPTY_LIST;
+    public List<User> findAll() {
+        return repository.findAll();
     }
 
-    @Override
-    public UserDto find(long id) {
-        return new UserDto();
+    public User find(final long id) {
+        return repository.find(id);
     }
 
-    @Override
-    public UserDto create(UserDto userDto) {
-        return new UserDto();
+    public User create(final User userDto) {
+        return new User();
     }
 
-    @Override
-    public UserDto update(UserDto userDto) {
-        return new UserDto();
+    public User update(final User userDto) {
+        return new User();
     }
 
-    @Override
-    public void delete(long id) {
+    public void delete(final long id) {
         // Do delete
     }
 }

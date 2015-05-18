@@ -1,9 +1,12 @@
 package com.withblacks.facade;
 
+import com.withblacks.business.User;
 import com.withblacks.business.layers.IUserLayer;
 import com.withblacks.rest.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserFacadeLayer implements IUserFacadeLayer {
@@ -19,27 +22,27 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public UserDto getUser(String userName) {
+    public User getUser(String userName) {
         return userLayer.find(userName);
     }
 
     @Override
-    public Iterable<UserDto> getUsers() {
+    public List<User> getUsers() {
         return userLayer.findAll();
     }
 
     @Override
-    public UserDto getUser(long id) {
+    public User getUser(long id) {
         return userLayer.find(id);
     }
 
     @Override
-    public UserDto create(UserDto userDto) {
+    public User create(User userDto) {
         return userLayer.create(userDto);
     }
 
     @Override
-    public UserDto update(UserDto userDto) {
+    public User update(User userDto) {
         return userLayer.update(userDto);
     }
 

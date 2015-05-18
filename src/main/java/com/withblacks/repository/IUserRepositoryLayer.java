@@ -1,20 +1,21 @@
 package com.withblacks.repository;
 
+import com.withblacks.business.User;
 import com.withblacks.rest.UserDto;
 
 import java.util.List;
 
 public interface IUserRepositoryLayer {
 
-    UserDto find(final String userName);
+    User find(final String userName);
 
-    List<UserDto> findAll();
+    List<User> findAll();
 
-    UserDto find(final long id);
+    User find(final long id);
 
-    UserDto create(final UserDto userDto);
+    User create(final UserDto userDto);
 
-    UserDto update(final UserDto userDto);
+    User update(final UserDto userDto);
 
     void delete(final long id);
 }
