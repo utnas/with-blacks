@@ -41,7 +41,7 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public User update(User userDto) {
+    public boolean update(User userDto) {
         return userLayer.update(userDto);
     }
 

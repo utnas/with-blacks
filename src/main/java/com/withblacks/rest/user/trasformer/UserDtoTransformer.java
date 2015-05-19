@@ -36,4 +36,13 @@ public class UserDtoTransformer implements IUserDtoTransformer {
             }
         }.apply(user);
     }
+
+    @Override
+    public User transform(final UserDto userDto) {
+        return new Function<UserDto, User>() {
+            public User apply(UserDto input) {
+                return new User(input.getFirstName(), input.getLastName(), input.getGender());
+            }
+        }.apply(userDto);
+    }
 }

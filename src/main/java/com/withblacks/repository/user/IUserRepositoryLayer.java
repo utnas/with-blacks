@@ -14,7 +14,7 @@ public interface IUserRepositoryLayer {
 
     boolean create(final User user);
 
-    User update(final User user);
+    boolean update(final User user);
 
     void delete(final long id);
 }

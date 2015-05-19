@@ -1,6 +1,8 @@
 package com.withblacks.repository.data;
 
 import com.github.javafaker.Faker;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.withblacks.business.User;
 
 import java.util.Collection;
@@ -34,5 +36,16 @@ public class FakeData {
 
     public boolean addUser(final User user) {
         return repository.add(user);
+    }
+
+    public User findUser(final User user) {
+        return Iterables.find(repository, new Predicate<User>() {
+            @Override
+            public boolean apply(User input) {
+                return user.getFirstName().equals(input.getFirstName())
+                        && user.getLastName().equals(input.getLastName())
+                        && user.getGender().equals(input.getGender());
+            }
+        });
     }
 }

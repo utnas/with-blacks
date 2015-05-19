@@ -59,8 +59,12 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     }
 
     @Override
-    public User update(final User user) {
-        return new User();
+    public boolean update(final User user) {
+        final User fakeDataUser = fakeData.findUser(user);
+        fakeData.getUsers().remove(fakeDataUser);
+        return fakeData.addUser(
+                new User(fakeDataUser.getFirstName(), fakeDataUser.getLastName(), fakeDataUser.getGender())
+        );
     }
 
     @Override

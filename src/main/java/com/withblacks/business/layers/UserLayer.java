@@ -36,8 +36,8 @@ public class UserLayer implements IUserLayer {
         return repository.create(user);
     }
 
-    public User update(final User userDto) {
-        return new User();
+    public boolean update(final User user) {
+        return repository.update(user);
     }
 
     public void delete(final long id) {

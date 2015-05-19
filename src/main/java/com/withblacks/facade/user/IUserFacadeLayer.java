@@ -14,9 +14,9 @@ public interface IUserFacadeLayer {
 
     User getUser(final long id);
 
-    boolean create(final User userDto);
+    boolean create(final User user);
 
-    User update(final User userDto);
+    boolean update(final User user);
 
     void remove(final long id);
 }

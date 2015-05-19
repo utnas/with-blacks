@@ -12,9 +12,9 @@ public interface IUserLayer {
 
     User find(final long id);
 
-    boolean create(final User userDto);
+    boolean create(final User user);
 
-    User update(final User userDto);
+    boolean update(final User user);
 
     void delete(final long id);
 }

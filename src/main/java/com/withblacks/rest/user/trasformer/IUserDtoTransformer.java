@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface IUserDtoTransformer {
 
-    Iterable<UserDto> transform(List<User> users);
+    Iterable<UserDto> transform(final List<User> users);
 
-    UserDto transform(User users);
+    UserDto transform(final User users);
+
+    User transform(final UserDto userDto);
 }

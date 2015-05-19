@@ -12,7 +12,7 @@ interface IUserRestLayer {
 
     boolean create(final String firstName, final String lastName, final GENDER gender);
 
-    UserDto update(final String firstName, final String lastName, final GENDER gender);
+    boolean update(final String firstName, final String lastName, final GENDER gender);
 
     void delete(final long id);
 }
