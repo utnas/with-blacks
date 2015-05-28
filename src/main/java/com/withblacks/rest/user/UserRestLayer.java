@@ -25,7 +25,7 @@ public class UserRestLayer implements IUserRestLayer {
         this.transformer = transformer;
     }
 
-    @RequestMapping(value = "/users/", method = GET)
+    @RequestMapping(value = "/users/", method = GET, headers = "Accept=application/json")
     public Iterable<UserDto> findAll() {
         return transformer.transform(
                 userFacadeLayer.getUsers()
@@ -46,15 +46,15 @@ public class UserRestLayer implements IUserRestLayer {
         );
     }
 
-    @RequestMapping(method = POST)
-    public boolean create(@RequestParam final String firstName, @RequestParam final String lastName, final GENDER gender) {
+    @RequestMapping(value = "/createUser", method = POST)
+    public boolean create(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         return userFacadeLayer.create(
                 transformer.transform(new UserDto(firstName, lastName, gender))
         );
     }
 
     @RequestMapping(method = PUT)
-    public boolean update(@RequestParam final String firstName, @RequestParam final String lastName, final GENDER gender) {
+    public boolean update(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         // We should call a transformer instead of using DTO
         return userFacadeLayer.update(
                 transformer.transform(

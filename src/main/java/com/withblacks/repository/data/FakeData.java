@@ -27,7 +27,7 @@ public class FakeData {
     }
 
     private Collection<User> generateUsers() {
-        Collection<User> result = newArrayList();
+        final Collection<User> result = newArrayList();
         for (int i = 0; i < 20; i++) {
             result.add(new User(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
         }

@@ -1,9 +1,16 @@
 package com.withblacks.business;
 
+import groovy.transform.CompileStatic;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Message {
 
-    private final String title;
-    private final StringBuffer content;
+    private String title;
+    private StringBuffer content;
+
+    public Message() {
+    }
 
     public Message(final String title, final StringBuffer content) {
         this.title = title;

@@ -1,5 +1,8 @@
 package com.withblacks.business;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserBuilder {
 
     public UserBuilder() {

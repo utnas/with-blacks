@@ -1,5 +1,8 @@
 package com.withblacks.business;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
     private String firstName;
@@ -36,5 +39,11 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        final User user = (User) obj;
+        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && id == user.getId();
     }
 }
