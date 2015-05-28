@@ -1,6 +1,6 @@
 package com.withblacks.repository.user;
 
-import com.withblacks.business.User;
+import com.withblacks.business.entity.User;
 
 import java.util.List;
 

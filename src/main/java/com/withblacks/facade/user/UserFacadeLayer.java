@@ -1,6 +1,6 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.business.User;
+import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.IUserLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -2,12 +2,14 @@ package com.withblacks.repository.user;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import com.withblacks.business.User;
+import com.withblacks.business.entity.User;
 import com.withblacks.repository.data.FakeData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import static com.withblacks.business.builder.UserBuilder.build;
 
 @Service
 public class FakeUserRepository implements IUserRepositoryLayer {
@@ -63,7 +65,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
         final User fakeDataUser = fakeData.findUser(user);
         fakeData.getUsers().remove(fakeDataUser);
         return fakeData.addUser(
-                new User(fakeDataUser.getFirstName(), fakeDataUser.getLastName(), fakeDataUser.getGender())
+                build(fakeDataUser.getId(), fakeDataUser.getFirstName(), fakeDataUser.getLastName(), fakeDataUser.getGender())
         );
     }
 

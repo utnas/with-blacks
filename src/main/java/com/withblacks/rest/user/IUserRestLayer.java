@@ -1,6 +1,6 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.business.GENDER;
+import com.withblacks.business.entity.GENDER;
 
 interface IUserRestLayer {
 

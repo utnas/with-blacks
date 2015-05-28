@@ -3,20 +3,21 @@ package com.withblacks.repository.data;
 import com.github.javafaker.Faker;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import com.withblacks.business.User;
+import com.withblacks.business.entity.User;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static com.withblacks.business.GENDER.MALE;
+import static com.withblacks.business.builder.UserBuilder.build;
+import static com.withblacks.business.entity.GENDER.MALE;
 
 public class FakeData {
 
-    private AtomicLong idCounter = new AtomicLong(0);
-    private Faker faker = new Faker();
-    private List<User> repository = newArrayList();
+    private final AtomicLong idCounter = new AtomicLong(0);
+    private final Faker faker = new Faker();
+    private final List<User> repository = newArrayList();
 
     public FakeData() {
     }
@@ -29,7 +30,7 @@ public class FakeData {
     private Collection<User> generateUsers() {
         final Collection<User> result = newArrayList();
         for (int i = 0; i < 20; i++) {
-            result.add(new User(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
+            result.add(build(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
         }
         return result;
     }

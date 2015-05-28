@@ -1,4 +1,4 @@
-package com.withblacks.business;
+package com.withblacks.business.entity;
 
 import org.springframework.stereotype.Component;
 
