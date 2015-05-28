@@ -2,8 +2,10 @@ package com.withblacks.repository.data;
 
 import com.github.javafaker.Faker;
 import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
@@ -13,13 +15,14 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.withblacks.business.builder.UserBuilder.build;
 import static com.withblacks.business.entity.GENDER.MALE;
 
-public class FakeData {
+@Component
+public class FakeDataRepository {
 
     private final AtomicLong idCounter = new AtomicLong(0);
     private final Faker faker = new Faker();
     private final List<User> repository = newArrayList();
 
-    public FakeData() {
+    public FakeDataRepository() {
     }
 
     public List<User> getUsers() {
@@ -46,6 +49,15 @@ public class FakeData {
                 return user.getFirstName().equals(input.getFirstName())
                         && user.getLastName().equals(input.getLastName())
                         && user.getGender().equals(input.getGender());
+            }
+        });
+    }
+
+    public void remove(final User fakeUser) {
+        Collections2.filter(repository, new Predicate<User>() {
+            @Override
+            public boolean apply(User input) {
+                return repository.contains(input);
             }
         });
     }
