@@ -35,7 +35,6 @@ public class FakeUserRepository implements IUserRepositoryLayer {
         }
     }
 
-
     @Override
     public User find(final long id) {
         try {
