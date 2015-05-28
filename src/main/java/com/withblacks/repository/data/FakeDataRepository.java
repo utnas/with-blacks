@@ -2,13 +2,13 @@ package com.withblacks.repository.data;
 
 import com.github.javafaker.Faker;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -23,10 +23,10 @@ public class FakeDataRepository {
     private final List<User> repository = newArrayList();
 
     public FakeDataRepository() {
+        repository.addAll(generateUsers());
     }
 
     public List<User> getUsers() {
-        repository.addAll(generateUsers());
         return repository;
     }
 
@@ -42,9 +42,8 @@ public class FakeDataRepository {
         return repository.add(user);
     }
 
-    public User findUser(final User user) {
+    public User findUser(final User user) throws NoSuchElementException {
         return Iterables.find(repository, new Predicate<User>() {
-            @Override
             public boolean apply(User input) {
                 return user.getFirstName().equals(input.getFirstName())
                         && user.getLastName().equals(input.getLastName())
@@ -54,11 +53,6 @@ public class FakeDataRepository {
     }
 
     public void remove(final User fakeUser) {
-        Collections2.filter(repository, new Predicate<User>() {
-            @Override
-            public boolean apply(User input) {
-                return repository.contains(input);
-            }
-        });
+        repository.remove(fakeUser);
     }
 }
