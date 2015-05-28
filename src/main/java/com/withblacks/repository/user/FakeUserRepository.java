@@ -61,13 +61,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     public boolean create(final User user) {
         try {
             return repository.addUser(user);
-        } catch (UnsupportedOperationException e) {
-            return false;
-        } catch (ClassCastException e) {
-            return false;
-        } catch (IllegalArgumentException e) {
-            return false;
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             return false;
         }
     }
