@@ -48,7 +48,7 @@ public class UserRestLayer implements IUserRestLayer {
         );
     }
 
-    @RequestMapping(value = "/build", method = POST)
+    @RequestMapping(value = "/users", method = POST)
     @ResponseBody
     public boolean create(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         return userFacadeLayer.create(
@@ -56,7 +56,7 @@ public class UserRestLayer implements IUserRestLayer {
         );
     }
 
-    @RequestMapping(method = PUT)
+    @RequestMapping(value = "/users/1", method = PUT)
     public boolean update(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         return userFacadeLayer.update(
                 transformer.convertFrom(
@@ -65,7 +65,7 @@ public class UserRestLayer implements IUserRestLayer {
         );
     }
 
-    @RequestMapping(method = DELETE)
+    @RequestMapping(value = "/users/1", method = DELETE)
     public void delete(@RequestParam final long id) {
         userFacadeLayer.remove(id);
     }
