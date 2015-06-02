@@ -3,10 +3,10 @@ package com.withblacks.rest.user;
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.facade.user.IUserFacadeLayer;
 import com.withblacks.rest.user.trasformer.IUserTransformer;
-import com.withblacks.rest.user.trasformer.UserDtoBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.withblacks.rest.user.trasformer.UserDtoBuilder.build;
@@ -16,49 +16,50 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class UserRestLayer implements IUserRestLayer {
 
     private IUserFacadeLayer userFacadeLayer;
-    private IUserTransformer transformer;
+    private IUserTransformer<com.withblacks.business.entity.User, UserDto> transformer;
 
     public UserRestLayer() {
     }
 
     @Autowired
-    public UserRestLayer(IUserFacadeLayer userFacadeLayer, IUserTransformer transformer) {
+    public UserRestLayer(IUserFacadeLayer userFacadeLayer, IUserTransformer<com.withblacks.business.entity.User, UserDto> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
 
     @RequestMapping(value = "/users/", method = GET, headers = "Accept=application/json")
-    public Iterable<UserDto> findAll() {
-        return transformer.toDtos(
+    public Iterable findAll() {
+        return transformer.convertTo(
                 userFacadeLayer.getUsers()
         );
     }
 
     @RequestMapping(method = GET)
     public UserDto findByName(@RequestParam final String name) {
-        return transformer.toDto(
+        return transformer.convertTo(
                 userFacadeLayer.getUser(name)
         );
     }
 
     @RequestMapping(value = "/users/{id}", method = GET)
     public UserDto findById(@RequestParam final long id) {
-        return transformer.toDto(
+        return transformer.convertTo(
                 userFacadeLayer.getUser(id)
         );
     }
 
     @RequestMapping(value = "/build", method = POST)
+    @ResponseBody
     public boolean create(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         return userFacadeLayer.create(
-                transformer.toUser(build(firstName, lastName, gender))
+                transformer.convertFrom(build(firstName, lastName, gender))
         );
     }
 
     @RequestMapping(method = PUT)
     public boolean update(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
         return userFacadeLayer.update(
-                transformer.toUser(
+                transformer.convertFrom(
                         build(firstName, lastName, gender)
                 )
         );

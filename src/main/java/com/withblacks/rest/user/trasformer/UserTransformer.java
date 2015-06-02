@@ -11,26 +11,35 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 
 @Component
-public class UserTransformer implements IUserTransformer {
+public class UserTransformer implements IUserTransformer<User, UserDto> {
 
     public UserTransformer() {
     }
 
     @Override
-    public Iterable<UserDto> toDtos(final List<User> users) {
-        return new Function<List<User>, Iterable<UserDto>>() {
-            public Iterable<UserDto> apply(final List<User> userList) {
-                List<UserDto> result = newArrayList();
-                for (final User user : userList) {
-                    result.add(toDto(user));
-                }
-                return result;
-            }
-        }.apply(users);
+    public Iterable<UserDto> convertTo(final List<User> users) {
+        return toDtoList(users);
     }
 
     @Override
-    public UserDto toDto(final User user) {
+    public UserDto convertTo(final User user) {
+        return toDto(user);
+    }
+
+    @Override
+    public User convertFrom(final UserDto userDto) {
+        return toUser(userDto);
+    }
+
+    private User toUser(final UserDto userDto) {
+        return new Function<UserDto, User>() {
+            public User apply(final UserDto input) {
+                return UserBuilder.build(input.getFirstName(), input.getLastName(), input.getGender());
+            }
+        }.apply(userDto);
+    }
+
+    private UserDto toDto(final User user) {
         return new Function<User, UserDto>() {
             public UserDto apply(final User input) {
                 return UserDtoBuilder.build(user.getFirstName(), user.getLastName(), user.getGender());
@@ -38,12 +47,15 @@ public class UserTransformer implements IUserTransformer {
         }.apply(user);
     }
 
-    @Override
-    public User toUser(final UserDto userDto) {
-        return new Function<UserDto, User>() {
-            public User apply(final UserDto input) {
-                return UserBuilder.build(input.getFirstName(), input.getLastName(), input.getGender());
+    private Iterable<UserDto> toDtoList(final List<User> users) {
+        return new Function<List<User>, Iterable<UserDto>>() {
+            public Iterable<UserDto> apply(final List<User> input) {
+                List<UserDto> result = newArrayList();
+                for (final User user : input) {
+                    result.add(convertTo(user));
+                }
+                return result;
             }
-        }.apply(userDto);
+        }.apply(users);
     }
 }

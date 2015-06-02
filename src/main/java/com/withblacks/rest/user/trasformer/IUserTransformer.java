@@ -5,11 +5,11 @@ import com.withblacks.rest.user.UserDto;
 
 import java.util.List;
 
-public interface IUserTransformer {
+public interface IUserTransformer<F extends User, T extends UserDto> {
 
-    Iterable<UserDto> toDtos(final List<User> users);
+    Iterable<T> convertTo(final List<F> sources);
 
-    UserDto toDto(final User users);
+    T convertTo(final F source);
 
-    User toUser(final UserDto userDto);
+    F convertFrom(final T source);
 }

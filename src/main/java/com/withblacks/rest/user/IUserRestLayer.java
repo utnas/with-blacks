@@ -4,7 +4,7 @@ import com.withblacks.business.entity.GENDER;
 
 interface IUserRestLayer {
 
-    Iterable<UserDto> findAll();
+    Iterable findAll();
 
     UserDto findByName(final String name);
 
