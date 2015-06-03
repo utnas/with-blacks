@@ -14,12 +14,14 @@ public class User {
     }
 
     public User(String firstName, String lastName, GENDER gender) {
+        this.id = -1;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
     }
 
-    public User(long id, final String firstName, final String lastName, final GENDER gender) {
+    public User(final long id, final String firstName, final String lastName, final GENDER gender) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;

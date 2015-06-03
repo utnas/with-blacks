@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDto {
 
+    private long id;
     private String firstName;
     private String lastName;
     private GENDER gender;
@@ -13,7 +14,15 @@ public class UserDto {
     public UserDto() {
     }
 
+    public UserDto(final long id, final String firstName, final String lastName, final GENDER gender) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+    }
+
     public UserDto(final String firstName, final String lastName, final GENDER gender) {
+        this.id = -1;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -41,5 +50,9 @@ public class UserDto {
 
     public void setGender(final GENDER gender) {
         this.gender = gender;
+    }
+
+    public long getId() {
+        return id;
     }
 }
