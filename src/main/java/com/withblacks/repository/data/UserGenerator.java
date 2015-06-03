@@ -15,8 +15,8 @@ public class UserGenerator {
     public static List<User> generateUsers(final int size) {
         final Faker faker = new Faker();
         final AtomicLong idCounter = new AtomicLong(0);
-
         final List<User> result = newArrayList();
+
         for (int i = 0; i < size; i++) {
             result.add(build(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
         }

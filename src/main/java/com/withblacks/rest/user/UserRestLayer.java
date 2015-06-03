@@ -1,6 +1,7 @@
 package com.withblacks.rest.user;
 
 import com.withblacks.business.entity.GENDER;
+import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.IUserFacadeLayer;
 import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class UserRestLayer implements IUserRestLayer {
 
     private IUserFacadeLayer userFacadeLayer;
-    private IUserTransformer<com.withblacks.business.entity.User, UserDto> transformer;
+    private IUserTransformer<User, UserDto> transformer;
 
     public UserRestLayer() {
     }
 
     @Autowired
-    public UserRestLayer(IUserFacadeLayer userFacadeLayer, IUserTransformer<com.withblacks.business.entity.User, UserDto> transformer) {
+    public UserRestLayer(IUserFacadeLayer userFacadeLayer, IUserTransformer<User, UserDto> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }

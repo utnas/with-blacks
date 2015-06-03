@@ -1,7 +1,9 @@
 package com.withblacks.rest.user;
 
 import com.withblacks.business.entity.GENDER;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserDto {
 
     private String firstName;

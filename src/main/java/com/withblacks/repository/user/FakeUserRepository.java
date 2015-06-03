@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.google.common.collect.Iterables.find;
 import static com.withblacks.business.builder.UserBuilder.build;
 
 @Service
@@ -18,8 +17,11 @@ public class FakeUserRepository implements IUserRepositoryLayer {
 
     private FakeDataRepository repository;
 
+    public FakeUserRepository() {
+    }
+
     @Autowired
-    public FakeUserRepository(final FakeDataRepository repository) {
+    public FakeUserRepository( FakeDataRepository repository) {
         this.repository = repository;
     }
 

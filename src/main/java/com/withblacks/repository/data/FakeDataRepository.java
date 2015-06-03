@@ -14,7 +14,7 @@ import static com.withblacks.repository.data.UserGenerator.generateUsers;
 @Component
 public class FakeDataRepository {
 
-    private final List<User> repository = newArrayList();
+    private List<User> repository = newArrayList();
 
     public FakeDataRepository() {
         repository.addAll(generateUsers(20));
@@ -29,16 +29,20 @@ public class FakeDataRepository {
     }
 
     public User findUser(final User user) throws NoSuchElementException {
-        return Iterables.find(repository, new Predicate<User>() {
-            public boolean apply(User input) {
-                return user.getFirstName().equals(input.getFirstName())
-                        && user.getLastName().equals(input.getLastName())
-                        && user.getGender().equals(input.getGender());
-            }
-        });
+        return getUser(user);
     }
 
     public void remove(final User fakeUser) {
         repository.remove(fakeUser);
+    }
+
+    private User getUser(final User user) {
+        return Iterables.find(repository, new Predicate<User>() {
+            public boolean apply(User input) {
+                return user.getFirstName().equals(input.getFirstName()) &&
+                        user.getLastName().equals(input.getLastName()) &&
+                        user.getGender().equals(input.getGender());
+            }
+        });
     }
 }
