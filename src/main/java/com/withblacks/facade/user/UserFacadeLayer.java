@@ -2,6 +2,7 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.IUserLayer;
+import com.withblacks.rest.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,8 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public boolean create(User userDto) {
-        return userLayer.create(userDto);
+    public User create(User user) {
+        return userLayer.create(user);
     }
 
     @Override

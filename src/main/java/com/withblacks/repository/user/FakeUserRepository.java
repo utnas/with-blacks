@@ -60,12 +60,15 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     }
 
     @Override
-    public boolean create(final User user) {
+    public User save(final User user) {
         try {
-            return repository.addUser(user);
+            boolean result = repository.addUser(user);
+            if (result)
+                return user;
         } catch (Exception e) {
-            return false;
+            return null;
         }
+        return null;
     }
 
     @Override

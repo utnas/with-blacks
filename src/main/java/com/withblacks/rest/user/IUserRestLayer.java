@@ -1,18 +1,19 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.business.entity.GENDER;
+import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 interface IUserRestLayer {
 
     Iterable findAll();
 
-    UserDto findByName(final String name);
+    ResponseEntity<?> findById(final String id);
 
-    UserDto findById(final long id);
+    ResponseEntity<?> create(final UserDto userDto, HttpServletRequest request, HttpServletResponse response);
 
-    boolean create(final String firstName, final String lastName, final GENDER gender);
-
-    boolean update(final String firstName, final String lastName, final GENDER gender);
+    boolean update(final UserDto userDto);
 
     void delete(final long id);
 }

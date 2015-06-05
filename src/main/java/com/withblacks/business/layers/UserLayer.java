@@ -32,8 +32,8 @@ public class UserLayer implements IUserLayer {
         return repository.find(id);
     }
 
-    public boolean create(final User user) {
-        return repository.create(user);
+    public User create(final User user) {
+        return repository.save(user);
     }
 
     public boolean update(final User user) {

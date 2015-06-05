@@ -1,20 +1,22 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.IUserFacadeLayer;
 import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import static com.withblacks.rest.user.trasformer.UserDtoBuilder.build;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@RestController
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
+@Controller
+@RequestMapping(value = "/users")
 public class UserRestLayer implements IUserRestLayer {
 
     private IUserFacadeLayer userFacadeLayer;
@@ -29,52 +31,51 @@ public class UserRestLayer implements IUserRestLayer {
         this.transformer = transformer;
     }
 
-    @RequestMapping(value = "/users/", method = GET)
+    @RequestMapping(method = GET)
+    @ResponseBody
     public Iterable findAll() {
-        System.out.println("FindAll");
         return transformer.convertTo(
                 userFacadeLayer.getUsers()
         );
     }
 
-    @RequestMapping(value = "/users/{name}",method = GET)
-    public UserDto findByName(@RequestParam final String name) {
-        System.out.println("findByName " + name);
-        return transformer.convertTo(
-                userFacadeLayer.getUser(name)
-        );
-    }
-
-    @RequestMapping(value = "/users/{id}", method = GET)
-    public UserDto findById(@RequestParam final long id) {
-        System.out.println("findById " + id);
-        return transformer.convertTo(
+    @RequestMapping(value = "/{id}", method = GET)
+    @ResponseBody
+    public ResponseEntity<?> findById(@PathVariable("id") final String id) {
+        final UserDto userDto = transformer.convertTo(
                 userFacadeLayer.getUser(id)
         );
+        return userDto == null ? responseEntity(NOT_FOUND) : responseEntity(userDto, OK);
     }
 
-    @RequestMapping(value = "/users", method = POST)
-    @ResponseBody
-    public boolean create(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
-        System.out.println("create " + firstName + " " + lastName + " " + gender.toString());
-        return userFacadeLayer.create(
-                transformer.convertFrom(build(firstName, lastName, gender))
+    @RequestMapping(method = POST)
+    @ResponseStatus(CREATED)
+    public ResponseEntity<?> create(@RequestBody final UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
+        User user = userFacadeLayer.create(
+                transformer.convertFrom(userDto)
         );
+        response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
+        return responseEntity(OK);
     }
 
-    //@RequestMapping(value = "/users/1", method = PUT)
-    public boolean update(@RequestParam final String firstName, @RequestParam final String lastName, @RequestParam final GENDER gender) {
-        System.out.println("create " + firstName + " " + lastName + " " + gender.toString());
+    @RequestMapping(value = "/{id}", method = PATCH)
+    @ResponseStatus(OK)
+    public boolean update(@RequestBody final UserDto userDto) {
         return userFacadeLayer.update(
-                transformer.convertFrom(
-                        build(firstName, lastName, gender)
-                )
+                transformer.convertFrom(userDto)
         );
     }
 
-    //@RequestMapping(value = "/users/1", method = DELETE)
+    @RequestMapping(value = "/{id}", method = DELETE)
     public void delete(@RequestParam final long id) {
-        System.out.println("delete " + id);
         userFacadeLayer.remove(id);
+    }
+
+    private ResponseEntity<Object> responseEntity(final HttpStatus status) {
+        return new ResponseEntity<>(status);
+    }
+
+    private ResponseEntity<UserDto> responseEntity(final UserDto userDto, final HttpStatus status) {
+        return new ResponseEntity<>(userDto, status);
     }
 }

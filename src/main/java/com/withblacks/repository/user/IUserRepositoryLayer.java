@@ -12,7 +12,7 @@ public interface IUserRepositoryLayer {
 
     User find(final long id);
 
-    boolean create(final User user);
+    User save(final User user);
 
     boolean update(final User user);
 
