@@ -41,6 +41,6 @@ public class UserLayer implements IUserLayer {
     }
 
     public void delete(final long id) {
-        // Do delete
+        repository.delete(id);
     }
 }

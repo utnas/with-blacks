@@ -67,6 +67,7 @@ public class UserRestLayer implements IUserRestLayer {
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
+    @ResponseStatus(OK)
     public void delete(@RequestParam final long id) {
         userFacadeLayer.remove(id);
     }
