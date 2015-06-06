@@ -2,7 +2,6 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.IUserLayer;
-import com.withblacks.rest.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public User getUser(long id) {
+    public User getUser(Long id) {
         return userLayer.find(id);
     }
 
@@ -47,7 +46,7 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public void remove(long id) {
+    public void remove(Long id) {
         userLayer.delete(id);
     }
 }

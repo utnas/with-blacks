@@ -12,11 +12,11 @@ public interface IUserFacadeLayer {
 
     List<User> getUsers();
 
-    User getUser(final long id);
+    User getUser(final Long id);
 
     User create(final User user);
 
     boolean update(final User user);
 
-    void remove(final long id);
+    void remove(final Long id);
 }

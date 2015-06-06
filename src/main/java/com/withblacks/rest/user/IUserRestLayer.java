@@ -9,11 +9,11 @@ interface IUserRestLayer {
 
     Iterable findAll();
 
-    ResponseEntity<?> findById(final String id);
+    ResponseEntity<?> findById(final Long id);
 
     ResponseEntity<?> create(final UserDto userDto, HttpServletRequest request, HttpServletResponse response);
 
-    boolean update(final UserDto userDto);
+    ResponseEntity<?> update(final Long id, final UserDto userDto);
 
-    void delete(final long id);
+    void delete(final Long id);
 }

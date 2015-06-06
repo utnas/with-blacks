@@ -41,7 +41,7 @@ public class UserRestLayer implements IUserRestLayer {
 
     @RequestMapping(value = "/{id}", method = GET)
     @ResponseBody
-    public ResponseEntity<?> findById(@PathVariable("id") final String id) {
+    public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         final UserDto userDto = transformer.convertTo(
                 userFacadeLayer.getUser(id)
         );
@@ -60,15 +60,16 @@ public class UserRestLayer implements IUserRestLayer {
 
     @RequestMapping(value = "/{id}", method = PATCH)
     @ResponseStatus(OK)
-    public boolean update(@RequestBody final UserDto userDto) {
-        return userFacadeLayer.update(
-                transformer.convertFrom(userDto)
-        );
+    public ResponseEntity<?> update(final Long id, @RequestBody final UserDto userDto) {
+        if (userFacadeLayer.update(transformer.convertFrom(userDto))) {
+            return responseEntity(OK);
+        }
+        return responseEntity(NOT_FOUND);
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
     @ResponseStatus(OK)
-    public void delete(@RequestParam final long id) {
+    public void delete(@RequestParam final Long id) {
         userFacadeLayer.remove(id);
     }
 

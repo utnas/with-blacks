@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static com.withblacks.business.builder.UserBuilder.build;
-
 @Service
 public class FakeUserRepository implements IUserRepositoryLayer {
 
@@ -75,9 +73,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     public boolean update(final User user) {
         final User fakeUser = repository.findUser(user);
         repository.remove(fakeUser);
-        return repository.addUser(
-                build(fakeUser.getId(), fakeUser.getFirstName(), fakeUser.getLastName(), fakeUser.getGender())
-        );
+        return repository.addUser(user);
     }
 
     @Override

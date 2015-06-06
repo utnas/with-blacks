@@ -39,7 +39,8 @@ public class FakeDataRepository {
     private User getUser(final User user) {
         return Iterables.find(repository, new Predicate<User>() {
             public boolean apply(User input) {
-                return user.getFirstName().equals(input.getFirstName()) &&
+                return user.getId() == input.getId() ||
+                        user.getFirstName().equals(input.getFirstName()) &&
                         user.getLastName().equals(input.getLastName()) &&
                         user.getGender().equals(input.getGender());
             }
