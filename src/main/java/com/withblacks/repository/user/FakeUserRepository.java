@@ -39,7 +39,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     }
 
     @Override
-    public User find(final long id) {
+    public User find(final long id) throws NoSuchElementException {
         try {
             return Iterables.find(repository.getUsers(), new Predicate<User>() {
                 @Override
@@ -48,7 +48,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
                 }
             });
         } catch (NoSuchElementException e) {
-            return new User();
+            throw e;
         }
     }
 
@@ -60,9 +60,9 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     @Override
     public User save(final User user) {
         try {
-            boolean result = repository.addUser(user);
-            if (result)
+            if (repository.addUser(user)) {
                 return user;
+            }
         } catch (Exception e) {
             return null;
         }
@@ -70,7 +70,7 @@ public class FakeUserRepository implements IUserRepositoryLayer {
     }
 
     @Override
-    public boolean update(final User user) {
+    public boolean modify(final User user) {
         final User fakeUser = repository.findUser(user);
         repository.remove(fakeUser);
         return repository.addUser(user);
@@ -78,6 +78,6 @@ public class FakeUserRepository implements IUserRepositoryLayer {
 
     @Override
     public void delete(final long id) {
-        // Do delete
+        repository.remove(find(id));
     }
 }

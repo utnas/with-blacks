@@ -33,10 +33,18 @@ public class FakeDataRepository {
     }
 
     public void remove(final User fakeUser) {
-        repository.remove(fakeUser);
+        try {
+            repository.remove(fakeUser);
+        } catch (UnsupportedOperationException e) {
+            throw e;
+        } catch (NullPointerException e) {
+            throw e;
+        } catch (ClassCastException e) {
+            throw e;
+        }
     }
 
-    private User getUser(final User user) {
+    private User getUser(final User user) throws NoSuchElementException {
         return Iterables.find(repository, new Predicate<User>() {
             public boolean apply(User input) {
                 return user.getId() == input.getId() ||

@@ -14,7 +14,7 @@ public interface IUserRepositoryLayer {
 
     User save(final User user);
 
-    boolean update(final User user);
+    boolean modify(final User user);
 
     void delete(final long id);
 }

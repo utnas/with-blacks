@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-interface IUserRestLayer {
+interface IUserRest {
 
     Iterable findAll();
 
@@ -15,5 +15,5 @@ interface IUserRestLayer {
 
     ResponseEntity<?> update(final Long id, final UserDto userDto);
 
-    void delete(final Long id);
+    ResponseEntity<?> delete(final Long id);
 }

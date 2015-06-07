@@ -46,7 +46,7 @@ public class UserFacadeLayer implements IUserFacadeLayer {
     }
 
     @Override
-    public void remove(Long id) {
+    public void remove(final Long id) {
         userLayer.delete(id);
     }
 }

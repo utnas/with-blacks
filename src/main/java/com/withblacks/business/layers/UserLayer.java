@@ -37,7 +37,7 @@ public class UserLayer implements IUserLayer {
     }
 
     public boolean update(final User user) {
-        return repository.update(user);
+        return repository.modify(user);
     }
 
     public void delete(final long id) {

@@ -6,8 +6,9 @@ import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,33 +16,35 @@ import javax.servlet.http.HttpServletResponse;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
-@Controller
+@RestController
 @RequestMapping(value = "/users")
-public class UserRestLayer implements IUserRestLayer {
+public class UserRest implements IUserRest {
 
     private IUserFacadeLayer userFacadeLayer;
     private IUserTransformer<User, UserDto> transformer;
 
-    public UserRestLayer() {
+    public UserRest() {
     }
 
     @Autowired
-    public UserRestLayer(IUserFacadeLayer userFacadeLayer, IUserTransformer<User, UserDto> transformer) {
+    public UserRest(IUserFacadeLayer userFacadeLayer, IUserTransformer<User, UserDto> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
 
     @RequestMapping(method = GET)
-    @ResponseBody
     public Iterable findAll() {
+        // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
+        // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
         return transformer.convertTo(
                 userFacadeLayer.getUsers()
         );
     }
 
     @RequestMapping(value = "/{id}", method = GET)
-    @ResponseBody
-    public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
+    public ResponseEntity<?> findById(final Long id) {
+        // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
+        // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
         final UserDto userDto = transformer.convertTo(
                 userFacadeLayer.getUser(id)
         );
@@ -49,17 +52,17 @@ public class UserRestLayer implements IUserRestLayer {
     }
 
     @RequestMapping(method = POST)
-    @ResponseStatus(CREATED)
     public ResponseEntity<?> create(@RequestBody final UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
+        //201 (Created), 'Location' header with link to /customers/{id} containing new ID.
+        //404 (Not Found), 409 (Conflict) if resource already exists..
         User user = userFacadeLayer.create(
                 transformer.convertFrom(userDto)
         );
         response.setHeader("Location", request.getRequestURL().append("/").append(user.getId()).toString());
-        return responseEntity(OK);
+        return responseEntity(CREATED);
     }
 
     @RequestMapping(value = "/{id}", method = PATCH)
-    @ResponseStatus(OK)
     public ResponseEntity<?> update(final Long id, @RequestBody final UserDto userDto) {
         if (userFacadeLayer.update(transformer.convertFrom(userDto))) {
             return responseEntity(OK);
@@ -68,9 +71,11 @@ public class UserRestLayer implements IUserRestLayer {
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
-    @ResponseStatus(OK)
-    public void delete(@RequestParam final Long id) {
+    public ResponseEntity<?> delete(final Long id) {
+        // 404 (Not Found), unless you want to delete the whole collection—not often desirable.
+        // 200 (OK). 404 (Not Found), if ID not found or invalid.
         userFacadeLayer.remove(id);
+        return responseEntity(OK);
     }
 
     private ResponseEntity<Object> responseEntity(final HttpStatus status) {
