@@ -6,6 +6,7 @@ import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,9 +43,12 @@ public class UserRest implements IUserRest {
     }
 
     @RequestMapping(value = "/{id}", method = GET)
-    public ResponseEntity<?> findById(final Long id) {
+    public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
         // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
+        if (id == null) {
+            return responseEntity(UNPROCESSABLE_ENTITY);
+        }
         final UserDto userDto = transformer.convertTo(
                 userFacadeLayer.getUser(id)
         );
@@ -71,7 +75,7 @@ public class UserRest implements IUserRest {
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
-    public ResponseEntity<?> delete(final Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         // 404 (Not Found), unless you want to delete the whole collection—not often desirable.
         // 200 (OK). 404 (Not Found), if ID not found or invalid.
         userFacadeLayer.remove(id);
