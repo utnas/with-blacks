@@ -19,23 +19,22 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserRest implements IUserRest {
+public class UserRestFacade implements IUserRestFacade {
 
     private IUserFacadeLayer userFacadeLayer;
     private IUserTransformer<User, UserDto> transformer;
 
-    public UserRest() {
+    public UserRestFacade() {
     }
 
     @Autowired
-    public UserRest(IUserFacadeLayer userFacadeLayer, IUserTransformer<User, UserDto> transformer) {
+    public UserRestFacade(IUserFacadeLayer userFacadeLayer, IUserTransformer<User, UserDto> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
 
     @RequestMapping(method = GET)
     public Iterable findAll() {
-        // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
         // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
         return transformer.convertTo(
                 userFacadeLayer.getUsers()
