@@ -56,7 +56,7 @@ public class UserRestFacade implements IUserRestFacade {
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<String> create(@RequestBody final UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> create(@RequestBody final UserDto userDto) {
         User user = userFacadeLayer.create(transformer.convertFrom(userDto));
         if (user != null) {
             HttpHeaders headers = new HttpHeaders();
