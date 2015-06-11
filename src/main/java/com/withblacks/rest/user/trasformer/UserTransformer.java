@@ -34,7 +34,7 @@ public class UserTransformer implements IUserTransformer<User, UserDto> {
     private User toUser(final UserDto userDto) {
         return new Function<UserDto, User>() {
             public User apply(final UserDto input) {
-                return UserBuilder.build(input.getId(), input.getFirstName(), input.getLastName(), input.getGender());
+                return UserBuilder.build(input.getLocalId(), input.getFirstName(), input.getLastName(), input.getGender());
             }
         }.apply(userDto);
     }

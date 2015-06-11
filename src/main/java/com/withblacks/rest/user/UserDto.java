@@ -1,10 +1,11 @@
 package com.withblacks.rest.user;
 
 import com.withblacks.business.entity.GENDER;
+import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDto {
+public class UserDto extends ResourceSupport {
 
     private long id;
     private String firstName;
@@ -52,7 +53,7 @@ public class UserDto {
         this.gender = gender;
     }
 
-    public long getId() {
+    public Long getLocalId() {
         return id;
     }
 }
