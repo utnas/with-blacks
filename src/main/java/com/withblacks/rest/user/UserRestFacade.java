@@ -4,7 +4,6 @@ import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.IUserFacadeLayer;
 import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
+import static com.google.common.collect.Iterables.isEmpty;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -39,29 +39,24 @@ public class UserRestFacade implements IUserRestFacade {
     }
 
     @RequestMapping(method = GET)
-    public Iterable findAll() {
-        // 200 (OK), single customer
-        return transformer.convertTo(userFacadeLayer.getUsers());
+    public ResponseEntity<Iterable> findAll() {
+        return new ResponseEntity<Iterable>(transformer.convertTo(userFacadeLayer.getUsers()), OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<UserDto> findById(@PathVariable("id") final Long id) {
-        // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
-        // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
         final UserDto userDto;
         try {
             userDto = transformer.convertTo(userFacadeLayer.getUser(id));
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserDto>(NOT_FOUND);
         }
-        Link link = linkTo(UserRestFacade.class).slash(userDto.getLocalId()).withSelfRel();
-        userDto.add(link);
-        return new ResponseEntity<UserDto>(userDto, OK);
+        userDto.add(linkTo(UserRestFacade.class).slash(userDto.getLocalId()).withSelfRel());
+        return responseEntity(userDto, OK);
     }
 
     @RequestMapping(method = POST)
     public ResponseEntity<String> create(@RequestBody final UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
-        //201 (Created), 'Location' header with link to /customers/{id} containing new ID.
         User user = userFacadeLayer.create(transformer.convertFrom(userDto));
         if (user != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -70,7 +65,6 @@ public class UserRestFacade implements IUserRestFacade {
         }
         //409 (Conflict) if resource already exists..
         //return new ResponseEntity<String>("Unable to create user", headers, CONFLICT);
-        //404 (Not Found)
         return new ResponseEntity<String>("Unable to create user", NOT_FOUND);
     }
 
