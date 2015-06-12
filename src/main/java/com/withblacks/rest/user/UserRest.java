@@ -2,7 +2,7 @@ package com.withblacks.rest.user;
 
 import org.springframework.http.ResponseEntity;
 
-public interface UserRestFacade {
+public interface UserRest {
 
     ResponseEntity<?> findAll();
 

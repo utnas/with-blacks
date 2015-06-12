@@ -1,10 +1,10 @@
-package com.withblacks.business.layers;
+package com.withblacks.repository.user;
 
 import com.withblacks.business.entity.User;
 
 import java.util.List;
 
-public interface IUserLayer {
+public interface UserRepositoryLayer {
 
     User find(final String userName);
 
@@ -12,9 +12,9 @@ public interface IUserLayer {
 
     User find(final long id);
 
-    User create(final User user);
+    User save(final User user) throws Exception;
 
-    boolean update(final User user);
+    boolean modify(final User user);
 
     void delete(final long id);
 }

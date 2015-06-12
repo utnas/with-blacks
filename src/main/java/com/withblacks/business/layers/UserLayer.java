@@ -1,46 +1,20 @@
 package com.withblacks.business.layers;
 
 import com.withblacks.business.entity.User;
-import com.withblacks.repository.user.IUserRepositoryLayer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserLayer implements IUserLayer {
+public interface UserLayer {
 
-    private IUserRepositoryLayer repository;
+    User find(final String userName);
 
-    public UserLayer() {
-    }
+    List<User> findAll();
 
-    @Autowired
-    public UserLayer(final IUserRepositoryLayer repository) {
-        this.repository = repository;
-    }
+    User find(final long id);
 
-    public User find(final String userName) {
-        return repository.find(userName);
-    }
+    User create(final User user) throws Exception;
 
-    public List<User> findAll() {
-        return repository.findAll();
-    }
+    boolean update(final User user);
 
-    public User find(final long id) {
-        return repository.find(id);
-    }
-
-    public User create(final User user) {
-        return repository.save(user);
-    }
-
-    public boolean update(final User user) {
-        return repository.modify(user);
-    }
-
-    public void delete(final long id) {
-        repository.delete(id);
-    }
+    void delete(final long id);
 }

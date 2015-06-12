@@ -4,7 +4,6 @@ import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.UserFacadeLayer;
 import com.withblacks.rest.user.trasformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,30 +13,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserRestFacadeImpl implements UserRestFacade {
+public class UserRestImpl implements UserRest {
 
     private UserFacadeLayer userFacadeLayer;
     private UserTransformer<User, UserResource> transformer;
 
-    public UserRestFacadeImpl() {
+    public UserRestImpl() {
     }
 
     @Autowired
-    public UserRestFacadeImpl(UserFacadeLayer userFacadeLayer, UserTransformer<User, UserResource> transformer) {
+    public UserRestImpl(UserFacadeLayer userFacadeLayer, UserTransformer<User, UserResource> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> findAll() {
-        final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), UserRestFacadeImpl.class);
+        final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), UserRestImpl.class);
         return new ResponseEntity<Iterable>(userDtoList, OK);
     }
 
@@ -45,7 +42,7 @@ public class UserRestFacadeImpl implements UserRestFacade {
     public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
         final UserResource userResource;
         try {
-            userResource = transformer.convertTo(userFacadeLayer.getUser(id), UserRestFacadeImpl.class);
+            userResource = transformer.convertTo(userFacadeLayer.getUser(id), UserRestImpl.class);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(NOT_FOUND);
         }
@@ -53,16 +50,15 @@ public class UserRestFacadeImpl implements UserRestFacade {
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<String> create(@RequestBody final UserResource userResource) {
-        final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
-        if (user != null) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setLocation(linkTo(UserRestFacadeImpl.class).slash(user.getId()).toUri());
-            return new ResponseEntity<String>(user.getId().toString(), headers, HttpStatus.CREATED);
+    public ResponseEntity<UserResource> create(@RequestBody final UserResource userResource) {
+        try {
+            final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
+            return new ResponseEntity<UserResource>(transformer.convertTo(user, UserRest.class), CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<UserResource>(NOT_FOUND);
         }
         //409 (Conflict) if resource already exists..
         //return new ResponseEntity<String>("Unable to create user", headers, CONFLICT);
-        return new ResponseEntity<String>("Unable to create user", NOT_FOUND);
     }
 
     @RequestMapping(value = "/{id}", method = PATCH)

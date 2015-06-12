@@ -14,7 +14,7 @@ public interface UserFacadeLayer {
 
     User getUser(final Long id);
 
-    User create(final User user);
+    User create(final User user) throws Exception;
 
     boolean update(final User user);
 

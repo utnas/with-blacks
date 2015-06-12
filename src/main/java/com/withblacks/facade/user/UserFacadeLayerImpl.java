@@ -1,7 +1,7 @@
 package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
-import com.withblacks.business.layers.IUserLayer;
+import com.withblacks.business.layers.UserLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
 
-    private IUserLayer userLayer;
+    private UserLayer userLayer;
 
     public UserFacadeLayerImpl() {
     }
 
     @Autowired
-    public UserFacadeLayerImpl(IUserLayer userLayer) {
+    public UserFacadeLayerImpl(UserLayer userLayer) {
         this.userLayer = userLayer;
     }
 
@@ -36,7 +36,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public User create(User user) {
+    public User create(User user) throws Exception {
         return userLayer.create(user);
     }
 

@@ -1,7 +1,7 @@
 package com.withblacks.rest
 
-import com.withblacks.rest.user.UserRestFacade
-import com.withblacks.rest.user.UserRestFacadeImpl
+import com.withblacks.rest.user.UserRest
+import com.withblacks.rest.user.UserRestImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -24,13 +24,13 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan
-@ContextConfiguration(classes = [RestMockApplication.class, UserRestFacadeImpl.class])
+@ContextConfiguration(classes = [RestMockApplication.class, UserRestImpl.class])
 class UserRestLayerSpec extends Specification {
 
     @Autowired
     private WebApplicationContext applicationContext;
     private MockMvc mockMvc;
-    private UserRestFacade userRestFacade;
+    private UserRest userRestFacade;
 
     def setup() {
         mockMvc = webAppContextSetup(applicationContext).build();
