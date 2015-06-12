@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface IUserRestFacade {
 
-    Iterable findAll();
+    ResponseEntity<?> findAll();
 
     ResponseEntity<?> findById(final Long id);
 
-    ResponseEntity<?> create(final UserDto userDto, HttpServletRequest request, HttpServletResponse response);
+    ResponseEntity<?> create(final UserDto userDto);
 
     ResponseEntity<?> update(final Long id, final UserDto userDto);
 

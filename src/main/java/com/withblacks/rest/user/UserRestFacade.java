@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
+import static com.google.common.collect.Iterables.isEmpty;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -55,9 +56,8 @@ public class UserRestFacade implements IUserRestFacade {
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<String> create(@RequestBody final UserDto userDto, HttpServletRequest request, HttpServletResponse response) {
-        //201 (Created), 'Location' header with link to /customers/{id} containing new ID.
-        User user = userFacadeLayer.create(transformer.convertFrom(userDto));
+    public ResponseEntity<String> create(@RequestBody final UserDto userDto) {
+        final User user = userFacadeLayer.create(transformer.convertFrom(userDto));
         if (user != null) {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(linkTo(UserRestFacade.class).slash(user.getId()).toUri());
@@ -65,7 +65,6 @@ public class UserRestFacade implements IUserRestFacade {
         }
         //409 (Conflict) if resource already exists..
         //return new ResponseEntity<String>("Unable to create user", headers, CONFLICT);
-        //404 (Not Found)
         return new ResponseEntity<String>("Unable to create user", NOT_FOUND);
     }
 
