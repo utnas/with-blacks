@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Arrays.asList;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Component
 public class UserTransformer implements IUserTransformer<User, UserDto> {
@@ -17,13 +19,17 @@ public class UserTransformer implements IUserTransformer<User, UserDto> {
     }
 
     @Override
-    public Iterable<UserDto> convertTo(final List<User> users) {
-        return toDtoList(users);
+    public Iterable<UserDto> convertTo(final List<User> users, final Class<?>... klass) {
+        return toDtoList(users, asList(klass).get(0));
     }
 
     @Override
-    public UserDto convertTo(final User user) {
-        return toDto(user);
+    public UserDto convertTo(final User user, final Class<?>... klass) {
+        final UserDto dto = toDto(user);
+        final Class<?> aClass = asList(klass).get(0);
+        dto.add(linkTo(aClass).slash(user.getId()).withSelfRel());
+
+        return dto;
     }
 
     @Override
@@ -47,12 +53,12 @@ public class UserTransformer implements IUserTransformer<User, UserDto> {
         }.apply(user);
     }
 
-    private Iterable<UserDto> toDtoList(final List<User> users) {
+    private Iterable<UserDto> toDtoList(final List<User> users, final Class<?> aClass) {
         return new Function<List<User>, Iterable<UserDto>>() {
             public Iterable<UserDto> apply(final List<User> input) {
                 List<UserDto> result = newArrayList();
                 for (final User user : input) {
-                    result.add(convertTo(user));
+                    result.add(convertTo(user, aClass));
                 }
                 return result;
             }

@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IUserTransformer<F extends User, T extends UserDto> {
 
-    Iterable<T> convertTo(final List<F> sources);
+    Iterable<T> convertTo(final List<F> sources, final Class<?>... klass);
 
-    T convertTo(final F source);
+    T convertTo(final F source, final Class<?>... klass);
 
     F convertFrom(final T source);
 }

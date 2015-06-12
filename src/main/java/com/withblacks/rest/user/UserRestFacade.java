@@ -4,7 +4,6 @@ import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.IUserFacadeLayer;
 import com.withblacks.rest.user.trasformer.IUserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,21 +40,17 @@ public class UserRestFacade implements IUserRestFacade {
     @RequestMapping(method = GET)
     public Iterable findAll() {
         // 200 (OK), single customer
-        return transformer.convertTo(userFacadeLayer.getUsers());
+        return transformer.convertTo(userFacadeLayer.getUsers(), UserRestFacade.class);
     }
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<UserDto> findById(@PathVariable("id") final Long id) {
-        // 200 (OK), list of customers. Use pagination, sorting and filtering to navigate big lists.
-        // 200 (OK), single customer. 404 (Not Found), if ID not found or invalid.
         final UserDto userDto;
         try {
-            userDto = transformer.convertTo(userFacadeLayer.getUser(id));
+            userDto = transformer.convertTo(userFacadeLayer.getUser(id), UserRestFacade.class);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserDto>(NOT_FOUND);
         }
-        Link link = linkTo(UserRestFacade.class).slash(userDto.getLocalId()).withSelfRel();
-        userDto.add(link);
         return new ResponseEntity<UserDto>(userDto, OK);
     }
 
