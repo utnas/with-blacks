@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
-import static com.google.common.collect.Iterables.isEmpty;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -39,9 +36,9 @@ public class UserRestFacade implements IUserRestFacade {
     }
 
     @RequestMapping(method = GET)
-    public Iterable findAll() {
-        // 200 (OK), single customer
-        return transformer.convertTo(userFacadeLayer.getUsers(), UserRestFacade.class);
+    public ResponseEntity<?> findAll() {
+        final Iterable<UserDto> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), UserRestFacade.class);
+        return new ResponseEntity<Iterable>(userDtoList, OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET)
