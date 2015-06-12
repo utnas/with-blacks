@@ -1,6 +1,7 @@
 package com.withblacks.repository.user;
 
 import com.google.common.base.Predicate;
+import com.google.common.base.Throwables;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
 import com.withblacks.repository.data.FakeDataRepository;
@@ -39,7 +40,7 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
         return Iterables.find(repository.getUsers(), new Predicate<User>() {
             @Override
             public boolean apply(User input) {
-                    return input.getId() == id;
+                return input.getId() == id;
             }
         });
     }
@@ -50,8 +51,11 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public User save(final User user) throws Exception {
-        return repository.addUser(user) ? user : null;
+    public User save(final User user) throws NoSuchElementException {
+        if (repository.addUser(user)) {
+            return user;
+        }
+        throw Throwables.propagate(new NoSuchElementException());
     }
 
     @Override
@@ -62,7 +66,7 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public void delete(final long id) {
+    public void delete(final long id) throws NoSuchElementException {
         repository.remove(find(id));
     }
 }

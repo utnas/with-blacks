@@ -3,6 +3,7 @@ package com.withblacks.repository.user;
 import com.withblacks.business.entity.User;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public interface UserRepositoryLayer {
 
@@ -12,7 +13,7 @@ public interface UserRepositoryLayer {
 
     User find(final long id);
 
-    User save(final User user) throws Exception;
+    User save(final User user) throws NoSuchElementException;
 
     boolean modify(final User user);
 

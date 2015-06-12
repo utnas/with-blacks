@@ -25,7 +25,7 @@ public class FakeDataRepository {
     }
 
     public boolean addUser(final User user) {
-        return repository.add(user);
+        return !repository.contains(user) && repository.add(user);
     }
 
     public User findUser(final User user) throws NoSuchElementException {
@@ -49,8 +49,8 @@ public class FakeDataRepository {
             public boolean apply(User input) {
                 return user.getId() == input.getId() ||
                         user.getFirstName().equals(input.getFirstName()) &&
-                        user.getLastName().equals(input.getLastName()) &&
-                        user.getGender().equals(input.getGender());
+                                user.getLastName().equals(input.getLastName()) &&
+                                user.getGender().equals(input.getGender());
             }
         });
     }

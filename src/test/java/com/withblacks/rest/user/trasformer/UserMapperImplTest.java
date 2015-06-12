@@ -2,11 +2,15 @@ package com.withblacks.rest.user.trasformer;
 
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.UserResource;
+import com.withblacks.rest.user.UserRestImpl;
+import com.withblacks.rest.user.dto.UserResource;
+import com.withblacks.rest.user.dto.mapper.UserResourceBuilder;
+import com.withblacks.rest.user.dto.mapper.UserMapperImpl;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -15,32 +19,33 @@ import static com.withblacks.business.entity.GENDER.FEMALE;
 import static com.withblacks.repository.data.UserGenerator.generateUsers;
 import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
-public class UserTransformerImplTest {
+public class UserMapperImplTest {
 
     @Test
     public void testItShouldConvertUsersListToUserDtoEmptyList() throws Exception {
-        Iterable<UserResource> userDtos = new UserTransformerImpl().convertTo(EMPTY_LIST);
+        Iterable<UserResource> userDtos = new UserMapperImpl().convertTo(EMPTY_LIST, UserRestImpl.class);
         assertThat(isEmpty(userDtos), is(true));
     }
 
     @Test
     public void testItShouldConvertUsersListToUserDtoList() throws Exception {
-        Iterable<UserResource> userDtos = new UserTransformerImpl().convertTo(generateUsers(5));
+        Iterable<UserResource> userDtos = new UserMapperImpl().convertTo(generateUsers(5), UserRestImpl.class);
         assertThat(userDtos, containsOnlyUserDto());
     }
 
     @Test
     public void testItShouldConvertUserToUserDto() throws Exception {
-        UserResource userResource = new UserTransformerImpl().convertTo(generateUsers(1).get(0));
+        UserResource userResource = new UserMapperImpl().convertTo(generateUsers(1).get(0), this.getClass());
         assertThat(userResource == null, is(false));
     }
 
     @Test
     public void testConvertFrom() throws Exception {
-        UserResource userResourceBuilder = UserDtoBuilder.build("FirstName", "LastName", FEMALE);
-        User user = new UserTransformerImpl().convertFrom(userResourceBuilder);
+        UserResource userResourceBuilder = UserResourceBuilder.build("FirstName", "LastName", FEMALE);
+        User user = new UserMapperImpl().convertFrom(userResourceBuilder);
         assertThat(user, hasProperties("FirstName", "LastName", FEMALE));
     }
 

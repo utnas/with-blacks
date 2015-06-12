@@ -1,5 +1,6 @@
 package com.withblacks.rest.user;
 
+import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.http.ResponseEntity;
 
 public interface UserRest {

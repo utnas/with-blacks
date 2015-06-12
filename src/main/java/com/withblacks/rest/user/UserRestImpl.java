@@ -2,7 +2,8 @@ package com.withblacks.rest.user;
 
 import com.withblacks.business.entity.User;
 import com.withblacks.facade.user.UserFacadeLayer;
-import com.withblacks.rest.user.trasformer.UserTransformer;
+import com.withblacks.rest.user.dto.UserResource;
+import com.withblacks.rest.user.dto.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class UserRestImpl implements UserRest {
 
     private UserFacadeLayer userFacadeLayer;
-    private UserTransformer<User, UserResource> transformer;
+    private UserMapper<User, UserResource> transformer;
 
     public UserRestImpl() {
     }
 
     @Autowired
-    public UserRestImpl(UserFacadeLayer userFacadeLayer, UserTransformer<User, UserResource> transformer) {
+    public UserRestImpl(UserFacadeLayer userFacadeLayer, UserMapper<User, UserResource> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
@@ -54,11 +55,9 @@ public class UserRestImpl implements UserRest {
         try {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
             return new ResponseEntity<UserResource>(transformer.convertTo(user, UserRest.class), CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<UserResource>(NOT_FOUND);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<UserResource>(CONFLICT);
         }
-        //409 (Conflict) if resource already exists..
-        //return new ResponseEntity<String>("Unable to create user", headers, CONFLICT);
     }
 
     @RequestMapping(value = "/{id}", method = PATCH)
@@ -71,9 +70,11 @@ public class UserRestImpl implements UserRest {
 
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
-        // 404 (Not Found), unless you want to delete the whole collection—not often desirable.
-        // 200 (OK). 404 (Not Found), if ID not found or invalid.
-        userFacadeLayer.remove(id);
+        try {
+            userFacadeLayer.remove(id);
+        } catch (NoSuchElementException e) {
+            return responseEntity(NOT_FOUND);
+        }
         return responseEntity(OK);
     }
 

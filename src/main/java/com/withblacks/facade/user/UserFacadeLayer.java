@@ -4,6 +4,7 @@ import com.withblacks.business.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public interface UserFacadeLayer {
@@ -14,9 +15,9 @@ public interface UserFacadeLayer {
 
     User getUser(final Long id);
 
-    User create(final User user) throws Exception;
+    User create(final User user) throws NoSuchElementException;
 
     boolean update(final User user);
 
-    void remove(final Long id);
+    void remove(final Long id) throws NoSuchElementException;
 }

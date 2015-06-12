@@ -1,9 +1,9 @@
-package com.withblacks.rest.user.trasformer;
+package com.withblacks.rest.user.dto.mapper;
 
 import com.withblacks.business.entity.GENDER;
-import com.withblacks.rest.user.UserResource;
+import com.withblacks.rest.user.dto.UserResource;
 
-public class UserDtoBuilder {
+public class UserResourceBuilder {
 
     public static UserResource build(final long id, final String firstName, final String lastName, final GENDER gender) {
         // catch errors here

@@ -1,35 +1,32 @@
-package com.withblacks.rest.user.trasformer;
+package com.withblacks.rest.user.dto.mapper;
 
 import com.google.common.base.Function;
 import com.withblacks.business.builder.UserBuilder;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.UserResource;
+import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Arrays.asList;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Component
-public class UserTransformerImpl implements UserTransformer<User, UserResource> {
+public class UserMapperImpl implements UserMapper<User, UserResource> {
 
-    public UserTransformerImpl() {
+    public UserMapperImpl() {
     }
 
     @Override
-    public Iterable<UserResource> convertTo(final List<User> users, final Class<?>... klass) {
-        return toDtoList(users, asList(klass).get(0));
+    public Iterable<UserResource> convertTo(final List<User> users, final Class<?> aClass) {
+        return toDtoList(users, aClass);
     }
 
     @Override
-    public UserResource convertTo(final User user, final Class<?>... klass) {
-        final UserResource dto = toDto(user);
-        final Class<?> aClass = asList(klass).get(0);
-        dto.add(linkTo(aClass).slash(user.getId()).withSelfRel());
-
-        return dto;
+    public UserResource convertTo(final User user, final Class<?> aClass) {
+        final UserResource resource = toDto(user);
+        resource.add(linkTo(aClass).slash(user.getId()).withSelfRel());
+        return resource;
     }
 
     @Override
@@ -48,7 +45,7 @@ public class UserTransformerImpl implements UserTransformer<User, UserResource> 
     private UserResource toDto(final User user) {
         return new Function<User, UserResource>() {
             public UserResource apply(final User input) {
-                return UserDtoBuilder.build(input.getId(), input.getFirstName(), input.getLastName(), input.getGender());
+                return UserResourceBuilder.build(input.getId(), input.getFirstName(), input.getLastName(), input.getGender());
             }
         }.apply(user);
     }

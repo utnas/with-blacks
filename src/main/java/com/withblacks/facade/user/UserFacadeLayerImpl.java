@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
@@ -36,7 +37,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public User create(User user) throws Exception {
+    public User create(User user) throws NoSuchElementException {
         return userLayer.create(user);
     }
 
@@ -46,7 +47,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public void remove(final Long id) {
+    public void remove(final Long id)throws NoSuchElementException {
         userLayer.delete(id);
     }
 }

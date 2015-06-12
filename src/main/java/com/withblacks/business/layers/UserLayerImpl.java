@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserLayerImpl implements UserLayer {
@@ -32,7 +33,7 @@ public class UserLayerImpl implements UserLayer {
         return repository.find(id);
     }
 
-    public User create(final User user) throws Exception {
+    public User create(final User user) throws NoSuchElementException {
         return repository.save(user);
     }
 
@@ -40,7 +41,7 @@ public class UserLayerImpl implements UserLayer {
         return repository.modify(user);
     }
 
-    public void delete(final long id) {
+    public void delete(final long id) throws NoSuchElementException{
         repository.delete(id);
     }
 }
