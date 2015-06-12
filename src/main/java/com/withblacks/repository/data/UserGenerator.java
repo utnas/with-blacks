@@ -2,7 +2,7 @@ package com.withblacks.repository.data;
 
 import com.github.javafaker.Faker;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.UserDto;
+import com.withblacks.rest.user.UserResource;
 import com.withblacks.rest.user.trasformer.UserDtoBuilder;
 
 import java.util.List;
@@ -25,10 +25,10 @@ public class UserGenerator {
         return result;
     }
 
-    public static List<UserDto> generateUsersDto(final int size) {
+    public static List<UserResource> generateUsersDto(final int size) {
         final Faker faker = new Faker();
         final AtomicLong idCounter = new AtomicLong(0);
-        final List<UserDto> result = newArrayList();
+        final List<UserResource> result = newArrayList();
 
         for (int i = 0; i < size; i++) {
             result.add(UserDtoBuilder.build(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));

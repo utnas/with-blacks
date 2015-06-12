@@ -1,52 +1,22 @@
 package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
-import com.withblacks.business.layers.IUserLayer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
-public class UserFacadeLayer implements IUserFacadeLayer {
+@Component
+public interface UserFacadeLayer {
 
-    private IUserLayer userLayer;
+    User getUser(final String userName);
 
-    public UserFacadeLayer() {
-    }
+    List<User> getUsers();
 
-    @Autowired
-    public UserFacadeLayer(IUserLayer userLayer) {
-        this.userLayer = userLayer;
-    }
+    User getUser(final Long id);
 
-    @Override
-    public User getUser(String userName) {
-        return userLayer.find(userName);
-    }
+    User create(final User user);
 
-    @Override
-    public List<User> getUsers() {
-        return userLayer.findAll();
-    }
+    boolean update(final User user);
 
-    @Override
-    public User getUser(Long id) {
-        return userLayer.find(id);
-    }
-
-    @Override
-    public User create(User user) {
-        return userLayer.create(user);
-    }
-
-    @Override
-    public boolean update(User userDto) {
-        return userLayer.update(userDto);
-    }
-
-    @Override
-    public void remove(final Long id) {
-        userLayer.delete(id);
-    }
+    void remove(final Long id);
 }

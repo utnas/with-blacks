@@ -2,7 +2,7 @@ package com.withblacks.rest
 
 import spock.lang.Specification
 
-class UserRestFacadeTest extends Specification {
+class UserRestFacadeImplTest extends Specification {
 
     void testFindAll() {
     }

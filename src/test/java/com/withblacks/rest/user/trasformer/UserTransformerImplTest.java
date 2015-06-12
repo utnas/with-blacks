@@ -2,7 +2,7 @@ package com.withblacks.rest.user.trasformer;
 
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.UserDto;
+import com.withblacks.rest.user.UserResource;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -17,30 +17,30 @@ import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
-public class UserTransformerTest {
+public class UserTransformerImplTest {
 
     @Test
     public void testItShouldConvertUsersListToUserDtoEmptyList() throws Exception {
-        Iterable<UserDto> userDtos = new UserTransformer().convertTo(EMPTY_LIST);
+        Iterable<UserResource> userDtos = new UserTransformerImpl().convertTo(EMPTY_LIST);
         assertThat(isEmpty(userDtos), is(true));
     }
 
     @Test
     public void testItShouldConvertUsersListToUserDtoList() throws Exception {
-        Iterable<UserDto> userDtos = new UserTransformer().convertTo(generateUsers(5));
+        Iterable<UserResource> userDtos = new UserTransformerImpl().convertTo(generateUsers(5));
         assertThat(userDtos, containsOnlyUserDto());
     }
 
     @Test
     public void testItShouldConvertUserToUserDto() throws Exception {
-        UserDto userDto = new UserTransformer().convertTo(generateUsers(1).get(0));
-        assertThat(userDto == null, is(false));
+        UserResource userResource = new UserTransformerImpl().convertTo(generateUsers(1).get(0));
+        assertThat(userResource == null, is(false));
     }
 
     @Test
     public void testConvertFrom() throws Exception {
-        UserDto userDtoBuilder = UserDtoBuilder.build("FirstName", "LastName", FEMALE);
-        User user = new UserTransformer().convertFrom(userDtoBuilder);
+        UserResource userResourceBuilder = UserDtoBuilder.build("FirstName", "LastName", FEMALE);
+        User user = new UserTransformerImpl().convertFrom(userResourceBuilder);
         assertThat(user, hasProperties("FirstName", "LastName", FEMALE));
     }
 
@@ -59,12 +59,12 @@ public class UserTransformerTest {
         };
     }
 
-    private Matcher<Iterable<UserDto>> containsOnlyUserDto() {
-        return new BaseMatcher<Iterable<UserDto>>() {
+    private Matcher<Iterable<UserResource>> containsOnlyUserDto() {
+        return new BaseMatcher<Iterable<UserResource>>() {
             @Override
             public boolean matches(Object item) {
                 for (final Object o : ((ArrayList) item)) {
-                    if (!(o instanceof UserDto)) {
+                    if (!(o instanceof UserResource)) {
                         return false;
                     }
                 }
