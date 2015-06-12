@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
+import static java.util.Optional.of;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
@@ -35,7 +37,7 @@ public class UserRestImpl implements UserRest {
 
     @RequestMapping(method = GET)
     public ResponseEntity<?> findAll() {
-        final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), UserRestImpl.class);
+        final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), of(UserRestImpl.class));
         return new ResponseEntity<Iterable>(userDtoList, OK);
     }
 
@@ -43,7 +45,7 @@ public class UserRestImpl implements UserRest {
     public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
         final UserResource userResource;
         try {
-            userResource = transformer.convertTo(userFacadeLayer.getUser(id), UserRestImpl.class);
+            userResource = transformer.convertTo(userFacadeLayer.getUser(id), of(UserRestImpl.class));
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(NOT_FOUND);
         }
@@ -54,7 +56,7 @@ public class UserRestImpl implements UserRest {
     public ResponseEntity<UserResource> create(@RequestBody final UserResource userResource) {
         try {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
-            return new ResponseEntity<UserResource>(transformer.convertTo(user, UserRest.class), CREATED);
+            return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), CREATED);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(CONFLICT);
         }

@@ -1,5 +1,6 @@
 package com.withblacks.rest.user.trasformer;
 
+import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
 import com.withblacks.rest.user.UserRestImpl;
@@ -13,11 +14,13 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static com.google.common.collect.Iterables.isEmpty;
 import static com.withblacks.business.entity.GENDER.FEMALE;
 import static com.withblacks.repository.data.UserGenerator.generateUsers;
 import static java.util.Collections.EMPTY_LIST;
+import static java.util.Optional.empty;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
@@ -26,33 +29,33 @@ public class UserMapperImplTest {
 
     @Test
     public void testItShouldConvertUsersListToUserDtoEmptyList() throws Exception {
-        Iterable<UserResource> userDtos = new UserMapperImpl().convertTo(EMPTY_LIST, UserRestImpl.class);
-        assertThat(isEmpty(userDtos), is(true));
+       final Iterable<UserResource> userResources = new UserMapperImpl().convertTo(EMPTY_LIST, empty());
+        assertThat(isEmpty(userResources), is(true));
     }
 
     @Test
     public void testItShouldConvertUsersListToUserDtoList() throws Exception {
-        Iterable<UserResource> userDtos = new UserMapperImpl().convertTo(generateUsers(5), UserRestImpl.class);
-        assertThat(userDtos, containsOnlyUserDto());
+        final Iterable<UserResource> userResources = new UserMapperImpl().convertTo(generateUsers(5), empty());
+        assertThat(userResources, containsOnlyUserDto());
     }
 
     @Test
     public void testItShouldConvertUserToUserDto() throws Exception {
-        UserResource userResource = new UserMapperImpl().convertTo(generateUsers(1).get(0), this.getClass());
+        final UserResource userResource = new UserMapperImpl().convertTo(generateUsers(1).get(0), empty());
         assertThat(userResource == null, is(false));
     }
 
     @Test
     public void testConvertFrom() throws Exception {
-        UserResource userResourceBuilder = UserResourceBuilder.build("FirstName", "LastName", FEMALE);
-        User user = new UserMapperImpl().convertFrom(userResourceBuilder);
+        final UserResource userResourceBuilder = UserResourceBuilder.build("FirstName", "LastName", FEMALE);
+        final User user = new UserMapperImpl().convertFrom(userResourceBuilder);
         assertThat(user, hasProperties("FirstName", "LastName", FEMALE));
     }
 
     private Matcher<User> hasProperties(final String firstName, final String lastName, final GENDER gender) {
         return new BaseMatcher<User>() {
             @Override
-            public boolean matches(Object item) {
+            public boolean matches(final Object item) {
                 User user = (User) item;
                 return user.getFirstName().equals(firstName) && user.getLastName().equals(lastName) && user.getGender().equals(gender);
             }
@@ -67,7 +70,7 @@ public class UserMapperImplTest {
     private Matcher<Iterable<UserResource>> containsOnlyUserDto() {
         return new BaseMatcher<Iterable<UserResource>>() {
             @Override
-            public boolean matches(Object item) {
+            public boolean matches(final Object item) {
                 for (final Object o : ((ArrayList) item)) {
                     if (!(o instanceof UserResource)) {
                         return false;
@@ -77,7 +80,7 @@ public class UserMapperImplTest {
             }
 
             @Override
-            public void describeTo(Description description) {
+            public void describeTo(final Description description) {
 
             }
         };
