@@ -1,7 +1,6 @@
 package com.withblacks.repository.user;
 
 import com.google.common.base.Predicate;
-import com.google.common.base.Throwables;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
 import com.withblacks.repository.data.FakeDataRepository;
@@ -10,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import static com.google.common.base.Throwables.propagate;
 
 @Service
 public class FakeUserRepositoryImpl implements UserRepositoryLayer {
@@ -55,11 +56,11 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
         if (repository.addUser(user)) {
             return user;
         }
-        throw Throwables.propagate(new NoSuchElementException());
+        throw propagate(new NoSuchElementException());
     }
 
     @Override
-    public boolean modify(final User user) {
+    public boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         final User fakeUser = repository.findUser(user);
         repository.remove(fakeUser);
         return repository.addUser(user);

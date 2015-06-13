@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import static java.util.Optional.of;
 import static org.springframework.http.HttpStatus.*;
@@ -43,13 +42,12 @@ public class UserRestImpl implements UserRest {
 
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
-        final UserResource userResource;
         try {
-            userResource = transformer.convertTo(userFacadeLayer.getUser(id), of(UserRestImpl.class));
+            final UserResource userResource = transformer.convertTo(userFacadeLayer.getUser(id), of(UserRestImpl.class));
+            return new ResponseEntity<UserResource>(userResource, OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(NOT_FOUND);
         }
-        return new ResponseEntity<UserResource>(userResource, OK);
     }
 
     @RequestMapping(method = POST)
@@ -74,17 +72,13 @@ public class UserRestImpl implements UserRest {
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             userFacadeLayer.remove(id);
+            return responseEntity(OK);
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         }
-        return responseEntity(OK);
     }
 
     private ResponseEntity<?> responseEntity(final HttpStatus status) {
         return new ResponseEntity<>(status);
-    }
-
-    private ResponseEntity<UserResource> responseEntity(final UserResource userResource, final HttpStatus status) {
-        return new ResponseEntity<>(userResource, status);
     }
 }
