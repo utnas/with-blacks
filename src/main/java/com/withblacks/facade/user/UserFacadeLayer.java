@@ -17,7 +17,7 @@ public interface UserFacadeLayer {
 
     User create(final User user) throws NoSuchElementException;
 
-    boolean update(final User user);
+    boolean update(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void remove(final Long id) throws NoSuchElementException;
 }

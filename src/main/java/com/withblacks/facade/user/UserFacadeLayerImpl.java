@@ -42,7 +42,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public boolean update(User userDto) {
+    public boolean update(User userDto) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         return userLayer.update(userDto);
     }
 

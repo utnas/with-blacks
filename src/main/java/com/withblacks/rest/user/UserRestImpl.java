@@ -62,10 +62,17 @@ public class UserRestImpl implements UserRest {
 
     @RequestMapping(value = "/{id}", method = PATCH)
     public ResponseEntity<?> update(final Long id, @RequestBody final UserResource userResource) {
-        if (userFacadeLayer.update(transformer.convertFrom(userResource))) {
+        try {
+            final User user = transformer.convertFrom(userResource);
+            userFacadeLayer.update(user);
+            transformer.convertTo(user, of(UserRestImpl.class));
+
             return responseEntity(OK);
+        } catch (NoSuchElementException e) {
+            return responseEntity(NOT_FOUND);
+        } catch (ClassCastException e) {
+            return responseEntity(NOT_FOUND);
         }
-        return responseEntity(NOT_FOUND);
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)
