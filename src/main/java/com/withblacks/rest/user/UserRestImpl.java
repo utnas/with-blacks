@@ -16,6 +16,7 @@ import java.util.NoSuchElementException;
 
 import static java.util.Optional.of;
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
@@ -25,20 +26,19 @@ public class UserRestImpl implements UserRest {
     private final transient UserFacadeLayer userFacadeLayer;
     private final transient UserMapper<User, UserResource> transformer;
 
-
     @Autowired
     public UserRestImpl(final UserFacadeLayer userFacadeLayer, final UserMapper<User, UserResource> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
 
-    @RequestMapping(method = GET)
+    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
         final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), of(UserRestImpl.class));
         return new ResponseEntity<Iterable>(userDtoList, OK);
     }
 
-    @RequestMapping(value = "/{id}", method = GET)
+    @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
         try {
             final UserResource userResource = transformer.convertTo(userFacadeLayer.getUser(id), of(UserRestImpl.class));
@@ -48,7 +48,7 @@ public class UserRestImpl implements UserRest {
         }
     }
 
-    @RequestMapping(method = POST)
+    @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResource> create(@RequestBody final UserResource userResource) {
         try {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
@@ -58,7 +58,7 @@ public class UserRestImpl implements UserRest {
         }
     }
 
-    @RequestMapping(value = "/{id}", method = PATCH)
+    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(final Long id, @RequestBody final UserResource userResource) {
         try {
             final User user = transformer.convertFrom(userResource);
