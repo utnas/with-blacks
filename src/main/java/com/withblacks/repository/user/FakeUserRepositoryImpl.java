@@ -15,13 +15,10 @@ import static com.google.common.base.Throwables.propagate;
 @Service
 public class FakeUserRepositoryImpl implements UserRepositoryLayer {
 
-    private FakeDataRepository repository;
-
-    public FakeUserRepositoryImpl() {
-    }
+    private final transient FakeDataRepository repository;
 
     @Autowired
-    public FakeUserRepositoryImpl(FakeDataRepository repository) {
+    public FakeUserRepositoryImpl(final FakeDataRepository repository) {
         this.repository = repository;
     }
 

@@ -11,13 +11,10 @@ import java.util.NoSuchElementException;
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
 
-    private UserLayer userLayer;
-
-    public UserFacadeLayerImpl() {
-    }
+    private final transient UserLayer userLayer;
 
     @Autowired
-    public UserFacadeLayerImpl(UserLayer userLayer) {
+    public UserFacadeLayerImpl(final UserLayer userLayer) {
         this.userLayer = userLayer;
     }
 

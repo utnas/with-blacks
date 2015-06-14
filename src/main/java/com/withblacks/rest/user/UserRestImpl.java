@@ -22,14 +22,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "/users")
 public class UserRestImpl implements UserRest {
 
-    private UserFacadeLayer userFacadeLayer;
-    private UserMapper<User, UserResource> transformer;
+    private final transient UserFacadeLayer userFacadeLayer;
+    private final transient UserMapper<User, UserResource> transformer;
 
-    public UserRestImpl() {
-    }
 
     @Autowired
-    public UserRestImpl(UserFacadeLayer userFacadeLayer, UserMapper<User, UserResource> transformer) {
+    public UserRestImpl(final UserFacadeLayer userFacadeLayer, final UserMapper<User, UserResource> transformer) {
         this.userFacadeLayer = userFacadeLayer;
         this.transformer = transformer;
     }
