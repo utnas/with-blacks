@@ -72,6 +72,10 @@ dependencyManagement {
     }
 }
 
+jar{
+    baseName = 'with-blacks-rest-service-core'
+    version = '001'
+}
 
 eclipse {
     classpath {

@@ -53,7 +53,7 @@ public class UserResource extends ResourceSupport {
         this.gender = gender;
     }
 
-    public Long getLocalId() {
+    public Long getIds() {
         return id;
     }
 }

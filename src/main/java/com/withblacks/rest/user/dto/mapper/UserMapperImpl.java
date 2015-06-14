@@ -40,7 +40,7 @@ public class UserMapperImpl implements UserMapper<User, UserResource> {
     private User toUser(final UserResource userResource) {
         return new Function<UserResource, User>() {
             public User apply(final UserResource input) {
-                return UserBuilder.build(input.getLocalId(), input.getFirstName(), input.getLastName(), input.getGender());
+                return UserBuilder.build(input.getIds(), input.getFirstName(), input.getLastName(), input.getGender());
             }
         }.apply(userResource);
     }
