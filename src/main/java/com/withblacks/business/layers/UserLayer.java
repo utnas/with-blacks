@@ -11,11 +11,11 @@ public interface UserLayer {
 
     List<User> findAll();
 
-    User find(final long id);
+    User find(final long id) throws NoSuchElementException;
 
     User create(final User user) throws NoSuchElementException;
 
-    boolean update(final User user)throws NoSuchElementException, ClassCastException, IllegalArgumentException;
+    boolean update(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
-    void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException ;
+    void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }

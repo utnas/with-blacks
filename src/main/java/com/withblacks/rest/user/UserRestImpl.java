@@ -41,8 +41,9 @@ public class UserRestImpl implements UserRest {
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
         try {
-            final UserResource userResource = transformer.convertTo(userFacadeLayer.getUser(id), of(UserRestImpl.class));
-            return new ResponseEntity<UserResource>(userResource, OK);
+            final User user = userFacadeLayer.getUser(id);
+            return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), OK);
+
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(NOT_FOUND);
         }
@@ -53,6 +54,7 @@ public class UserRestImpl implements UserRest {
         try {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
             return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), CREATED);
+
         } catch (NoSuchElementException e) {
             return new ResponseEntity<UserResource>(CONFLICT);
         }
@@ -64,8 +66,8 @@ public class UserRestImpl implements UserRest {
             final User user = transformer.convertFrom(userResource);
             userFacadeLayer.update(user);
             transformer.convertTo(user, of(UserRestImpl.class));
-
             return responseEntity(OK);
+
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         } catch (ClassCastException e) {
@@ -78,6 +80,7 @@ public class UserRestImpl implements UserRest {
         try {
             userFacadeLayer.remove(id);
             return responseEntity(OK);
+
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         } catch (NullPointerException e) {

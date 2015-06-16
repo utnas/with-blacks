@@ -19,7 +19,7 @@ public class UserLayerImpl implements UserLayer {
         this.repository = repository;
     }
 
-    public User find(final String userName) {
+    public User find(final String userName) throws NoSuchElementException {
         return repository.find(userName);
     }
 
@@ -35,7 +35,7 @@ public class UserLayerImpl implements UserLayer {
         return repository.save(user);
     }
 
-    public boolean update(final User user)throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+    public boolean update(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         return repository.modify(user);
     }
 

@@ -7,15 +7,15 @@ import java.util.NoSuchElementException;
 
 public interface UserRepositoryLayer {
 
-    User find(final String userName);
+    User find(final String userName) throws NoSuchElementException;
 
     List<User> findAll();
 
-    User find(final long id);
+    User find(final long id) throws NoSuchElementException;
 
     User save(final User user) throws NoSuchElementException;
 
-    boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException ;
+    boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }
