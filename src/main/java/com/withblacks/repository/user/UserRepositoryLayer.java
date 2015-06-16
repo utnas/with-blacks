@@ -17,5 +17,5 @@ public interface UserRepositoryLayer {
 
     boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException ;
 
-    void delete(final long id);
+    void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }

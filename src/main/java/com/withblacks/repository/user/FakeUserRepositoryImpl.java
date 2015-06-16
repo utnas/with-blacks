@@ -72,7 +72,7 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public void delete(final long id) throws NoSuchElementException {
+    public void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
         repository.remove(find(id));
     }
 }

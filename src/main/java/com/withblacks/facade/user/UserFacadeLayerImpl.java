@@ -44,7 +44,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public void remove(final Long id)throws NoSuchElementException {
+    public void remove(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
         userLayer.delete(id);
     }
 }

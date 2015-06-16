@@ -17,5 +17,5 @@ public interface UserLayer {
 
     boolean update(final User user)throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
-    void delete(final long id) throws NoSuchElementException;
+    void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException ;
 }

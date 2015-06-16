@@ -80,6 +80,8 @@ public class UserRestImpl implements UserRest {
             return responseEntity(OK);
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
+        } catch (NullPointerException e) {
+            return responseEntity(NOT_FOUND);
         }
     }
 
