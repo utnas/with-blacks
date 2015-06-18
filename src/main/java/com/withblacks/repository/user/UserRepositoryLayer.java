@@ -13,7 +13,7 @@ public interface UserRepositoryLayer {
 
     User find(final long id) throws NoSuchElementException;
 
-    User save(final User user) throws NoSuchElementException;
+    User save(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException ;
 
     boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 

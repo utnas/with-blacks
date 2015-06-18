@@ -19,7 +19,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public User getUser(String userName) {
+    public User getUser(String userName)  throws NoSuchElementException{
         return userLayer.find(userName);
     }
 
@@ -34,7 +34,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public User create(User user) throws NoSuchElementException {
+    public User create(User user) throws IllegalArgumentException, NullPointerException, ClassCastException  {
         return userLayer.create(user);
     }
 

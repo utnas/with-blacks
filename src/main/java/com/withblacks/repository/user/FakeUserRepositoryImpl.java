@@ -49,7 +49,7 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public User save(final User user) throws NoSuchElementException {
+    public User save(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException  {
         if (repository.addUser(user)) {
             return user;
         }

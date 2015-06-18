@@ -31,7 +31,7 @@ public class UserLayerImpl implements UserLayer {
         return repository.find(id);
     }
 
-    public User create(final User user) throws NoSuchElementException {
+    public User create(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException  {
         return repository.save(user);
     }
 

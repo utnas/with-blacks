@@ -55,7 +55,7 @@ public class UserRestImpl implements UserRest {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
             return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), CREATED);
 
-        } catch (NoSuchElementException e) {
+        } catch (Throwable e) {
             return new ResponseEntity<UserResource>(CONFLICT);
         }
     }
