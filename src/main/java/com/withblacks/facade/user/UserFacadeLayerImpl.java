@@ -29,7 +29,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public User getUser(Long id) {
+    public User getUser(Long id) throws NoSuchElementException {
         return userLayer.find(id);
     }
 

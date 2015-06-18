@@ -13,7 +13,7 @@ public interface UserFacadeLayer {
 
     List<User> getUsers();
 
-    User getUser(final Long id);
+    User getUser(final Long id) throws NoSuchElementException;
 
     User create(final User user) throws NoSuchElementException;
 
