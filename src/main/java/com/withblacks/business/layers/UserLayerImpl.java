@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class UserLayerImpl implements UserLayer {
+public final class UserLayerImpl implements UserLayer {
 
     private final transient UserRepositoryLayer repository;
 
@@ -27,7 +27,7 @@ public class UserLayerImpl implements UserLayer {
         return repository.findAll();
     }
 
-    public User find(final long id) {
+    public User find(final long id)throws NoSuchElementException {
         return repository.find(id);
     }
 
