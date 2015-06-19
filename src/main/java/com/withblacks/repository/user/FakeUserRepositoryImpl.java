@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 import static com.google.common.base.Throwables.propagate;
 
 @Service
-public class FakeUserRepositoryImpl implements UserRepositoryLayer {
+public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
 
     private final transient FakeDataRepository repository;
 
