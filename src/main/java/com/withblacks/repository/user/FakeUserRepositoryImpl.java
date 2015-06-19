@@ -59,9 +59,10 @@ public class FakeUserRepositoryImpl implements UserRepositoryLayer {
     @Override
     public boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         try {
-        final User fakeUser = repository.findUser(user);
-        repository.remove(fakeUser);
-        return repository.addUser(user);
+            final User fakeUser = repository.findUser(user);
+            repository.remove(fakeUser);
+            return repository.addUser(user);
+
         } catch (NoSuchElementException e) {
             throw propagate(new NoSuchElementException());
         } catch (ClassCastException e) {
