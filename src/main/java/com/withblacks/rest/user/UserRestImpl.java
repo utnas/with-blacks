@@ -35,28 +35,28 @@ public class UserRestImpl implements UserRest {
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
         final Iterable<UserResource> userDtoList = transformer.convertTo(userFacadeLayer.getUsers(), of(UserRestImpl.class));
-        return new ResponseEntity<Iterable>(userDtoList, OK);
+        return responseEntity(userDtoList, OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResource> findById(@PathVariable("id") final Long id) {
+    public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             final User user = userFacadeLayer.getUser(id);
-            return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), OK);
+            return responseEntity(transformer.convertTo(user, of(UserRestImpl.class)), OK);
 
         } catch (NoSuchElementException e) {
-            return new ResponseEntity<UserResource>(NOT_FOUND);
+            return responseEntity(NOT_FOUND);
         }
     }
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserResource> create(@RequestBody final UserResource userResource) {
+    public ResponseEntity<?> create(@RequestBody final UserResource userResource) {
         try {
             final User user = userFacadeLayer.create(transformer.convertFrom(userResource));
-            return new ResponseEntity<UserResource>(transformer.convertTo(user, of(UserRestImpl.class)), CREATED);
+            return responseEntity(transformer.convertTo(user, of(UserRestImpl.class)), CREATED);
 
         } catch (Throwable e) {
-            return new ResponseEntity<UserResource>(CONFLICT);
+            return responseEntity(CONFLICT);
         }
     }
 
@@ -65,8 +65,7 @@ public class UserRestImpl implements UserRest {
         try {
             final User user = transformer.convertFrom(userResource);
             userFacadeLayer.update(user);
-            transformer.convertTo(user, of(UserRestImpl.class));
-            return responseEntity(OK);
+            return responseEntity(transformer.convertTo(user, of(UserRestImpl.class)), OK);
 
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
@@ -88,7 +87,16 @@ public class UserRestImpl implements UserRest {
         }
     }
 
+    private ResponseEntity<?> responseEntity(final UserResource resource, final HttpStatus created) {
+        return new ResponseEntity<UserResource>(resource, created);
+    }
+
     private ResponseEntity<?> responseEntity(final HttpStatus status) {
         return new ResponseEntity<>(status);
     }
+
+    private ResponseEntity<Iterable> responseEntity(final Iterable<UserResource> resources, final HttpStatus status) {
+        return new ResponseEntity<>(resources, status);
+    }
+
 }
