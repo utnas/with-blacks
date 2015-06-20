@@ -55,7 +55,7 @@ public final class UserRestImpl implements UserRest {
     }
 
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserResource resource) {
+    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserResource resource) {
         try {
             userFacadeLayer.update(id, resource);
             return responseEntity(OK);
@@ -63,6 +63,17 @@ public final class UserRestImpl implements UserRest {
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         } catch (ClassCastException e) {
+            return responseEntity(NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserResource resource) {
+        try {
+            userFacadeLayer.update(id, resource);
+            return responseEntity(OK);
+
+        } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         }
     }
