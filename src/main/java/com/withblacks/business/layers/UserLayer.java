@@ -15,7 +15,7 @@ public interface UserLayer {
 
     User create(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException ;
 
-    boolean update(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
+    boolean update(final Long id,final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }

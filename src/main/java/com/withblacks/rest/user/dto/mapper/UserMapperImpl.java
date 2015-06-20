@@ -7,10 +7,8 @@ import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @Component
 public class UserMapperImpl implements UserMapper<User, UserResource> {
@@ -19,17 +17,13 @@ public class UserMapperImpl implements UserMapper<User, UserResource> {
     }
 
     @Override
-    public Iterable<UserResource> convertTo(final List<User> users, final Optional<Class<?>> aClass) {
-        return toDtoList(users, aClass);
+    public Iterable<UserResource> convertTo(final List<User> users) {
+        return toDtoList(users);
     }
 
     @Override
-    public UserResource convertTo(final User user, final Optional<Class<?>> aClass) {
-        final UserResource resource = toDto(user);
-        if (aClass.isPresent()) {
-            resource.add(linkTo(aClass.get()).slash(user.getId()).withSelfRel());
-        }
-        return resource;
+    public UserResource convertTo(final User user) {
+        return toDto(user);
     }
 
     @Override
@@ -53,12 +47,12 @@ public class UserMapperImpl implements UserMapper<User, UserResource> {
         }.apply(user);
     }
 
-    private Iterable<UserResource> toDtoList(final List<User> users, final Optional<Class<?>> aClass) {
+    private Iterable<UserResource> toDtoList(final List<User> users) {
         return new Function<List<User>, Iterable<UserResource>>() {
             public Iterable<UserResource> apply(final List<User> input) {
                 List<UserResource> result = newArrayList();
                 for (final User user : input) {
-                    result.add(convertTo(user, aClass));
+                    result.add(convertTo(user));
                 }
                 return result;
             }

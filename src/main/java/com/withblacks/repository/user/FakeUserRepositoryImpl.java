@@ -34,11 +34,11 @@ public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public User find(final long id) throws NoSuchElementException {
+    public User find(final Long id) throws NoSuchElementException {
         return Iterables.find(repository.getUsers(), new Predicate<User>() {
             @Override
             public boolean apply(User input) {
-                return input.getId() == id;
+                return input.getId().equals(id);
             }
         });
     }
@@ -57,10 +57,9 @@ public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public boolean modify(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+    public boolean modify(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         try {
-            final User fakeUser = repository.findUser(user);
-            repository.remove(fakeUser);
+            repository.remove(find(id));
             return repository.addUser(user);
 
         } catch (NoSuchElementException e) {
@@ -73,7 +72,7 @@ public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
+    public void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
         repository.remove(find(id));
     }
 }

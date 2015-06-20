@@ -2,45 +2,50 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
+import com.withblacks.rest.user.dto.UserResource;
+import com.withblacks.rest.user.dto.mapper.UserMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
 
     private final transient UserLayer userLayer;
+    private final UserMapperImpl mapper;
 
     @Autowired
-    public UserFacadeLayerImpl(final UserLayer userLayer) {
+    public UserFacadeLayerImpl(final UserLayer userLayer, final UserMapperImpl mapper) {
         this.userLayer = userLayer;
+        this.mapper = mapper;
     }
 
     @Override
-    public User getUser(String userName)  throws NoSuchElementException{
-        return userLayer.find(userName);
+    public UserResource getUser(final String userName) throws NoSuchElementException {
+        return mapper.convertTo(userLayer.find(userName));
     }
 
     @Override
-    public List<User> getUsers() {
-        return userLayer.findAll();
+    public Iterable<UserResource> getUsers() {
+        return mapper.convertTo(userLayer.findAll());
     }
 
     @Override
-    public User getUser(Long id) throws NoSuchElementException {
-        return userLayer.find(id);
+    public UserResource getUser(final Long id) throws NoSuchElementException {
+        return mapper.convertTo(userLayer.find(id));
     }
 
     @Override
-    public User create(User user) throws IllegalArgumentException, NullPointerException, ClassCastException  {
-        return userLayer.create(user);
+    public UserResource create(final UserResource resource) throws IllegalArgumentException, NullPointerException, ClassCastException {
+        User user2 = mapper.convertFrom(resource);
+        User user1 = userLayer.create(user2);
+        return mapper.convertTo(user1);
     }
 
     @Override
-    public boolean update(User userDto) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
-        return userLayer.update(userDto);
+    public boolean update(final Long id, final UserResource resource) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+        return userLayer.update(id, mapper.convertFrom(resource));
     }
 
     @Override

@@ -35,8 +35,8 @@ public final class UserLayerImpl implements UserLayer {
         return repository.save(user);
     }
 
-    public boolean update(final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
-        return repository.modify(user);
+    public boolean update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+        return repository.modify(id,user);
     }
 
     public void delete(final long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
