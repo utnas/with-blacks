@@ -31,13 +31,15 @@ public final class UserRestImpl implements UserRest {
 
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
-        return responseEntity(addLinks(userFacadeLayer.getUsers(), of(UserRestImpl.class)), OK);
+        final Iterable<UserResource> resources = userFacadeLayer.getUsers();
+        return responseEntity(addLinks(resources, of(UserRestImpl.class)), OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return responseEntity(addLinks(userFacadeLayer.getUser(id), of(UserRestImpl.class)), OK);
+            final UserResource resource = userFacadeLayer.getUser(id);
+            return responseEntity(addLinks(resource, of(UserRestImpl.class)), OK);
 
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
@@ -47,7 +49,8 @@ public final class UserRestImpl implements UserRest {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody final UserResource userResource) {
         try {
-            return responseEntity(addLinks(userFacadeLayer.create(userResource), of(UserRestImpl.class)), CREATED);
+            final UserResource resource = userFacadeLayer.create(userResource);
+            return responseEntity(addLinks(resource, of(UserRestImpl.class)), CREATED);
 
         } catch (Throwable e) {
             return responseEntity(CONFLICT);
