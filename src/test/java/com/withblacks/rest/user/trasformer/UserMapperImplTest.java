@@ -1,6 +1,5 @@
 package com.withblacks.rest.user.trasformer;
 
-import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
 import com.withblacks.rest.user.dto.UserResource;
 import com.withblacks.rest.user.dto.mapper.UserMapperImpl;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 import static com.google.common.collect.Iterables.isEmpty;
 import static com.withblacks.business.entity.GENDER.FEMALE;
 import static com.withblacks.repository.data.UserGenerator.generateUsers;
+import static com.withblacks.rest.user.utils.MatcherUtils.hasProperties;
 import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
@@ -46,20 +46,6 @@ public class UserMapperImplTest {
         assertThat(user, hasProperties("FirstName", "LastName", FEMALE));
     }
 
-    private Matcher<User> hasProperties(final String firstName, final String lastName, final GENDER gender) {
-        return new BaseMatcher<User>() {
-            @Override
-            public boolean matches(final Object item) {
-                User user = (User) item;
-                return user.getFirstName().equals(firstName) && user.getLastName().equals(lastName) && user.getGender().equals(gender);
-            }
-
-            @Override
-            public void describeTo(Description description) {
-
-            }
-        };
-    }
 
     private Matcher<Iterable<UserResource>> containsOnlyUserDto() {
         return new BaseMatcher<Iterable<UserResource>>() {
