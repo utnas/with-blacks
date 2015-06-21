@@ -11,7 +11,7 @@ public class UserBuilderTest {
 
     @Test
     public void testItShouldBuildUserWithId() throws Exception {
-        assertThat(build(01L, "FirstName", "LastName", FEMALE), hasProperties(1L, "FirstName", "LastName", FEMALE));
+        assertThat(build(1, "FirstName", "LastName", FEMALE), hasProperties(1L, "FirstName", "LastName", FEMALE));
     }
 
     @Test
