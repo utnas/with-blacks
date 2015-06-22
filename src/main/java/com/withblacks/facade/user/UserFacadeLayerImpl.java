@@ -38,9 +38,8 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
 
     @Override
     public UserResource create(final UserResource resource) throws IllegalArgumentException, NullPointerException, ClassCastException {
-        User user2 = mapper.convertFrom(resource);
-        User user1 = userLayer.create(user2);
-        return mapper.convertTo(user1);
+        final User user = userLayer.create(mapper.convertFrom(resource));
+        return mapper.convertTo(user);
     }
 
     @Override

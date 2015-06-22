@@ -18,7 +18,7 @@ public class UserBuilder {
 
     public static User build(final String firstName, final String lastName, final GENDER gender) {
         notNull(firstName + " , " + lastName + " , " + gender + " , are null.", firstName, lastName, gender);
-        return new User(-1, firstName, lastName, gender);
+        return new User(-1L, firstName, lastName, gender);
     }
 
     private static void notNull(final String message, final Object... values) {

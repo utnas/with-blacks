@@ -8,19 +8,19 @@ public class User {
     private String firstName;
     private String lastName;
     private GENDER gender;
-    private long id;
+    private Long id;
 
     public User() {
     }
 
     public User(String firstName, String lastName, GENDER gender) {
-        this.id = -1;
+        this.id = -1L;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
     }
 
-    public User(final long id, final String firstName, final String lastName, final GENDER gender) {
+    public User(final Long id, final String firstName, final String lastName, final GENDER gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +46,6 @@ public class User {
     @Override
     public boolean equals(final Object obj) {
         final User user = (User) obj;
-        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && id == user.getId();
+        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && id.equals(user.getId());
     }
 }
