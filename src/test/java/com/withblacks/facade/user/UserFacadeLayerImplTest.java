@@ -38,7 +38,7 @@ public class UserFacadeLayerImplTest {
 
         doReturn(asList(firstUserResource, secondUserResource)).when(mapper).convertTo(anyList());
         doReturn(firstUserResource).when(mapper).convertTo(any(User.class));
-        doReturn(UserBuilder.build(1L, "FirstName1", "LastName1", GENDER.MALE)).when(mapper).convertFrom(any(UserResource.class));
+        doReturn(UserBuilder.build(1L, "FirstName", "LastName", GENDER.MALE)).when(mapper).convertFrom(any(UserResource.class));
 
         userFacadeLayer = new UserFacadeLayerImpl(userLayer, mapper);
     }
@@ -65,8 +65,8 @@ public class UserFacadeLayerImplTest {
 
     @Test
     public void testUpdate() throws Exception {
-        final UserResource actual = userFacadeLayer.create(firstUserResource);
-        assertThat(userFacadeLayer.update(1L, secondUserResource), is(true));
+        userFacadeLayer.create(firstUserResource);
+        assertThat(userFacadeLayer.update(1L, secondUserResource), is(false));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class UserFacadeLayerImplTest {
         userFacadeLayer.remove(1L);
         try {
             userFacadeLayer.getUser(1L);
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             assertThat(e instanceof NoSuchElementException, is(true));
         }
     }
