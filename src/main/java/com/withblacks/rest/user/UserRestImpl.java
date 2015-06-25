@@ -66,7 +66,9 @@ public final class UserRestImpl implements UserRest {
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         } catch (ClassCastException e) {
-            return responseEntity(NOT_FOUND);
+            return responseEntity(NOT_ACCEPTABLE);
+        } catch (IllegalArgumentException e) {
+            return responseEntity(BAD_REQUEST);
         }
     }
 
