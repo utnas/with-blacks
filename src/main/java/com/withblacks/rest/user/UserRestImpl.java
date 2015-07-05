@@ -39,7 +39,6 @@ public class UserRestImpl implements UserRest<UserResource, UserRestImpl> {
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return responseEntity(addLinks(userFacadeLayer.getUser(id)), OK);
-
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         }
@@ -49,7 +48,6 @@ public class UserRestImpl implements UserRest<UserResource, UserRestImpl> {
     public ResponseEntity<?> create(@RequestBody final UserResource userResource) {
         try {
             return responseEntity(addLinks(userFacadeLayer.create(userResource)), CREATED);
-
         } catch (Throwable e) {
             return responseEntity(CONFLICT);
         }
