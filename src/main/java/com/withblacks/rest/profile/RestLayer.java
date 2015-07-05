@@ -1,9 +1,9 @@
-package com.withblacks.rest.user;
+package com.withblacks.rest.profile;
 
-import com.withblacks.rest.user.dto.LinkDecorator;
+import com.withblacks.business.entity.ProfileResource;
 import org.springframework.http.ResponseEntity;
 
-public interface UserRest<T, E> extends LinkDecorator<T, E> {
+public interface RestLayer<T> {
 
     ResponseEntity<?> findAll();
 
@@ -14,8 +14,4 @@ public interface UserRest<T, E> extends LinkDecorator<T, E> {
     ResponseEntity<?> update(final Long id, final T resource);
 
     ResponseEntity<?> delete(final Long id);
-
-    Iterable<T> addLinks(final Iterable<T> resources);
-
-    T addLinks(final T resource);
 }

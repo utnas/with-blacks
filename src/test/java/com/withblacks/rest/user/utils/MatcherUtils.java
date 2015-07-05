@@ -34,7 +34,7 @@ public class MatcherUtils {
 
             @Override
             public void describeTo(Description description) {
-
+                description.appendText("properties not found");
             }
         };
     }
