@@ -4,7 +4,15 @@ import com.withblacks.business.entity.ProfileResource;
 import com.withblacks.facade.profile.ProfileFacadeLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+@RestController
+@RequestMapping(value = "/profiles")
 public class ProfileRestImpl implements ProfileRest<ProfileResource> {
 
     private final transient ProfileFacadeLayer profileFacadeLayer;
@@ -15,8 +23,9 @@ public class ProfileRestImpl implements ProfileRest<ProfileResource> {
     }
 
     @Override
+    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
-        return null;
+        return new ResponseEntity<>(addLinks(profileFacadeLayer.getProfiles()), OK);
     }
 
     @Override
