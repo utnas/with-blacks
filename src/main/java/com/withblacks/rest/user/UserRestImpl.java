@@ -21,7 +21,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserRestImpl implements UserRest<UserResource, UserRestImpl> {
+public class UserRestImpl implements UserRest<UserResource> {
 
     private final transient UserFacadeLayer userFacadeLayer;
 

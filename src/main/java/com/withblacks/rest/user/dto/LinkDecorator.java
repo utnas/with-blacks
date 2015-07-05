@@ -1,6 +1,6 @@
 package com.withblacks.rest.user.dto;
 
-public interface LinkDecorator<T, E> {
+public interface LinkDecorator<T> {
 
     public Iterable<T> addLinks(final Iterable<T> resources);
 

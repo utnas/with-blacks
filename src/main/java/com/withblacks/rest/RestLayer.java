@@ -1,9 +1,9 @@
-package com.withblacks.rest.profile;
+package com.withblacks.rest;
 
-import com.withblacks.business.entity.ProfileResource;
+import com.withblacks.rest.user.dto.LinkDecorator;
 import org.springframework.http.ResponseEntity;
 
-public interface RestLayer<T> {
+public interface RestLayer<T> extends LinkDecorator<T> {
 
     ResponseEntity<?> findAll();
 

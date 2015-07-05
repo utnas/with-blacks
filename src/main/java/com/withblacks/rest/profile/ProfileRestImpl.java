@@ -5,13 +5,12 @@ import com.withblacks.facade.profile.ProfileFacadeLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-public class ProfileRestImpl implements ProfileRest {
-
+public class ProfileRestImpl implements ProfileRest<ProfileResource> {
 
     private final transient ProfileFacadeLayer profileFacadeLayer;
 
     @Autowired
-    public ProfileRestImpl(ProfileFacadeLayer profileFacadeLayer) {
+    public ProfileRestImpl(final ProfileFacadeLayer profileFacadeLayer) {
         this.profileFacadeLayer = profileFacadeLayer;
     }
 
@@ -21,32 +20,32 @@ public class ProfileRestImpl implements ProfileRest {
     }
 
     @Override
-    public ResponseEntity<?> findById(Long id) {
+    public ResponseEntity<?> findById(final Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> create(Object resource) {
+    public ResponseEntity<?> create(final ProfileResource resource) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> update(Long id, Object resource) {
+    public ResponseEntity<?> update(final Long id, final ProfileResource resource) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> create(ProfileResource profileResource) {
+    public ResponseEntity<?> delete(final Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> update(Long id, ProfileResource profileResource) {
+    public Iterable<ProfileResource> addLinks(final Iterable<ProfileResource> resources) {
         return null;
     }
 
     @Override
-    public ResponseEntity<?> delete(Long id) {
+    public ProfileResource addLinks(final ProfileResource resource) {
         return null;
     }
 }
