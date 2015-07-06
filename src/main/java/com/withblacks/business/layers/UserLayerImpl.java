@@ -38,7 +38,7 @@ public final class UserLayerImpl implements UserLayer<User> {
         return repository.modify(id,user);
     }
 
-    public void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
-        repository.delete(id);
+    public boolean delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
+        return repository.delete(id);
     }
 }

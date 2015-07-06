@@ -17,7 +17,7 @@ public class ProfilerBuilderTest {
                 hasProperties("My Name", "My language", "My Description"));
     }
 
-    private Matcher<Profiler> hasProperties(final String name, final String language, final String description) {
+    public static Matcher<Profiler> hasProperties(final String name, final String language, final String description) {
         return new BaseMatcher<Profiler>() {
             @Override
             public boolean matches(Object item) {

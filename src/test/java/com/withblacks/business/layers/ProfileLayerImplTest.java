@@ -1,49 +1,85 @@
 package com.withblacks.business.layers;
 
+import com.withblacks.business.builder.ProfilerBuilder;
+import com.withblacks.business.builder.ProfilerBuilderTest;
+import com.withblacks.business.entity.Profiler;
 import com.withblacks.repository.profile.ProfilerRepositoryLayer;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.data.repository.util.ClassUtils;
 
+import static com.google.common.base.Predicates.isNull;
+import static com.google.common.collect.Lists.newArrayList;
+import static com.withblacks.business.builder.ProfilerBuilder.build;
+import static com.withblacks.business.builder.ProfilerBuilderTest.hasProperties;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 public class ProfileLayerImplTest {
 
-    ProfileLayerImpl profileLayer;
+    private ProfileLayerImpl profileLayer;
     private ProfilerRepositoryLayer repository;
 
     @Before
     public void setUp() throws Exception {
         repository = mock(ProfilerRepositoryLayer.class);
+        final Profiler profiler = build("FirstName", "FR", "Description of my content");
+        doReturn(profiler).when(repository).find(anyString());
+        doReturn(profiler).when(repository).find(anyLong());
         profileLayer = new ProfileLayerImpl(repository);
     }
 
     @Test
-    public void testFind() throws Exception {
-
+    public void testFindByName() throws Exception {
+        assertNotNull(profileLayer.find("FistName"));
     }
 
     @Test
     public void testFindAll() throws Exception {
-
+        doReturn(newArrayList(build("FirstName", "FR", "Description of my content"),
+                        build("FirstName", "FR", "Description of my content"))
+        ).when(repository).findAll();
+        assertThat(profileLayer.findAll().size(), is(2));
     }
 
     @Test
-    public void testFind1() throws Exception {
-
+    public void testFindById() throws Exception {
+        assertNotNull(profileLayer.find(1L));
     }
 
     @Test
     public void testCreate() throws Exception {
-
+        final Profiler build = build("FirstName", "FR", "Description of my content");
+        doReturn(build).when(repository).save(any());
+        assertThat(profileLayer.create(build), hasProperties("FirstName", "FR", "Description of my content"));
     }
 
     @Test
-    public void testUpdate() throws Exception {
-
+    public void testUpdateShouldReturnTrue() throws Exception {
+        final Profiler build = build("FirstName", "FR", "Description of my content");
+        doReturn(true).when(repository).modify(anyLong(), any(Profiler.class));
+        assertThat(profileLayer.update(1L, build), is(true));
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public void testUpdateShouldReturnFalse() throws Exception {
+        final Profiler build = build("FirstName", "FR", "Description of my content");
+        doReturn(false).when(repository).modify(anyLong(), any(Profiler.class));
+        assertThat(profileLayer.update(1L, build), is(false));
+    }
 
+    @Test
+    public void testDeleteShouldReturnTrue() throws Exception {
+        doReturn(true).when(repository).delete(anyLong());
+        assertThat(profileLayer.delete(1L), is(true));
+    }
+
+    @Test
+    public void testDeleteShouldReturnFalse() throws Exception {
+        assertThat(profileLayer.delete(1L), is(false));
     }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.google.common.base.Throwables.propagate;
+import static com.google.common.collect.Iterables.find;
 
 @Service
 public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
@@ -72,7 +73,7 @@ public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
-        repository.remove(find(id));
+    public boolean delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
+        return repository.remove(find(id));
     }
 }

@@ -1,4 +1,4 @@
-package com.withblacks.repository.user;
+package com.withblacks.repository;
 
 import com.withblacks.business.entity.User;
 
@@ -17,5 +17,5 @@ public interface RepositoryLayer<T> {
 
     boolean modify(final Long id, final T entity) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
-    void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
+    boolean delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }

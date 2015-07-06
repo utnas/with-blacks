@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.web.context.WebApplicationContext
 import spock.lang.Specification
 
-import static com.withblacks.repository.data.UserGenerator.generateUsersDto
+import static com.withblacks.repository.data.UserGenerator.generateUsersResource
 import static org.mockito.Mockito.when
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup
 
@@ -33,8 +33,8 @@ class UserRestLayerSpec extends Specification {
 
     def setup() {
         mockMvc = webAppContextSetup(applicationContext).build();
-        when(userRestFacade.findAll()).thenReturn(generateUsersDto(3));
-        when(userRestFacade.findById(1L)).thenReturn(new ResponseEntity<?>(generateUsersDto(1)));
+        when(userRestFacade.findAll()).thenReturn(generateUsersResource(3));
+        when(userRestFacade.findById(1L)).thenReturn(new ResponseEntity<?>(generateUsersResource(1)));
     }
 
     def 'it should find all users'() {

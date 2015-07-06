@@ -36,8 +36,8 @@ public class FakeDataRepository {
         return getUser(user);
     }
 
-    public void remove(final User fakeUser) throws NullPointerException, UnsupportedOperationException, ClassCastException {
-        repository.remove(fakeUser);
+    public boolean remove(final User fakeUser) throws NullPointerException, UnsupportedOperationException, ClassCastException {
+        return repository.remove(fakeUser);
     }
 
     private User getUser(final User user) throws NoSuchElementException {

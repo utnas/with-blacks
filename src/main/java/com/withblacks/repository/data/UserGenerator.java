@@ -25,7 +25,7 @@ public class UserGenerator {
         return result;
     }
 
-    public static List<UserResource> generateUsersDto(final int size) {
+    public static List<UserResource> generateUsersResource(final int size) {
         final Faker faker = new Faker();
         final AtomicLong idCounter = new AtomicLong(0);
         final List<UserResource> result = newArrayList();
