@@ -1,6 +1,6 @@
-package com.withblacks.business.entity;
+package com.withblacks.rest.profile.dto.mapper;
 
-import com.withblacks.business.entity.ProfileResource;
+import com.withblacks.rest.profile.dto.mapper.ProfileResource;
 import com.withblacks.rest.profile.dto.mapper.ProfileResourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class ProfileResourceTest {
+public class ProfilerResourceTest {
     private ProfileResource profileResource;
 
     @Before

@@ -19,16 +19,17 @@ import static org.mockito.Mockito.doReturn;
 public class UserLayerImplTest {
 
     private UserRepositoryLayer repositoryLayer;
+    private UserLayerImpl userLayer;
 
     @Before
     public void setUp() throws Exception {
         repositoryLayer = Mockito.mock(UserRepositoryLayer.class);
+        userLayer = new UserLayerImpl(repositoryLayer);
     }
 
     @Test
     public void testItShouldFindUsetById() throws Exception {
         doReturn(build(1, "FirstName", "LastName", GENDER.FEMALE)).when(repositoryLayer).find(1L);
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
 
         assertThat(userLayer.find(1L), hasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
     }
@@ -39,7 +40,6 @@ public class UserLayerImplTest {
                 build(1, "FirstName", "LastName", GENDER.FEMALE),
                 build(2, "FirstName1", "LastName1", GENDER.MALE)))
                 .when(repositoryLayer).findAll();
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
 
         assertThat(userLayer.findAll().get(1), hasProperties(2L, "FirstName1", "LastName1", GENDER.MALE));
     }
@@ -48,7 +48,6 @@ public class UserLayerImplTest {
     public void testItShouldCreateUser() throws Exception {
         final User mock = build(1L, "FirstName", "LastName", GENDER.FEMALE);
         doReturn(mock).when(repositoryLayer).save(any());
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
 
         assertThat(userLayer.create(mock), hasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
     }
@@ -57,14 +56,12 @@ public class UserLayerImplTest {
     public void testItShouldUpdateUser() throws Exception {
         final User mock = build(1L, "FirstName", "LastName", GENDER.FEMALE);
         doReturn(true).when(repositoryLayer).modify(any(), any());
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
 
         assertThat(userLayer.update(1L, mock), is(true));
     }
 
     @Test
     public void testItShouldDeleteUser() throws Exception {
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
         userLayer.delete(1L);
         assertNull(userLayer.find(1L));
     }
@@ -72,7 +69,6 @@ public class UserLayerImplTest {
     @Test
     public void testItShouldFindUserByName() throws Exception {
         doReturn(build(1, "FirstName", "LastName", GENDER.FEMALE)).when(repositoryLayer).find("FirstName");
-        final UserLayerImpl userLayer = new UserLayerImpl(repositoryLayer);
 
         assertThat(userLayer.find("FirstName"), hasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
     }

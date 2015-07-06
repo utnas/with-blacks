@@ -9,10 +9,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public final class UserLayerImpl implements UserLayer {
+public final class UserLayerImpl implements UserLayer<User> {
 
     private final transient UserRepositoryLayer repository;
-
 
     @Autowired
     public UserLayerImpl(final UserRepositoryLayer repository) {

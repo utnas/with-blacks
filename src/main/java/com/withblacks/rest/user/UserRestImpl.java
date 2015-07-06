@@ -38,7 +38,7 @@ public class UserRestImpl implements UserRest<UserResource> {
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return responseEntity(addLinks(userFacadeLayer.getUser(id)), OK);
+            return responseEntity(addLink(userFacadeLayer.getUser(id)), OK);
         } catch (NoSuchElementException e) {
             return responseEntity(NOT_FOUND);
         }
@@ -47,7 +47,7 @@ public class UserRestImpl implements UserRest<UserResource> {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody final UserResource userResource) {
         try {
-            return responseEntity(addLinks(userFacadeLayer.create(userResource)), CREATED);
+            return responseEntity(addLink(userFacadeLayer.create(userResource)), CREATED);
         } catch (Throwable e) {
             return responseEntity(CONFLICT);
         }
@@ -101,7 +101,7 @@ public class UserRestImpl implements UserRest<UserResource> {
     }
 
     @Override
-    public UserResource addLinks(final UserResource resource) {
+    public UserResource addLink(final UserResource resource) {
         resource.add(linkTo(UserRestImpl.class).slash(resource.getIds()).withSelfRel());
         return resource;
     }

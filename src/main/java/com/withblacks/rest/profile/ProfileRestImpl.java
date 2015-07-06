@@ -1,6 +1,6 @@
 package com.withblacks.rest.profile;
 
-import com.withblacks.business.entity.ProfileResource;
+import com.withblacks.rest.profile.dto.mapper.ProfileResource;
 import com.withblacks.facade.profile.ProfileFacadeLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +54,7 @@ public class ProfileRestImpl implements ProfileRest<ProfileResource> {
     }
 
     @Override
-    public ProfileResource addLinks(final ProfileResource resource) {
+    public ProfileResource addLink(final ProfileResource resource) {
         return null;
     }
 }
