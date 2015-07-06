@@ -2,6 +2,7 @@ package com.withblacks.facade.profile;
 
 import com.google.common.collect.Iterables;
 import com.withblacks.business.layers.ProfileLayerImpl;
+import com.withblacks.facade.profile.mapper.ProfileMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

@@ -1,15 +1,20 @@
 package com.withblacks.business.layers;
 
+import com.withblacks.repository.profile.ProfilerRepositoryLayer;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.mockito.Mockito.mock;
 
 public class ProfileLayerImplTest {
 
     ProfileLayerImpl profileLayer;
+    private ProfilerRepositoryLayer repository;
 
     @Before
     public void setUp() throws Exception {
-        profileLayer = new ProfileLayerImpl();
+        repository = mock(ProfilerRepositoryLayer.class);
+        profileLayer = new ProfileLayerImpl(repository);
     }
 
     @Test

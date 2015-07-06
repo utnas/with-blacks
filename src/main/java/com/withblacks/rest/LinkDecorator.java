@@ -1,4 +1,4 @@
-package com.withblacks.rest.user.dto;
+package com.withblacks.rest;
 
 public interface LinkDecorator<T> {
 

@@ -3,7 +3,7 @@ package com.withblacks.facade.user;
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
 import com.withblacks.rest.user.dto.UserResource;
-import com.withblacks.rest.user.dto.mapper.UserMapperImpl;
+import com.withblacks.facade.user.mapper.UserMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

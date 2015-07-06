@@ -1,6 +1,5 @@
 package com.withblacks.rest;
 
-import com.withblacks.rest.user.dto.LinkDecorator;
 import org.springframework.http.ResponseEntity;
 
 public interface RestLayer<T> extends LinkDecorator<T> {

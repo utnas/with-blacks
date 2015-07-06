@@ -1,4 +1,4 @@
-package com.withblacks.rest.user.dto.mapper;
+package com.withblacks.facade.user.mapper;
 
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.rest.user.dto.UserResource;

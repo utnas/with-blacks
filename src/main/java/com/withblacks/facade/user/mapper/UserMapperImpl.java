@@ -1,4 +1,4 @@
-package com.withblacks.rest.user.dto.mapper;
+package com.withblacks.facade.user.mapper;
 
 import com.google.common.base.Function;
 import com.withblacks.business.builder.UserBuilder;

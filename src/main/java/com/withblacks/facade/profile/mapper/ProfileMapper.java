@@ -1,4 +1,4 @@
-package com.withblacks.facade.profile;
+package com.withblacks.facade.profile.mapper;
 
 import com.withblacks.business.entity.Profiler;
 import com.withblacks.rest.profile.dto.mapper.ProfileResource;

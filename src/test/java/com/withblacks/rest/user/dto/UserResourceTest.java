@@ -1,7 +1,7 @@
 package com.withblacks.rest.user.dto;
 
 import com.withblacks.business.entity.GENDER;
-import com.withblacks.rest.user.dto.mapper.UserResourceBuilder;
+import com.withblacks.facade.user.mapper.UserResourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

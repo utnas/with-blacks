@@ -5,7 +5,7 @@ import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
 import com.withblacks.rest.user.dto.UserResource;
-import com.withblacks.rest.user.dto.mapper.UserMapperImpl;
+import com.withblacks.facade.user.mapper.UserMapperImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -13,7 +13,7 @@ import org.mockito.Mockito;
 import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Iterables.size;
-import static com.withblacks.rest.user.dto.mapper.UserResourceBuilder.build;
+import static com.withblacks.facade.user.mapper.UserResourceBuilder.build;
 import static com.withblacks.rest.user.utils.MatcherUtils.resourceHasProperties;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
@@ -21,6 +21,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 public class UserFacadeLayerImplTest {
 
@@ -30,8 +31,8 @@ public class UserFacadeLayerImplTest {
 
     @Before
     public void setUp() throws Exception {
-        final UserLayer userLayer = Mockito.mock(UserLayer.class);
-        final UserMapperImpl mapper = Mockito.mock(UserMapperImpl.class);
+        final UserLayer userLayer = mock(UserLayer.class);
+        final UserMapperImpl mapper = mock(UserMapperImpl.class);
 
         firstUserResource = build(1L, "FirstName", "LastName", GENDER.FEMALE);
         secondUserResource = build(1L, "FirstName1", "LastName1", GENDER.MALE);

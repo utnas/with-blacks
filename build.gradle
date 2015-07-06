@@ -56,7 +56,6 @@ dependencies {
     // Testing
     compile("com.github.javafaker:javafaker:0.5")
     testCompile("org.mockito:mockito-core")
-    testCommpile("org.powermock:powermock-mockito-release-full")
     testCompile("org.spockframework:spock-spring")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.spockframework:spock-core") {

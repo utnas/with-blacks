@@ -3,7 +3,7 @@ package com.withblacks.repository.data;
 import com.github.javafaker.Faker;
 import com.withblacks.business.entity.User;
 import com.withblacks.rest.user.dto.UserResource;
-import com.withblacks.rest.user.dto.mapper.UserResourceBuilder;
+import com.withblacks.facade.user.mapper.UserResourceBuilder;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;

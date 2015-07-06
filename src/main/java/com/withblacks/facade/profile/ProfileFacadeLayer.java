@@ -1,6 +1,7 @@
 package com.withblacks.facade.profile;
 
 import com.withblacks.business.layers.ProfileLayerImpl;
+import com.withblacks.facade.profile.mapper.ProfileMapper;
 import com.withblacks.rest.profile.dto.mapper.ProfileResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
