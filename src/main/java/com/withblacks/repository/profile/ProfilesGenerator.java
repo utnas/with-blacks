@@ -2,11 +2,13 @@ package com.withblacks.repository.profile;
 
 import com.google.common.collect.Lists;
 import com.withblacks.business.entity.Profiler;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
 import static com.withblacks.business.builder.ProfilerBuilder.build;
 
+@Component
 public class ProfilesGenerator {
 
     public ProfilesGenerator() {

@@ -34,7 +34,7 @@ public class FakeProfilerRepositoryLayer implements ProfilerRepositoryLayer{
 
     @Override
     public Iterable<Profiler> findAll() {
-        return profiles;
+        return profilesGenerator.generateProfiles(10);
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.withblacks.rest.profile.dto.mapper;
 
-public class ProfileResource {
+import org.springframework.hateoas.ResourceSupport;
+
+public class ProfileResource extends ResourceSupport {
     private String name;
     private String language;
     private String description;
+    private Long ids;
 
     public ProfileResource(final String name, final String language, final String description) {
         this.name = name;
@@ -21,5 +24,9 @@ public class ProfileResource {
 
     public String getDescription() {
         return description;
+    }
+
+    public Long getIds() {
+        return 1L;
     }
 }

@@ -1,7 +1,7 @@
 package com.withblacks.business.layers;
 
 import com.withblacks.business.entity.Profiler;
-import com.withblacks.repository.profile.ProfilerRepositoryLayer;
+import com.withblacks.repository.profile.FakeProfilerRepositoryLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +10,10 @@ import java.util.NoSuchElementException;
 @Component
 public class ProfileLayerImpl implements ProfileLayer {
 
-    private final transient ProfilerRepositoryLayer repository;
+    private final transient FakeProfilerRepositoryLayer repository;
 
     @Autowired
-    public ProfileLayerImpl(final ProfilerRepositoryLayer repository) {
+    public ProfileLayerImpl(final FakeProfilerRepositoryLayer repository) {
         this.repository = repository;
     }
 

@@ -1,12 +1,15 @@
 package com.withblacks.rest.profile;
 
-import com.withblacks.rest.profile.dto.mapper.ProfileResource;
+import com.google.common.collect.Iterables;
 import com.withblacks.facade.profile.ProfileFacadeLayer;
+import com.withblacks.rest.profile.dto.mapper.ProfileResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static java.util.Collections.EMPTY_LIST;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -50,11 +53,18 @@ public class ProfileRestImpl implements ProfileRest<ProfileResource> {
 
     @Override
     public Iterable<ProfileResource> addLinks(final Iterable<ProfileResource> resources) {
-        return null;
+        if (Iterables.isEmpty(resources)) {
+            return EMPTY_LIST;
+        }
+        for (final ProfileResource resource : resources) {
+            resource.add(linkTo(ProfileRestImpl.class).slash(resource.getIds()).withSelfRel());
+        }
+        return resources;
     }
 
     @Override
     public ProfileResource addLink(final ProfileResource resource) {
-        return null;
+        resource.add(linkTo(ProfileRestImpl.class).slash(resource.getIds()).withSelfRel());
+        return resource;
     }
 }

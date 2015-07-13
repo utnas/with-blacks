@@ -1,7 +1,7 @@
 package com.withblacks.business.layers;
 
 import com.withblacks.business.entity.Profiler;
-import com.withblacks.repository.profile.ProfilerRepositoryLayer;
+import com.withblacks.repository.profile.FakeProfilerRepositoryLayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,11 +19,11 @@ import static org.mockito.Mockito.mock;
 public class ProfileLayerImplTest {
 
     private ProfileLayerImpl profileLayer;
-    private ProfilerRepositoryLayer repository;
+    private FakeProfilerRepositoryLayer repository;
 
     @Before
     public void setUp() throws Exception {
-        repository = mock(ProfilerRepositoryLayer.class);
+        repository = mock(FakeProfilerRepositoryLayer.class);
         final Profiler profiler = build("FirstName", "FR", "Description of my content");
         doReturn(profiler).when(repository).find(anyString());
         doReturn(profiler).when(repository).find(anyLong());
