@@ -4,15 +4,15 @@ import com.withblacks.business.builder.UserBuilder;
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
-import com.withblacks.rest.user.dto.UserResource;
 import com.withblacks.facade.user.mapper.UserMapperImpl;
+import com.withblacks.rest.user.dto.UserResource;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Iterables.size;
+import static com.google.common.collect.Lists.newArrayList;
 import static com.withblacks.facade.user.mapper.UserResourceBuilder.build;
 import static com.withblacks.rest.user.utils.MatcherUtils.resourceHasProperties;
 import static java.util.Arrays.asList;
@@ -34,14 +34,18 @@ public class UserFacadeLayerImplTest {
         final UserLayer userLayer = mock(UserLayer.class);
         final UserMapperImpl mapper = mock(UserMapperImpl.class);
 
+        User build1 = UserBuilder.build(1L, "FirstName", "LastName", GENDER.MALE);
+        User build2 = UserBuilder.build(1L, "FirstName", "LastName", GENDER.MALE);
+
         firstUserResource = build(1L, "FirstName", "LastName", GENDER.FEMALE);
         secondUserResource = build(1L, "FirstName1", "LastName1", GENDER.MALE);
 
         doReturn(asList(firstUserResource, secondUserResource)).when(mapper).convertTo(anyList());
         doReturn(firstUserResource).when(mapper).convertTo(any(User.class));
-        doReturn(UserBuilder.build(1L, "FirstName", "LastName", GENDER.MALE)).when(mapper).convertFrom(any(UserResource.class));
+        doReturn(build1).when(mapper).convertFrom(any(UserResource.class));
 
         userFacadeLayer = new UserFacadeLayerImpl(userLayer, mapper);
+        doReturn(newArrayList(build1, build2)).when(userLayer).findAll();
     }
 
     @Test

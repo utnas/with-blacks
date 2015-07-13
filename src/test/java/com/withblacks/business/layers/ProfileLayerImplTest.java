@@ -1,14 +1,11 @@
 package com.withblacks.business.layers;
 
-import com.withblacks.business.builder.ProfilerBuilder;
-import com.withblacks.business.builder.ProfilerBuilderTest;
 import com.withblacks.business.entity.Profiler;
 import com.withblacks.repository.profile.ProfilerRepositoryLayer;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.data.repository.util.ClassUtils;
 
-import static com.google.common.base.Predicates.isNull;
+import static com.google.common.collect.Iterables.size;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.withblacks.business.builder.ProfilerBuilder.build;
 import static com.withblacks.business.builder.ProfilerBuilderTest.hasProperties;
@@ -43,7 +40,7 @@ public class ProfileLayerImplTest {
         doReturn(newArrayList(build("FirstName", "FR", "Description of my content"),
                         build("FirstName", "FR", "Description of my content"))
         ).when(repository).findAll();
-        assertThat(profileLayer.findAll().size(), is(2));
+        assertThat(size(profileLayer.findAll()), is(2));
     }
 
     @Test

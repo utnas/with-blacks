@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import static com.google.common.collect.Iterables.get;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.withblacks.business.builder.UserBuilder.build;
 import static com.withblacks.rest.user.utils.MatcherUtils.hasProperties;
@@ -41,7 +42,7 @@ public class UserLayerImplTest {
                 build(2, "FirstName1", "LastName1", GENDER.MALE)))
                 .when(repositoryLayer).findAll();
 
-        assertThat(userLayer.findAll().get(1), hasProperties(2L, "FirstName1", "LastName1", GENDER.MALE));
+        assertThat(get(userLayer.findAll(), 1), hasProperties(2L, "FirstName1", "LastName1", GENDER.MALE));
     }
 
     @Test

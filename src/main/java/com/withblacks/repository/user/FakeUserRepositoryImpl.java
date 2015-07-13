@@ -3,23 +3,21 @@ package com.withblacks.repository.user;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
-import com.withblacks.repository.data.FakeDataRepository;
+import com.withblacks.repository.data.FakeUserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.google.common.base.Throwables.propagate;
-import static com.google.common.collect.Iterables.find;
 
 @Service
 public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
 
-    private final transient FakeDataRepository repository;
+    private final transient FakeUserDataRepository repository;
 
     @Autowired
-    public FakeUserRepositoryImpl(final FakeDataRepository repository) {
+    public FakeUserRepositoryImpl(final FakeUserDataRepository repository) {
         this.repository = repository;
     }
 
@@ -45,7 +43,7 @@ public final class FakeUserRepositoryImpl implements UserRepositoryLayer {
     }
 
     @Override
-    public List<User> findAll() {
+    public Iterable<User> findAll() {
         return repository.getUsers();
     }
 

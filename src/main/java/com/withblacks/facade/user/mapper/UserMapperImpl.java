@@ -6,7 +6,7 @@ import com.withblacks.business.entity.User;
 import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Collection;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -17,7 +17,7 @@ public class UserMapperImpl implements UserMapper<User, UserResource> {
     }
 
     @Override
-    public Iterable<UserResource> convertTo(final List<User> users) {
+    public Iterable<UserResource> convertTo(final Collection<User> users) {
         return toDtoList(users);
     }
 
@@ -47,10 +47,10 @@ public class UserMapperImpl implements UserMapper<User, UserResource> {
         }.apply(user);
     }
 
-    private Iterable<UserResource> toDtoList(final List<User> users) {
-        return new Function<List<User>, Iterable<UserResource>>() {
-            public Iterable<UserResource> apply(final List<User> input) {
-                List<UserResource> result = newArrayList();
+    private Iterable<UserResource> toDtoList(final Collection<User> users) {
+        return new Function<Collection<User>, Iterable<UserResource>>() {
+            public Iterable<UserResource> apply(final Collection<User> input) {
+                Collection<UserResource> result = newArrayList();
                 for (final User user : input) {
                     result.add(convertTo(user));
                 }

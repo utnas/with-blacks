@@ -1,15 +1,12 @@
 package com.withblacks.repository;
 
-import com.withblacks.business.entity.User;
-
-import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface RepositoryLayer<T> {
 
     T find(final String name) throws NoSuchElementException;
 
-    List<T> findAll();
+    Iterable<T> findAll();
 
     T find(final Long id) throws NoSuchElementException;
 

@@ -22,7 +22,7 @@ public final class UserLayerImpl implements UserLayer<User> {
         return repository.find(userName);
     }
 
-    public List<User> findAll() {
+    public Iterable<User> findAll() {
         return repository.findAll();
     }
 

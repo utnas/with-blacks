@@ -1,13 +1,17 @@
 package com.withblacks.facade.user;
 
+import com.google.common.collect.Lists;
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
-import com.withblacks.rest.user.dto.UserResource;
 import com.withblacks.facade.user.mapper.UserMapperImpl;
+import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
@@ -28,7 +32,7 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
 
     @Override
     public Iterable<UserResource> getUsers() {
-        return mapper.convertTo(userLayer.findAll());
+        return mapper.convertTo(newArrayList(userLayer.findAll()));
     }
 
     @Override

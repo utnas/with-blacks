@@ -28,8 +28,11 @@ public class MatcherUtils {
         return new BaseMatcher<User>() {
             @Override
             public boolean matches(final Object item) {
-                User user = (User) item;
-                return user.getId().equals(id) && user.getFirstName().equals(firstName) && user.getLastName().equals(lastName) && user.getGender().equals(gender);
+                final User user = (User) item;
+                return user.getId().equals(id)
+                        && user.getFirstName().equals(firstName)
+                        && user.getLastName().equals(lastName)
+                        && user.getGender().equals(gender);
             }
 
             @Override

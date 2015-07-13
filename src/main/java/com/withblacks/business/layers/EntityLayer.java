@@ -9,7 +9,7 @@ public interface EntityLayer<T> {
 
     T find(final String entityName) throws NoSuchElementException;
 
-    List<T> findAll();
+    Iterable<T> findAll();
 
     T find(final long id) throws NoSuchElementException;
 

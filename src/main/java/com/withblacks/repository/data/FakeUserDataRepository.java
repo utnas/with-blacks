@@ -6,22 +6,22 @@ import com.google.common.collect.Iterables;
 import com.withblacks.business.entity.User;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.withblacks.repository.data.UserGenerator.generateUsers;
 
 @Component
-public class FakeDataRepository {
+public class FakeUserDataRepository {
 
-    private List<User> repository = newArrayList();
+    private Collection<User> repository = newArrayList();
 
-    public FakeDataRepository() {
+    public FakeUserDataRepository() {
         repository.addAll(generateUsers(20));
     }
 
-    public List<User> getUsers() {
+    public Iterable<User> getUsers() {
         return repository;
     }
 

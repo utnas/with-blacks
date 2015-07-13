@@ -5,7 +5,6 @@ import com.withblacks.repository.profile.ProfilerRepositoryLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @Component
@@ -24,7 +23,7 @@ public class ProfileLayerImpl implements ProfileLayer {
     }
 
     @Override
-    public List<Profiler> findAll() {
+    public Iterable<Profiler> findAll() {
         return repository.findAll();
     }
 

@@ -2,10 +2,10 @@ package com.withblacks.repository.data;
 
 import com.github.javafaker.Faker;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.dto.UserResource;
 import com.withblacks.facade.user.mapper.UserResourceBuilder;
+import com.withblacks.rest.user.dto.UserResource;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -14,10 +14,10 @@ import static com.withblacks.business.entity.GENDER.MALE;
 
 public class UserGenerator {
 
-    public static List<User> generateUsers(final int size) {
+    public static Collection<User> generateUsers(final int size) {
         final Faker faker = new Faker();
         final AtomicLong idCounter = new AtomicLong(0);
-        final List<User> result = newArrayList();
+        final Collection<User> result = newArrayList();
 
         for (int i = 0; i < size; i++) {
             result.add(build(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));
@@ -25,10 +25,10 @@ public class UserGenerator {
         return result;
     }
 
-    public static List<UserResource> generateUsersResource(final int size) {
+    public static Collection<UserResource> generateUsersResource(final int size) {
         final Faker faker = new Faker();
         final AtomicLong idCounter = new AtomicLong(0);
-        final List<UserResource> result = newArrayList();
+        final Collection<UserResource> result = newArrayList();
 
         for (int i = 0; i < size; i++) {
             result.add(UserResourceBuilder.build(idCounter.getAndIncrement(), faker.name().firstName(), faker.name().lastName(), MALE));

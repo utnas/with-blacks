@@ -5,6 +5,7 @@ public class Profiler {
     private final String name;
     private final String language;
     private final String description;
+    private Long id;
 
     public Profiler(final String name, final String language, final String description) {
         this.name = name;
@@ -22,5 +23,9 @@ public class Profiler {
 
     public String getDescription() {
         return description;
+    }
+
+    public Long getId() {
+        return 1L;
     }
 }
