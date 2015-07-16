@@ -46,6 +46,8 @@ public class User {
     @Override
     public boolean equals(final Object obj) {
         final User user = (User) obj;
-        return firstName.equals(user.firstName) && lastName.equals(user.lastName) && id.equals(user.getId());
+        return firstName.equals(user.firstName)
+                && lastName.equals(user.lastName)
+                && id.equals(user.getId());
     }
 }
