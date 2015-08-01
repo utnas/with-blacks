@@ -11,14 +11,15 @@ public class UserBuilder {
     public UserBuilder() {
     }
 
-    public static User build(final long id, final String firstName, final String lastName, final GENDER gender) {
-        notNull(id + " , " + firstName + " , " + lastName + " , " + gender + " , are null.", id, firstName, lastName, gender);
-        return new User(id, firstName, lastName, gender);
-    }
-
     public static User build(final String firstName, final String lastName, final GENDER gender) {
         notNull(firstName + " , " + lastName + " , " + gender + " , are null.", firstName, lastName, gender);
-        return new User(-1L, firstName, lastName, gender);
+
+        final User user = new User();
+        user.setGender(gender);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+
+        return user;
     }
 
     private static void notNull(final String message, final Object... values) {

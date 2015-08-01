@@ -29,7 +29,7 @@ public class MatcherUtils {
             @Override
             public boolean matches(final Object item) {
                 final User user = (User) item;
-                return user.getId().equals(id)
+                return user.getId() == (id)
                         && user.getFirstName().equals(firstName)
                         && user.getLastName().equals(lastName)
                         && user.getGender().equals(gender);

@@ -1,53 +1,53 @@
 package com.withblacks.business.entity;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
 @Component
+@Entity
+@Table(name = "Users")
 public class User {
+
+    private static final long serialVersionUID = -2952735933715107252L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String firstName;
     private String lastName;
     private GENDER gender;
-    private Long id;
 
     public User() {
-    }
-
-    public User(String firstName, String lastName, GENDER gender) {
-        this.id = -1L;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-    }
-
-    public User(final Long id, final String firstName, final String lastName, final GENDER gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public GENDER getGender() {
         return gender;
     }
 
-    public Long getId() {
-        return id;
+    public void setGender(final GENDER gender){
+        this.gender = gender;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        final User user = (User) obj;
-        return firstName.equals(user.firstName)
-                && lastName.equals(user.lastName)
-                && id.equals(user.getId());
+    public long getId() {
+        return id;
     }
 }

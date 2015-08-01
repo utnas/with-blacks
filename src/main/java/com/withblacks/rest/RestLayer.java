@@ -2,7 +2,7 @@ package com.withblacks.rest;
 
 import org.springframework.http.ResponseEntity;
 
-public interface RestLayer<T> extends LinkDecorator<T> {
+public interface RestLayer<T>{
 
     ResponseEntity<?> findAll();
 

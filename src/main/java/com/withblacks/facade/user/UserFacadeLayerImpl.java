@@ -1,54 +1,49 @@
 package com.withblacks.facade.user;
 
-import com.google.common.collect.Lists;
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
-import com.withblacks.facade.user.mapper.UserMapperImpl;
 import com.withblacks.rest.user.dto.UserResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 @Service
 public class UserFacadeLayerImpl implements UserFacadeLayer {
 
-    private final transient UserLayer<User> userLayer;
-    private final UserMapperImpl mapper;
+    private UserLayer<User> userLayer;
+
+    public UserFacadeLayerImpl() {
+    }
 
     @Autowired
-    public UserFacadeLayerImpl(final UserLayer<User> userLayer, final UserMapperImpl mapper) {
+    public UserFacadeLayerImpl(final UserLayer<User> userLayer) {
         this.userLayer = userLayer;
-        this.mapper = mapper;
     }
 
     @Override
     public UserResource getUser(final String userName) throws NoSuchElementException {
-        return mapper.convertTo(userLayer.find(userName));
+        return null;
     }
 
     @Override
     public Iterable<UserResource> getUsers() {
-        return mapper.convertTo(newArrayList(userLayer.findAll()));
+        return null;
     }
 
     @Override
     public UserResource getUser(final Long id) throws NoSuchElementException {
-        return mapper.convertTo(userLayer.find(id));
+        return null;
     }
 
     @Override
     public UserResource create(final UserResource resource) throws IllegalArgumentException, NullPointerException, ClassCastException {
-        final User user = userLayer.create(mapper.convertFrom(resource));
-        return mapper.convertTo(user);
+        return null;
     }
 
     @Override
     public boolean update(final Long id, final UserResource resource) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
-        return userLayer.update(id, mapper.convertFrom(resource));
+        return false;
     }
 
     @Override
