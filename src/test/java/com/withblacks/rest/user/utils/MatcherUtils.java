@@ -2,7 +2,7 @@ package com.withblacks.rest.user.utils;
 
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.dto.UserDao;
+import com.withblacks.rest.user.UserDao;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

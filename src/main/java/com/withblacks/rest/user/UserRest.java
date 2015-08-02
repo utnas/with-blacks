@@ -2,7 +2,6 @@ package com.withblacks.rest.user;
 
 import com.withblacks.facade.user.UserFacadeLayer;
 import com.withblacks.rest.RestLayer;
-import com.withblacks.rest.user.dto.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

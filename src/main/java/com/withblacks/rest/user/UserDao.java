@@ -1,4 +1,4 @@
-package com.withblacks.rest.user.dto;
+package com.withblacks.rest.user;
 
 import com.withblacks.business.entity.GENDER;
 import org.springframework.hateoas.ResourceSupport;

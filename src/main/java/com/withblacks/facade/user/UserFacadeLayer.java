@@ -1,6 +1,6 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.rest.user.dto.UserDao;
+import com.withblacks.rest.user.UserDao;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
