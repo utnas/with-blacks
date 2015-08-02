@@ -5,24 +5,24 @@ import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserResource extends ResourceSupport {
+public class UserDao extends ResourceSupport {
 
     private long id;
     private String firstName;
     private String lastName;
     private GENDER gender;
 
-    public UserResource() {
+    public UserDao() {
     }
 
-    public UserResource(final long id, final String firstName, final String lastName, final GENDER gender) {
+    public UserDao(final long id, final String firstName, final String lastName, final GENDER gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
     }
 
-    public UserResource(final String firstName, final String lastName, final GENDER gender) {
+    public UserDao(final String firstName, final String lastName, final GENDER gender) {
         this.id = -1;
         this.firstName = firstName;
         this.lastName = lastName;

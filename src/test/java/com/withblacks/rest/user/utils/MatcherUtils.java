@@ -2,7 +2,7 @@ package com.withblacks.rest.user.utils;
 
 import com.withblacks.business.entity.GENDER;
 import com.withblacks.business.entity.User;
-import com.withblacks.rest.user.dto.UserResource;
+import com.withblacks.rest.user.dto.UserDao;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -42,11 +42,11 @@ public class MatcherUtils {
         };
     }
 
-    public static Matcher<UserResource> resourceHasProperties(final Long id, final String firstName, final String lastName, final GENDER gender) {
-        return new BaseMatcher<UserResource>() {
+    public static Matcher<UserDao> resourceHasProperties(final Long id, final String firstName, final String lastName, final GENDER gender) {
+        return new BaseMatcher<UserDao>() {
             @Override
             public boolean matches(final Object item) {
-                UserResource user = (UserResource) item;
+                UserDao user = (UserDao) item;
                 return user.getIds().equals(id) && user.getFirstName().equals(firstName) && user.getLastName().equals(lastName) && user.getGender().equals(gender);
             }
 

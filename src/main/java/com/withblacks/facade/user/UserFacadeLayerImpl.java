@@ -2,7 +2,7 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entity.User;
 import com.withblacks.business.layers.UserLayer;
-import com.withblacks.rest.user.dto.UserResource;
+import com.withblacks.rest.user.dto.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,27 +22,27 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public UserResource getUser(final String userName) throws NoSuchElementException {
+    public UserDao getUser(final String userName) throws NoSuchElementException {
         return null;
     }
 
     @Override
-    public Iterable<UserResource> getUsers() {
+    public Iterable<UserDao> getUsers() {
         return null;
     }
 
     @Override
-    public UserResource getUser(final Long id) throws NoSuchElementException {
+    public UserDao getUser(final Long id) throws NoSuchElementException {
         return null;
     }
 
     @Override
-    public UserResource create(final UserResource resource) throws IllegalArgumentException, NullPointerException, ClassCastException {
+    public UserDao create(final UserDao resource) throws IllegalArgumentException, NullPointerException, ClassCastException {
         return null;
     }
 
     @Override
-    public boolean update(final Long id, final UserResource resource) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+    public boolean update(final Long id, final UserDao resource) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         return false;
     }
 

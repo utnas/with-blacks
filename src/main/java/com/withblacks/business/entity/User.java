@@ -1,6 +1,5 @@
 package com.withblacks.business.entity;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
