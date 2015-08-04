@@ -1,4 +1,4 @@
-package com.withblacks.rest.user;
+package com.withblacks.rest.user.dto;
 
 import com.withblacks.business.entities.GENDER;
 import org.junit.Test;
