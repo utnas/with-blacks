@@ -50,7 +50,7 @@ public class UserRest implements RestLayer<UserDto> {
     public ResponseEntity<?> create(@RequestBody final UserDto userDto) {
         try {
             return null;
-            //return new ResponseEntity<>(userFacadeLayer.create(user), CREATED);
+            //return new ResponseEntity<>(userFacadeLayer.create(userDto), CREATED);
         } catch (Throwable e) {
             return new ResponseEntity(CONFLICT);
         }
@@ -59,7 +59,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
-            //userFacadeLayer.update(id, userDto);
+            userFacadeLayer.update(id, userDto);
             return new ResponseEntity(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
@@ -73,7 +73,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
-            //userFacadeLayer.update(id, resource);
+            userFacadeLayer.update(id, resource);
             return new ResponseEntity(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);

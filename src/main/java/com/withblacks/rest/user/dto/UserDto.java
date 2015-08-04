@@ -15,23 +15,23 @@ public class UserDto extends ResourceSupport {
     public UserDto() {
     }
 
-    public final String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public final void setFirstName(final String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
-    public final String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public final void setLastName(final String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
-    public final GENDER getGender() {
+    public GENDER getGender() {
         return gender;
     }
 

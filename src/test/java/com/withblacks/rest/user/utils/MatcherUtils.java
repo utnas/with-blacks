@@ -42,7 +42,7 @@ public class MatcherUtils {
         };
     }
 
-    public static Matcher<UserDto> resourceHasProperties(final String firstName, final String lastName, final GENDER gender) {
+    public static Matcher<UserDto> dtoHasProperties(final String firstName, final String lastName, final GENDER gender) {
         return new BaseMatcher<UserDto>() {
             @Override
             public boolean matches(final Object item) {
