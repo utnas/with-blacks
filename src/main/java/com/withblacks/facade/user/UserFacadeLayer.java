@@ -1,6 +1,6 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.rest.user.UserDao;
+import com.withblacks.business.entities.User;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
@@ -8,15 +8,15 @@ import java.util.NoSuchElementException;
 @Component
 public interface UserFacadeLayer {
 
-    UserDao getUser(final String userName);
+    User getUser(final String userName);
 
-    Iterable<UserDao> getUsers();
+    Iterable<User> getUsers();
 
-    UserDao getUser(final Long id) throws NoSuchElementException;
+    User getUser(final Long id) throws NoSuchElementException;
 
-    UserDao create(final UserDao userDao) throws NoSuchElementException;
+    Iterable<User> create(final User user) throws NoSuchElementException;
 
-    boolean update(final Long id, final UserDao userDao) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
+    Iterable<User> update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void remove(final Long id) throws NoSuchElementException;
 }

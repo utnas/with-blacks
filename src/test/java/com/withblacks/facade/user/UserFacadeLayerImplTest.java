@@ -1,9 +1,9 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.business.entity.GENDER;
-import com.withblacks.business.entity.User;
-import com.withblacks.business.layers.UserLayer;
-import com.withblacks.business.layers.UserLayerImpl;
+import com.withblacks.business.entities.GENDER;
+import com.withblacks.business.entities.User;
+import com.withblacks.business.layers.user.UserLayer;
+import com.withblacks.business.layers.user.UserLayerImpl;
 import org.junit.Before;
 import org.junit.Test;
 

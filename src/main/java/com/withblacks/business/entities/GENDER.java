@@ -1,4 +1,4 @@
-package com.withblacks.business.entity;
+package com.withblacks.business.entities;
 
 public enum GENDER {
     MALE, FEMALE;

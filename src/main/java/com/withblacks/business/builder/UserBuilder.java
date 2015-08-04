@@ -1,7 +1,7 @@
 package com.withblacks.business.builder;
 
-import com.withblacks.business.entity.GENDER;
-import com.withblacks.business.entity.User;
+import com.withblacks.business.entities.GENDER;
+import com.withblacks.business.entities.User;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 

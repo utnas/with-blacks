@@ -1,7 +1,6 @@
 package com.withblacks.business.layers;
 
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface EntityLayer<T> {
@@ -12,9 +11,9 @@ public interface EntityLayer<T> {
 
     T find(final Long id) throws NoSuchElementException;
 
-    T create(final T entity) throws IllegalArgumentException, NullPointerException, ClassCastException;
+    Iterable<T> create(final T entity) throws IllegalArgumentException, NullPointerException, ClassCastException;
 
-   boolean update(final Long id, final T entity) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
+    Iterable<T> update(final Long id, final T entity) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException;
 }

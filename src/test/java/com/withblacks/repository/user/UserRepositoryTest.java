@@ -1,7 +1,7 @@
 package com.withblacks.repository.user;
 
-import com.withblacks.business.entity.GENDER;
-import com.withblacks.business.entity.User;
+import com.withblacks.business.entities.GENDER;
+import com.withblacks.business.entities.User;
 import org.junit.Before;
 import org.junit.Test;
 

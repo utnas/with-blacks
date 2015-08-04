@@ -1,32 +1,18 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.business.entity.GENDER;
+import com.withblacks.business.entities.GENDER;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserDao extends ResourceSupport {
+public class UserDto extends ResourceSupport {
 
     private long id;
     private String firstName;
     private String lastName;
     private GENDER gender;
 
-    public UserDao() {
-    }
-
-    public UserDao(final long id, final String firstName, final String lastName, final GENDER gender) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-    }
-
-    public UserDao(final String firstName, final String lastName, final GENDER gender) {
-        this.id = -1;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
+    public UserDto() {
     }
 
     public final String getFirstName() {
@@ -55,5 +41,9 @@ public class UserDao extends ResourceSupport {
 
     public Long getIds() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

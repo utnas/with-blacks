@@ -20,7 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 @PropertySource("classpath:application.properties")
 @RequestMapping(value = "/users")
-public class UserRest implements RestLayer<UserDao> {
+public class UserRest implements RestLayer<UserDto> {
 
     private final transient UserFacadeLayer userFacadeLayer;
     @Value("${spring.rest.version}")
@@ -33,31 +33,32 @@ public class UserRest implements RestLayer<UserDao> {
 
     @RequestMapping(value = "/users", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
-        return new ResponseEntity<Iterable<UserDao>>(userFacadeLayer.getUsers(), OK);
+        return new ResponseEntity<>(userFacadeLayer.getUsers(), OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return new ResponseEntity<UserDao>(userFacadeLayer.getUser(id), OK);
+            return new ResponseEntity<>(userFacadeLayer.getUser(id), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         }
     }
 
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody final UserDao userDao) {
+    public ResponseEntity<?> create(@RequestBody final UserDto userDto) {
         try {
-            return new ResponseEntity<UserDao>(userFacadeLayer.create(userDao), CREATED);
+            return null;
+            //return new ResponseEntity<>(userFacadeLayer.create(user), CREATED);
         } catch (Throwable e) {
             return new ResponseEntity(CONFLICT);
         }
     }
 
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDao resource) {
+    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
-            userFacadeLayer.update(id, resource);
+            //userFacadeLayer.update(id, userDto);
             return new ResponseEntity(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
@@ -69,9 +70,9 @@ public class UserRest implements RestLayer<UserDao> {
     }
 
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDao resource) {
+    public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
-            userFacadeLayer.update(id, resource);
+            //userFacadeLayer.update(id, resource);
             return new ResponseEntity(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
