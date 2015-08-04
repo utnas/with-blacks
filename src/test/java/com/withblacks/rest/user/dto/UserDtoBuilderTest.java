@@ -33,11 +33,12 @@ public class UserDtoBuilderTest {
     public void itShouldBuildAUSerDto() {
 
         final UserDtoBuilder builder = new UserDtoBuilder();
-
         builder.setFirstName("Iron").setLastName("Man").setGender(GENDER.MALE);
 
-        assertThat(builder.build().getFirstName(), is("Iron"));
-        assertThat(builder.build().getLastName(), is("Man"));
-        assertThat(builder.build().getGender(), is(GENDER.MALE));
+        final UserDto dto = builder.build();
+
+        assertThat(dto.getFirstName(), is("Iron"));
+        assertThat(dto.getLastName(), is("Man"));
+        assertThat(dto.getGender(), is(GENDER.MALE));
     }
 }
