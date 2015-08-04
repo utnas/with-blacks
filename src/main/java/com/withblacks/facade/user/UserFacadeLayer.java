@@ -14,9 +14,9 @@ public interface UserFacadeLayer {
 
     User getUser(final Long id) throws NoSuchElementException;
 
-    Iterable<User> create(final User user) throws NoSuchElementException;
+    User create(final User user) throws NoSuchElementException;
 
-    Iterable<User> update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
+    User update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException;
 
     void remove(final Long id) throws NoSuchElementException;
 }

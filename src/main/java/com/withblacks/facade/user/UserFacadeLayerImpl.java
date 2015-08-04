@@ -36,12 +36,12 @@ public class UserFacadeLayerImpl implements UserFacadeLayer {
     }
 
     @Override
-    public Iterable<User> create(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException {
+    public User create(final User user) throws IllegalArgumentException, NullPointerException, ClassCastException {
         return layer.create(user);
     }
 
     @Override
-    public Iterable<User> update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+    public User update(final Long id, final User user) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
         return layer.update(id, user);
     }
 

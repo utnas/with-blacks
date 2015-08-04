@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 @Component
 public class UserLayerImpl implements UserLayer<User> {
 
@@ -38,14 +36,13 @@ public class UserLayerImpl implements UserLayer<User> {
     }
 
     @Override
-    public Iterable<User> create(final User entity) throws IllegalArgumentException, NullPointerException, ClassCastException {
-        final Iterable<User> list = newArrayList(entity);
-        return repository.save(list);
+    public User create(final User entity) throws IllegalArgumentException, NullPointerException, ClassCastException {
+        return repository.save(entity);
     }
 
     @Override
-    public Iterable<User> update(final Long id, final User entity) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
-        return repository.save(newArrayList(entity));
+    public User update(final Long id, final User entity) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
+        return repository.save(entity);
     }
 
     @Override
