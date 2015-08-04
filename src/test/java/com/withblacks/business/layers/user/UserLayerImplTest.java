@@ -1,7 +1,6 @@
 package com.withblacks.business.layers.user;
 
 import com.google.common.collect.Iterables;
-import com.withblacks.business.entities.GENDER;
 import com.withblacks.business.entities.User;
 import com.withblacks.repository.user.UserRepository;
 import org.junit.Before;
@@ -23,7 +22,7 @@ public class UserLayerImplTest {
 
     @Before
     public void setUp() {
-        user = mockUser("Iron", "Man", MALE);
+        user = UserMockHelper.mockUser("Iron", "Man", MALE);
 
         repository = mock(UserRepository.class);
         doReturn(user).when(repository).findOne(anyLong());
@@ -64,13 +63,5 @@ public class UserLayerImplTest {
         assertThat(layer.update(1L, user), hasProperties("Iron", "Man", MALE));
     }
 
-    private User mockUser(final String firstName, final String lastName, final GENDER gender) {
-        final User user = mock(User.class);
 
-        when(user.getFirstName()).thenReturn(firstName);
-        when(user.getLastName()).thenReturn(lastName);
-        when(user.getGender()).thenReturn(gender);
-
-        return user;
-    }
 }

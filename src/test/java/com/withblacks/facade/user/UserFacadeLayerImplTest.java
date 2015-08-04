@@ -1,64 +1,76 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.business.entities.GENDER;
 import com.withblacks.business.entities.User;
 import com.withblacks.business.layers.user.UserLayer;
 import com.withblacks.business.layers.user.UserLayerImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.codehaus.groovy.runtime.InvokerHelper.asList;
+import static com.google.common.collect.Iterables.size;
+import static com.withblacks.business.entities.GENDER.MALE;
+import static com.withblacks.business.layers.user.UserMockHelper.mockUser;
+import static com.withblacks.rest.user.utils.MatcherUtils.hasProperties;
+import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
 public class UserFacadeLayerImplTest {
 
     private UserFacadeLayerImpl userFacadeLayer;
-    private UserLayer userLayer;
-    private List<User> users;
+    private UserLayer layer;
+    private User user;
 
     @Before
     public void setUp() throws Exception {
-        userLayer = mock(UserLayerImpl.class);
-        users = asList(mockUsers("Bran", "Arthur", GENDER.FEMALE));
-        userFacadeLayer = new UserFacadeLayerImpl(userLayer);
-
-        doReturn(users).when(userLayer).findAll();
+        layer = mock(UserLayerImpl.class);
+        userFacadeLayer = new UserFacadeLayerImpl(layer);
+        user = mockUser("Iron", "Man", MALE);
     }
 
     @Test
     public void testGetUserByName() throws Exception {
-        //assertThat(userFacadeLayer.getUser("FirstName"), resourceHasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
+        doReturn(user).when(layer).find(anyString());
+
+        assertThat(userFacadeLayer.getUser("Iron"), hasProperties("Iron", "Man", MALE));
     }
 
     @Test
     public void testGetUsers() throws Exception {
-        //assertThat(size(userFacadeLayer.getUsers()), is(1));
+        doReturn(asList(user)).when(layer).findAll();
+        assertThat(size(userFacadeLayer.getUsers()), is(1));
     }
 
     @Test
     public void testGetUserById() throws Exception {
-        //assertThat(userFacadeLayer.getUser(1L), resourceHasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
+        doReturn(user).when(layer).find(anyLong());
+
+        assertThat(userFacadeLayer.getUser(1L), hasProperties("Iron", "Man", MALE));
     }
 
     @Test
     public void testCreate() throws Exception {
-        //assertThat(userFacadeLayer.create(getLast(users)), resourceHasProperties(1L, "FirstName", "LastName", GENDER.FEMALE));
+        doReturn(user).when(layer).create(any(User.class));
+
+        assertThat(userFacadeLayer.create(user), hasProperties("Iron", "Man", MALE));
     }
 
     @Test
     public void testUpdate() throws Exception {
-        //userFacadeLayer.create(firstUserResource);
+        doReturn(user).when(layer).update(anyLong(), any(User.class));
+
+        assertThat(userFacadeLayer.update(1L, user), hasProperties("Iron", "Man", MALE));
     }
 
     @Test
     public void testRemove() throws Exception {
-        // userFacadeLayer.create(us);
+        doReturn(user).when(layer).create(any(User.class));
+
+        userFacadeLayer.create(user);
         userFacadeLayer.remove(1L);
         try {
             userFacadeLayer.getUser(1L);
@@ -67,13 +79,4 @@ public class UserFacadeLayerImplTest {
         }
     }
 
-    private User mockUsers(final String firstName, final String lastName, final GENDER gender) {
-        final User user = mock(User.class);
-
-        doReturn(firstName).when(user).getFirstName();
-        doReturn(lastName).when(user).getLastName();
-        doReturn(gender).when(user).getGender();
-
-        return user;
-    }
 }
