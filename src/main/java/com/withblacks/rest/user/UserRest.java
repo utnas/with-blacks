@@ -32,7 +32,7 @@ public class UserRest implements RestLayer<UserDto> {
         this.userFacadeLayer = userFacadeLayer;
     }
 
-    @RequestMapping(value = "/users", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(userFacadeLayer.getUsers(), OK);
     }
