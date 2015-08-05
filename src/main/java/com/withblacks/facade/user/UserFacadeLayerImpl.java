@@ -2,7 +2,6 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entities.User;
 import com.withblacks.business.layers.user.UserLayer;
-import com.withblacks.rest.user.UserMapper;
 import com.withblacks.rest.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

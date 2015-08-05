@@ -49,8 +49,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody final UserDto userDto) {
         try {
-            return null;
-            //return new ResponseEntity<>(userFacadeLayer.create(userDto), CREATED);
+            return new ResponseEntity<>(userFacadeLayer.create(userDto), CREATED);
         } catch (Throwable e) {
             return new ResponseEntity(CONFLICT);
         }

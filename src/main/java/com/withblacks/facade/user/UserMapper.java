@@ -1,4 +1,4 @@
-package com.withblacks.rest.user;
+package com.withblacks.facade.user;
 
 import com.withblacks.business.builder.UserBuilder;
 import com.withblacks.business.entities.User;

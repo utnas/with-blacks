@@ -4,7 +4,6 @@ import com.withblacks.business.entities.User;
 import com.withblacks.business.layers.user.UserLayer;
 import com.withblacks.business.layers.user.UserLayerImpl;
 import com.withblacks.business.layers.user.UserMockHelper;
-import com.withblacks.rest.user.UserMapper;
 import com.withblacks.rest.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
