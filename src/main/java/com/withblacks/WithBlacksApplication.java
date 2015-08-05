@@ -2,8 +2,6 @@ package com.withblacks;
 
 import com.withblacks.business.builder.UserBuilder;
 import com.withblacks.repository.user.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,7 +20,6 @@ import static com.withblacks.business.entities.GENDER.MALE;
 @PropertySource("classpath:application.properties")
 public class WithBlacksApplication implements ApplicationRunner {
 
-    private static Logger logger = LoggerFactory.getLogger(WithBlacksApplication.class);
     @Autowired
     UserRepository repository;
 
