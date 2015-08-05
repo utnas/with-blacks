@@ -3,6 +3,7 @@ package com.withblacks.business.entities;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Component
 @Entity
@@ -14,10 +15,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
+    @NotNull
     private GENDER gender;
+
+    @OneToMany
+    private Project project;
 
     public User() {
     }
