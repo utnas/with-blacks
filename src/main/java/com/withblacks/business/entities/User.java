@@ -1,9 +1,11 @@
 package com.withblacks.business.entities;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Component
 @Entity
@@ -23,9 +25,13 @@ public class User {
     private GENDER gender;
 
     @OneToMany
-    private Project project;
+    private List<Project> projects;
 
     public User() {
+    }
+
+    public User(final List<Project> projects) {
+        this.projects = projects;
     }
 
     public String getFirstName() {

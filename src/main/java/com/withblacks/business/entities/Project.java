@@ -14,6 +14,9 @@ public class Project {
     private long id;
     private String name;
 
+    @ManyToOne
+    private User members;
+
     public void setName(final String name) {
         this.name = name;
     }
