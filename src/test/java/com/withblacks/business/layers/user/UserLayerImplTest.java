@@ -62,6 +62,4 @@ public class UserLayerImplTest {
 
         assertThat(layer.update(1L, user), hasProperties("Iron", "Man", MALE));
     }
-
-
 }
