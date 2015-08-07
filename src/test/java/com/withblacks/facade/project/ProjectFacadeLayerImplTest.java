@@ -4,13 +4,11 @@ import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.Project;
 import com.withblacks.business.layers.project.ProjectLayer;
 import com.withblacks.business.layers.project.ProjectLayerImpl;
-import com.withblacks.business.layers.project.ProjectMockHelper;
 import com.withblacks.facade.project.dto.ProjectDto;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.withblacks.business.layers.project.ProjectMockHelper.mockProject;
-import static com.withblacks.business.layers.project.ProjectMockHelper.mockProjectDto;
+import static com.withblacks.business.layers.project.ProjectMockHelper.*;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -23,7 +21,6 @@ public class ProjectFacadeLayerImplTest {
     private ProjectFacadeLayerImpl facade;
     private ProjectLayer layer;
     private Project project;
-    private ProjectMapper mapper;
     private ProjectDto projectDto;
 
     @Before
@@ -31,7 +28,7 @@ public class ProjectFacadeLayerImplTest {
         layer = mock(ProjectLayerImpl.class);
         project = mockProject("Iron");
         projectDto = mockProjectDto("Iron");
-        mapper = ProjectMockHelper.mockProjectMapper(projectDto, project);
+        ProjectMapper mapper = mockProjectMapper(projectDto, project);
         facade = new ProjectFacadeLayerImpl(layer, mapper);
     }
 
