@@ -1,7 +1,6 @@
 package com.withblacks.facade.user;
 
-import com.withblacks.business.entities.User;
-import com.withblacks.rest.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;

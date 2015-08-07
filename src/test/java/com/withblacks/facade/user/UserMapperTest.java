@@ -2,8 +2,7 @@ package com.withblacks.facade.user;
 
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.User;
-import com.withblacks.facade.user.UserMapper;
-import com.withblacks.rest.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -2,8 +2,8 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.builder.UserBuilder;
 import com.withblacks.business.entities.User;
-import com.withblacks.rest.user.dto.UserDto;
-import com.withblacks.rest.user.dto.UserDtoBuilder;
+import com.withblacks.facade.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserDtoBuilder;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 

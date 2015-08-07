@@ -3,7 +3,7 @@ package com.withblacks.business.layers.user;
 import com.withblacks.business.entities.GENDER;
 import com.withblacks.business.entities.User;
 import com.withblacks.facade.user.UserMapper;
-import com.withblacks.rest.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserDto;
 
 import static java.util.Arrays.asList;
 import static org.mockito.Matchers.any;

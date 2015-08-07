@@ -1,5 +1,6 @@
 package com.withblacks.business.entities;
 
+import com.withblacks.business.builder.ProjectBuilder;
 import org.junit.Before;
 import org.junit.Test;
 

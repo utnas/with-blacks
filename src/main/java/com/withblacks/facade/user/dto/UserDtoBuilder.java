@@ -1,4 +1,4 @@
-package com.withblacks.rest.user.dto;
+package com.withblacks.facade.user.dto;
 
 import com.withblacks.business.entities.GENDER;
 

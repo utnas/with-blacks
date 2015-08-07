@@ -1,7 +1,7 @@
 package com.withblacks.rest.user;
 
 import com.withblacks.facade.user.UserFacadeLayer;
-import com.withblacks.rest.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 
