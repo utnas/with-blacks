@@ -74,6 +74,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
+    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> delete(Long id) {
         try {
             facade.remove(id);
