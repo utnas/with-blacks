@@ -4,13 +4,17 @@ import com.withblacks.business.builder.ProjectBuilder;
 import com.withblacks.business.entities.Project;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.facade.project.dto.ProjectDtoBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+@Component
 public class ProjectMapper {
 
+    @Autowired
     public ProjectDto convertToDto(final Project project) {
         return new ProjectDtoBuilder().setName(project.getName()).build();
     }

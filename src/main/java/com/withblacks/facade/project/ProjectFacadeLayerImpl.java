@@ -3,11 +3,11 @@ package com.withblacks.facade.project;
 import com.withblacks.business.layers.project.ProjectLayer;
 import com.withblacks.facade.project.dto.ProjectDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
-@Service
+@Component
 public class ProjectFacadeLayerImpl implements ProjectFacadeLayer {
 
     private ProjectLayer layer;

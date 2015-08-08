@@ -1,8 +1,8 @@
 package com.withblacks.rest.user;
 
 import com.withblacks.facade.user.UserFacadeLayer;
-import com.withblacks.rest.RestLayer;
 import com.withblacks.facade.user.dto.UserDto;
+import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -50,7 +50,7 @@ public class UserRest implements RestLayer<UserDto> {
     public ResponseEntity<?> create(@RequestBody final UserDto userDto) {
         try {
             return new ResponseEntity<>(userFacadeLayer.create(userDto), CREATED);
-        } catch (Throwable e) {
+        } catch (NoSuchElementException e) {
             return new ResponseEntity(CONFLICT);
         }
     }
