@@ -75,6 +75,13 @@ public class ProjectRest implements RestLayer<ProjectDto> {
 
     @Override
     public ResponseEntity<?> delete(Long id) {
-        return null;
+        try {
+            facade.remove(id);
+            return new ResponseEntity(OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity(NOT_FOUND);
+        } catch (NullPointerException e) {
+            return new ResponseEntity(NOT_FOUND);
+        }
     }
 }
