@@ -1,13 +1,13 @@
 package com.withblacks.business.layers.user;
 
 import com.google.common.collect.Iterables;
-import com.withblacks.business.entities.User;
+import com.withblacks.business.entities.user.User;
 import com.withblacks.repository.user.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.withblacks.business.entities.GENDER.MALE;
-import static com.withblacks.rest.user.utils.MatcherUtils.hasProperties;
+import static com.withblacks.business.entities.user.GENDER.MALE;
+import static com.withblacks.rest.utils.MatcherUtils.hasProperties;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

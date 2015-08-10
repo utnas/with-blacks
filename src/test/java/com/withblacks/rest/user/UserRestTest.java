@@ -5,7 +5,7 @@ import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.withblacks.business.entities.GENDER.MALE;
+import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
 import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;

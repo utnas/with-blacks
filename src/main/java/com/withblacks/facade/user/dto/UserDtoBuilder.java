@@ -1,6 +1,6 @@
 package com.withblacks.facade.user.dto;
 
-import com.withblacks.business.entities.GENDER;
+import com.withblacks.business.entities.user.GENDER;
 
 public class UserDtoBuilder {
     private String firstName;

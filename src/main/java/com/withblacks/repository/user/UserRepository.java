@@ -1,6 +1,6 @@
 package com.withblacks.repository.user;
 
-import com.withblacks.business.entities.User;
+import com.withblacks.business.entities.user.User;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

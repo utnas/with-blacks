@@ -1,5 +1,6 @@
-package com.withblacks.business.entities;
+package com.withblacks.business.entities.project;
 
+import com.withblacks.business.entities.user.User;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

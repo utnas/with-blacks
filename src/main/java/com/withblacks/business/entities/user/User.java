@@ -1,6 +1,6 @@
-package com.withblacks.business.entities;
+package com.withblacks.business.entities.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.withblacks.business.entities.project.Project;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

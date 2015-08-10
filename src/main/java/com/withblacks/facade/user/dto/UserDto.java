@@ -1,6 +1,6 @@
 package com.withblacks.facade.user.dto;
 
-import com.withblacks.business.entities.GENDER;
+import com.withblacks.business.entities.user.GENDER;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 

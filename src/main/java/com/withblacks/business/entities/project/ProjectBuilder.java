@@ -1,6 +1,4 @@
-package com.withblacks.business.builder;
-
-import com.withblacks.business.entities.Project;
+package com.withblacks.business.entities.project;
 
 public class ProjectBuilder {
     private String name;

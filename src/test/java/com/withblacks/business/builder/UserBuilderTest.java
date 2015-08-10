@@ -1,10 +1,11 @@
 package com.withblacks.business.builder;
 
-import com.withblacks.business.entities.User;
+import com.withblacks.business.entities.user.User;
+import com.withblacks.business.entities.user.UserBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.withblacks.business.entities.GENDER.MALE;
+import static com.withblacks.business.entities.user.GENDER.MALE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 

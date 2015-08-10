@@ -1,7 +1,7 @@
-package com.withblacks.facade.project;
+package com.withblacks.facade.project.dto;
 
-import com.withblacks.business.builder.ProjectBuilder;
-import com.withblacks.business.entities.Project;
+import com.withblacks.business.entities.project.ProjectBuilder;
+import com.withblacks.business.entities.project.Project;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.facade.project.dto.ProjectDtoBuilder;
 import org.springframework.beans.factory.annotation.Autowired;

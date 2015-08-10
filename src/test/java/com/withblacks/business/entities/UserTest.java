@@ -1,9 +1,11 @@
 package com.withblacks.business.entities;
 
+import com.withblacks.business.entities.user.GENDER;
+import com.withblacks.business.entities.user.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.withblacks.business.builder.UserBuilder.build;
+import static com.withblacks.business.entities.user.UserBuilder.build;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 

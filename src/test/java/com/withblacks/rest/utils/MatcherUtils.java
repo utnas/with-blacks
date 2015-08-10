@@ -1,7 +1,7 @@
-package com.withblacks.rest.user.utils;
+package com.withblacks.rest.utils;
 
-import com.withblacks.business.entities.GENDER;
-import com.withblacks.business.entities.User;
+import com.withblacks.business.entities.user.GENDER;
+import com.withblacks.business.entities.user.User;
 import com.withblacks.facade.user.dto.UserDto;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;

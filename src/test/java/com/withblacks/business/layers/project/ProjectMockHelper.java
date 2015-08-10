@@ -1,7 +1,7 @@
 package com.withblacks.business.layers.project;
 
-import com.withblacks.business.entities.Project;
-import com.withblacks.facade.project.ProjectMapper;
+import com.withblacks.business.entities.project.Project;
+import com.withblacks.facade.project.dto.ProjectMapper;
 import com.withblacks.facade.project.dto.ProjectDto;
 import org.mockito.Mockito;
 

@@ -1,10 +1,11 @@
 package com.withblacks.facade.project;
 
 import com.google.common.collect.Iterables;
-import com.withblacks.business.entities.Project;
+import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.layers.project.ProjectLayer;
 import com.withblacks.business.layers.project.ProjectLayerImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
+import com.withblacks.facade.project.dto.ProjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 

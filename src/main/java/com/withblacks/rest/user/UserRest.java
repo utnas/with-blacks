@@ -23,7 +23,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "/users")
 public class UserRest implements RestLayer<UserDto> {
 
-    private final transient UserFacadeLayer userFacadeLayer;
+    private final UserFacadeLayer userFacadeLayer;
     @Value("${spring.rest.version}")
     private String restVersion;
 

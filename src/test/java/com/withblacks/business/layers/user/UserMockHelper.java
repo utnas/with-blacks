@@ -1,8 +1,8 @@
 package com.withblacks.business.layers.user;
 
-import com.withblacks.business.entities.GENDER;
-import com.withblacks.business.entities.User;
-import com.withblacks.facade.user.UserMapper;
+import com.withblacks.business.entities.user.GENDER;
+import com.withblacks.business.entities.user.User;
+import com.withblacks.facade.user.dto.UserMapper;
 import com.withblacks.facade.user.dto.UserDto;
 
 import static java.util.Arrays.asList;

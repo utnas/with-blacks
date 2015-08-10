@@ -1,6 +1,6 @@
 package com.withblacks;
 
-import com.withblacks.business.builder.UserBuilder;
+import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -11,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
-import static com.withblacks.business.entities.GENDER.FEMALE;
-import static com.withblacks.business.entities.GENDER.MALE;
+import static com.withblacks.business.entities.user.GENDER.FEMALE;
+import static com.withblacks.business.entities.user.GENDER.MALE;
 
 @SpringBootApplication
 @EnableAutoConfiguration

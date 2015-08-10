@@ -1,7 +1,7 @@
-package com.withblacks.facade.user;
+package com.withblacks.facade.user.dto;
 
-import com.withblacks.business.builder.UserBuilder;
-import com.withblacks.business.entities.User;
+import com.withblacks.business.entities.user.UserBuilder;
+import com.withblacks.business.entities.user.User;
 import com.withblacks.facade.user.dto.UserDto;
 import com.withblacks.facade.user.dto.UserDtoBuilder;
 import org.dozer.DozerBeanMapper;
