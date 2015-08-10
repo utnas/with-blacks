@@ -79,6 +79,7 @@ public class UserRest implements RestLayer<UserDto> {
         }
     }
 
+    @Override
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {

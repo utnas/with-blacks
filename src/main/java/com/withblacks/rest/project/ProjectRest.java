@@ -6,6 +6,7 @@ import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +43,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
 
     @Override
     @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findById(final Long id) {
+    public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return new ResponseEntity<>(facade.getProject(id), OK);
         } catch (NoSuchElementException e) {
@@ -62,7 +63,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
 
     @Override
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(final Long id, @RequestBody final ProjectDto resource) {
+    public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
         try {
             return new ResponseEntity<>(facade.update(id, resource), OK);
         } catch (NoSuchElementException e) {
@@ -75,8 +76,8 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> delete(final Long id) {
+    @RequestMapping(value = "/{id}", method = DELETE)
+    public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             facade.remove(id);
             return new ResponseEntity(OK);
