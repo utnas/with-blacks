@@ -62,7 +62,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
         try {
             return new ResponseEntity<>(facade.update(id, resource), OK);

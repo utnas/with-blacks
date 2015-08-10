@@ -58,8 +58,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
-            userFacadeLayer.update(id, userDto);
-            return new ResponseEntity(OK);
+            return new ResponseEntity<>(userFacadeLayer.update(id, userDto), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         } catch (ClassCastException e) {
@@ -72,8 +71,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
-            userFacadeLayer.update(id, resource);
-            return new ResponseEntity(OK);
+            return new ResponseEntity<>(userFacadeLayer.update(id, resource), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         }
