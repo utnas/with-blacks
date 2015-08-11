@@ -5,6 +5,7 @@ import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@PropertySource("classpath:application.properties")
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/projects")
 public class ProjectRest implements RestLayer<ProjectDto> {
 
