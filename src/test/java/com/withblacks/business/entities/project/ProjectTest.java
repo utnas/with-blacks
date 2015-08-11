@@ -1,4 +1,4 @@
-package com.withblacks.business.entities;
+package com.withblacks.business.entities.project;
 
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.project.ProjectBuilder;

@@ -1,4 +1,4 @@
-package com.withblacks.business.entities;
+package com.withblacks.business.entities.user;
 
 import com.withblacks.business.entities.user.GENDER;
 import com.withblacks.business.entities.user.User;

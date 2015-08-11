@@ -1,4 +1,4 @@
-package com.withblacks.business.builder;
+package com.withblacks.business.entities.user;
 
 import com.withblacks.business.entities.user.User;
 import com.withblacks.business.entities.user.UserBuilder;
