@@ -19,13 +19,13 @@ public class ProjectBuilderTest {
 
     @Test
     public void testSetName() throws Exception {
-        final Project iron = builder.setName("Iron").build();
-        assertThat(iron.getName(), is("Iron"));
+        final Project project = builder.setName("Iron").build();
+        assertThat(project.getName(), is("Iron"));
     }
 
     @Test
     public void testBuild() throws Exception {
-        final Project iron = builder.setName("Iron").build();
-        assertThat(iron.getName(), is("Iron"));
+        final Project project = builder.setName("Iron").build();
+        assertThat(project.getName(), is("Iron"));
     }
 }
