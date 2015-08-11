@@ -4,6 +4,7 @@ import com.withblacks.facade.project.ProjectFacadeLayer;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class ProjectRest implements RestLayer<ProjectDto> {
 
     private ProjectFacadeLayer facade;
+    @Value("${spring.rest.version}")
+    private String apiRevision;
 
     public ProjectRest() {
     }
@@ -42,7 +45,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{apiRevision}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return new ResponseEntity<>(facade.getProject(id), OK);
@@ -62,7 +65,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{apiRevision}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
         try {
             return new ResponseEntity<>(facade.update(id, resource), OK);
@@ -76,7 +79,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "/{id}", method = DELETE)
+    @RequestMapping(value = "{apiRevision}/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             facade.remove(id);
