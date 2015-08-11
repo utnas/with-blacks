@@ -20,7 +20,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @PropertySource("classpath:application.properties")
-@RequestMapping(value = "/users")
+@RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/users")
 public class UserRest implements RestLayer<UserDto> {
 
     private final UserFacadeLayer userFacadeLayer;
