@@ -26,7 +26,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
 
     private ProjectFacadeLayer facade;
     @Value("${spring.rest.version}")
-    private String apiRevision;
+    private String API_REVISION;
 
     public ProjectRest() {
     }
@@ -47,7 +47,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "{apiRevision}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return new ResponseEntity<>(facade.getProject(id), OK);
@@ -67,7 +67,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "{apiRevision}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
         try {
             return new ResponseEntity<>(facade.update(id, resource), OK);
@@ -81,7 +81,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Override
-    @RequestMapping(value = "{apiRevision}/{id}", method = DELETE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             facade.remove(id);

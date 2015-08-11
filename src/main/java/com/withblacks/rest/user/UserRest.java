@@ -25,7 +25,7 @@ public class UserRest implements RestLayer<UserDto> {
 
     private final UserFacadeLayer userFacadeLayer;
     @Value("${spring.rest.version}")
-    private String apiRevision;
+    private String API_REVISION;
 
     @Autowired
     public UserRest(final UserFacadeLayer userFacadeLayer) {
@@ -37,7 +37,7 @@ public class UserRest implements RestLayer<UserDto> {
         return new ResponseEntity<>(userFacadeLayer.getUsers(), OK);
     }
 
-    @RequestMapping(value = "{apiRevision}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return new ResponseEntity<>(userFacadeLayer.getUser(id), OK);
@@ -57,7 +57,7 @@ public class UserRest implements RestLayer<UserDto> {
         }
     }
 
-    @RequestMapping(value = "{apiRevision}/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
             return new ResponseEntity<>(userFacadeLayer.update(id, userDto), OK);
@@ -70,7 +70,7 @@ public class UserRest implements RestLayer<UserDto> {
         }
     }
 
-    @RequestMapping(value = "{apiRevision}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
             return new ResponseEntity<>(userFacadeLayer.update(id, resource), OK);
@@ -80,7 +80,7 @@ public class UserRest implements RestLayer<UserDto> {
     }
 
     @Override
-    @RequestMapping(value = "{apiRevision}/{id}", method = DELETE)
+    @RequestMapping(value = "{API_REVISION}/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             userFacadeLayer.remove(id);
