@@ -46,7 +46,7 @@ public class UserLayerImpl implements UserLayer<User> {
     }
 
     @Override
-    public void delete(Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
+    public void delete(final Long id) throws NoSuchElementException, UnsupportedOperationException, ClassCastException {
         repository.delete(id);
     }
 }
