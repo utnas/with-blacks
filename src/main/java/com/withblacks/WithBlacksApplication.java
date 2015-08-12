@@ -1,6 +1,8 @@
 package com.withblacks;
 
+import com.withblacks.business.entities.project.ProjectBuilder;
 import com.withblacks.business.entities.user.UserBuilder;
+import com.withblacks.repository.project.ProjectRepository;
 import com.withblacks.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,7 +23,9 @@ import static com.withblacks.business.entities.user.GENDER.MALE;
 public class WithBlacksApplication implements ApplicationRunner {
 
     @Autowired
-    UserRepository repository;
+    UserRepository userRepository;
+    @Autowired
+    ProjectRepository projectRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(WithBlacksApplication.class, args);
@@ -30,24 +34,30 @@ public class WithBlacksApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        repository.save(new UserBuilder()
+        userRepository.save(new UserBuilder()
                 .setFirstName("Iron")
                 .setLastName("Man")
                 .setGender(MALE).build());
 
-        repository.save(new UserBuilder()
+        userRepository.save(new UserBuilder()
                 .setFirstName("Super")
                 .setLastName("Man")
                 .setGender(MALE).build());
 
-        repository.save(new UserBuilder()
+        userRepository.save(new UserBuilder()
                 .setFirstName("Cat")
                 .setLastName("Woman")
                 .setGender(FEMALE).build());
 
-        repository.save(new UserBuilder()
+        userRepository.save(new UserBuilder()
                 .setFirstName("Spider")
                 .setLastName("Man")
                 .setGender(MALE).build());
+
+        projectRepository.save(new ProjectBuilder()
+                .setName("SPM-st").build());
+
+        projectRepository.save(new ProjectBuilder()
+                .setName("Arm-st").build());
     }
 }

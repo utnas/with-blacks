@@ -5,6 +5,8 @@ import com.withblacks.business.entities.user.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static com.withblacks.business.entities.user.UserBuilder.build;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
