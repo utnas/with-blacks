@@ -17,9 +17,9 @@ import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-public class ProjectFacadeLayerImplTest {
+public class ProjectFacadeImplTest {
 
-    private ProjectFacadeLayerImpl facade;
+    private ProjectFacadeImpl facade;
     private ProjectLayer layer;
     private Project project;
     private ProjectDto projectDto;
@@ -30,7 +30,7 @@ public class ProjectFacadeLayerImplTest {
         project = mockProject("Iron");
         projectDto = mockProjectDto("Iron");
         ProjectMapper mapper = mockProjectMapper(projectDto, project);
-        facade = new ProjectFacadeLayerImpl(layer, mapper);
+        facade = new ProjectFacadeImpl(layer, mapper);
     }
 
     @Test

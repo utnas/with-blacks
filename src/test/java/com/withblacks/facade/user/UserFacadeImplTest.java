@@ -24,9 +24,9 @@ import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
-public class UserFacadeLayerImplTest {
+public class UserFacadeImplTest {
 
-    private UserFacadeLayerImpl userFacadeLayer;
+    private UserFacadeImpl userFacadeLayer;
     private UserLayer layer;
     private User user;
     private UserDto dto;
@@ -39,7 +39,7 @@ public class UserFacadeLayerImplTest {
 
         layer = mock(UserLayerImpl.class);
         mapper = UserMockHelper.mockUserMapper(dto, user);
-        userFacadeLayer = new UserFacadeLayerImpl(layer, mapper);
+        userFacadeLayer = new UserFacadeImpl(layer, mapper);
 
     }
 

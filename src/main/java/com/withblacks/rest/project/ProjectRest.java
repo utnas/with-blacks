@@ -1,6 +1,6 @@
 package com.withblacks.rest.project;
 
-import com.withblacks.facade.project.ProjectFacadeLayer;
+import com.withblacks.facade.project.ProjectFacade;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/projects")
 public class ProjectRest implements RestLayer<ProjectDto> {
 
-    private ProjectFacadeLayer facade;
+    private ProjectFacade facade;
     @Value("${spring.rest.version}")
     private String API_REVISION;
 
@@ -32,7 +32,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     }
 
     @Autowired
-    public ProjectRest(final ProjectFacadeLayer facade) {
+    public ProjectRest(final ProjectFacade facade) {
         this.facade = facade;
     }
 

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.NoSuchElementException;
 
 @Component
-public interface UserFacadeLayer {
+public interface UserFacade {
 
     UserDto getUser(final String userName);
 

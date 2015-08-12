@@ -4,7 +4,7 @@ import com.withblacks.facade.project.dto.ProjectDto;
 
 import java.util.NoSuchElementException;
 
-public interface ProjectFacadeLayer {
+public interface ProjectFacade {
 
     ProjectDto getProject(final String userName);
 

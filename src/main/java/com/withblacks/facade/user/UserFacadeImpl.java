@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
 
 @Service
-public class UserFacadeLayerImpl implements UserFacadeLayer {
+public class UserFacadeImpl implements UserFacade {
 
     private UserLayer<User> layer;
     private UserMapper mapper;
 
-    public UserFacadeLayerImpl() {
+    public UserFacadeImpl() {
     }
 
     @Autowired
-    public UserFacadeLayerImpl(final UserLayer<User> layer, final UserMapper mapper) {
+    public UserFacadeImpl(final UserLayer<User> layer, final UserMapper mapper) {
         this.layer = layer;
         this.mapper = mapper;
     }

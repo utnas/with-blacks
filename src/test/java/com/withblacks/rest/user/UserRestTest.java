@@ -1,9 +1,11 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.facade.user.UserFacadeLayer;
+import com.withblacks.facade.user.UserFacade;
 import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
 
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
@@ -18,12 +20,12 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserRestTest {
 
     private UserRest rest;
-    private UserFacadeLayer facade;
+    private UserFacade facade;
     private UserDto dto;
 
     @Before
     public void setUp() throws Exception {
-        facade = mock(UserFacadeLayer.class);
+        facade = mock(UserFacade.class);
         dto = mockUserDto("Iron", "Man", MALE);
         rest = new UserRest(facade);
     }

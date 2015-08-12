@@ -1,7 +1,7 @@
 package com.withblacks.rest.project;
 
-import com.withblacks.facade.project.ProjectFacadeLayer;
-import com.withblacks.facade.project.ProjectFacadeLayerImpl;
+import com.withblacks.facade.project.ProjectFacade;
+import com.withblacks.facade.project.ProjectFacadeImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,12 +19,12 @@ import static org.springframework.http.HttpStatus.OK;
 public class ProjectRestTest {
 
     private ProjectRest restAPI;
-    private ProjectFacadeLayer facade;
+    private ProjectFacade facade;
     private ProjectDto projectDto;
 
     @Before
     public void setUp() {
-        facade = mock(ProjectFacadeLayerImpl.class);
+        facade = mock(ProjectFacadeImpl.class);
 
         projectDto = mockProjectDto("Iron");
         restAPI = new ProjectRest(facade);

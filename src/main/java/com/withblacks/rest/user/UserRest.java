@@ -1,6 +1,6 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.facade.user.UserFacadeLayer;
+import com.withblacks.facade.user.UserFacade;
 import com.withblacks.facade.user.dto.UserDto;
 import com.withblacks.rest.RestLayer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,24 +23,24 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/users")
 public class UserRest implements RestLayer<UserDto> {
 
-    private final UserFacadeLayer userFacadeLayer;
+    private final UserFacade facade;
     @Value("${spring.rest.version}")
     private String API_REVISION;
 
     @Autowired
-    public UserRest(final UserFacadeLayer userFacadeLayer) {
-        this.userFacadeLayer = userFacadeLayer;
+    public UserRest(final UserFacade facade) {
+        this.facade = facade;
     }
 
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
-        return new ResponseEntity<>(userFacadeLayer.getUsers(), OK);
+        return new ResponseEntity<>(facade.getUsers(), OK);
     }
 
     @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return new ResponseEntity<>(userFacadeLayer.getUser(id), OK);
+            return new ResponseEntity<>(facade.getUser(id), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         } catch (NullPointerException e) {
@@ -51,7 +51,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(method = POST, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody final UserDto userDto) {
         try {
-            return new ResponseEntity<>(userFacadeLayer.create(userDto), CREATED);
+            return new ResponseEntity<>(facade.create(userDto), CREATED);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(CONFLICT);
         }
@@ -60,7 +60,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "{API_REVISION}/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
-            return new ResponseEntity<>(userFacadeLayer.update(id, userDto), OK);
+            return new ResponseEntity<>(facade.update(id, userDto), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         } catch (ClassCastException e) {
@@ -73,7 +73,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "{API_REVISION}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
-            return new ResponseEntity<>(userFacadeLayer.update(id, resource), OK);
+            return new ResponseEntity<>(facade.update(id, resource), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         }
@@ -83,7 +83,7 @@ public class UserRest implements RestLayer<UserDto> {
     @RequestMapping(value = "{API_REVISION}/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
-            userFacadeLayer.remove(id);
+            facade.remove(id);
             return new ResponseEntity(OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);

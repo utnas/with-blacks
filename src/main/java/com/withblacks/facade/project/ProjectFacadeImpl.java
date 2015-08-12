@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 import java.util.NoSuchElementException;
 
 @Component
-public class ProjectFacadeLayerImpl implements ProjectFacadeLayer {
+public class ProjectFacadeImpl implements ProjectFacade {
 
     private ProjectLayer layer;
     private ProjectMapper mapper;
 
-    public ProjectFacadeLayerImpl() {
+    public ProjectFacadeImpl() {
     }
 
     @Autowired
-    public ProjectFacadeLayerImpl(final ProjectLayer layer, final ProjectMapper mapper) {
+    public ProjectFacadeImpl(final ProjectLayer layer, final ProjectMapper mapper) {
         this.layer = layer;
         this.mapper = mapper;
     }
