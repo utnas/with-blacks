@@ -5,11 +5,9 @@ import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.NoSuchElementException;
-
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.anyLong;
@@ -32,7 +30,7 @@ public class UserRestTest {
 
     @Test
     public void testFindAll() throws Exception {
-        doReturn(asList(dto)).when(facade).getUsers();
+        doReturn(singletonList(dto)).when(facade).getUsers();
         assertThat(rest.findAll().getStatusCode(), is(OK));
     }
 

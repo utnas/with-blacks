@@ -9,8 +9,11 @@ import com.withblacks.facade.project.dto.ProjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static com.withblacks.business.layers.project.ProjectMockHelper.*;
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.*;
@@ -29,8 +32,7 @@ public class ProjectFacadeImplTest {
         layer = mock(ProjectLayerImpl.class);
         project = mockProject("Iron");
         projectDto = mockProjectDto("Iron");
-        ProjectMapper mapper = mockProjectMapper(projectDto, project);
-        facade = new ProjectFacadeImpl(layer, mapper);
+        facade = new ProjectFacadeImpl(layer, mockProjectMapper(projectDto, project));
     }
 
     @Test
@@ -47,7 +49,7 @@ public class ProjectFacadeImplTest {
 
     @Test
     public void testGetProjects() throws Exception {
-        doReturn(asList(project)).when(layer).findAll();
+        doReturn(singletonList(project)).when(layer).findAll();
         assertThat(Iterables.getLast(facade.getProjects()).getName(), is("Iron"));
     }
 

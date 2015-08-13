@@ -31,7 +31,6 @@ public class UserDtoBuilderTest {
 
     @Test
     public void itShouldBuildAUSerDto() {
-
         final UserDtoBuilder builder = new UserDtoBuilder();
         builder.setFirstName("Iron").setLastName("Man").setGender(GENDER.MALE);
 

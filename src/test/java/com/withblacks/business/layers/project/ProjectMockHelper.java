@@ -1,11 +1,11 @@
 package com.withblacks.business.layers.project;
 
 import com.withblacks.business.entities.project.Project;
-import com.withblacks.facade.project.dto.ProjectMapper;
 import com.withblacks.facade.project.dto.ProjectDto;
+import com.withblacks.facade.project.dto.ProjectMapper;
 import org.mockito.Mockito;
 
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
@@ -29,7 +29,7 @@ public class ProjectMockHelper {
         final ProjectMapper mapper = mock(ProjectMapper.class);
 
         doReturn(projectDto).when(mapper).convertToDto(project);
-        doReturn(asList(projectDto)).when(mapper).convertToDtos(asList(project));
+        doReturn(singletonList(projectDto)).when(mapper).convertToDtos(singletonList(project));
         doReturn(project).when(mapper).convertToProject(projectDto);
 
         return mapper;

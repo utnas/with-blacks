@@ -1,6 +1,5 @@
 package com.withblacks.facade.user.dto;
 
-import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.user.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,7 @@ import static com.withblacks.business.layers.user.UserMockHelper.mockUser;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
 import static com.withblacks.rest.utils.MatcherUtils.dtoHasProperties;
 import static com.withblacks.rest.utils.MatcherUtils.hasProperties;
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertThat;
 
 public class UserMapperTest {
@@ -37,7 +36,7 @@ public class UserMapperTest {
 
     @Test
     public void testConvertToDtos() throws Exception {
-        final Iterable<User> users = asList(mockUser("Iron", "Man", MALE));
+        final Iterable<User> users = singletonList(mockUser("Iron", "Man", MALE));
         assertThat(getLast(mapper.convertToDtos(users)), dtoHasProperties("Iron", "Man", MALE));
     }
 }

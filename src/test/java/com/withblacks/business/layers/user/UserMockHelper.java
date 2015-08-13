@@ -2,10 +2,10 @@ package com.withblacks.business.layers.user;
 
 import com.withblacks.business.entities.user.GENDER;
 import com.withblacks.business.entities.user.User;
-import com.withblacks.facade.user.dto.UserMapper;
 import com.withblacks.facade.user.dto.UserDto;
+import com.withblacks.facade.user.dto.UserMapper;
 
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -36,7 +36,7 @@ public class UserMockHelper {
 
         when(mapper.convertToDto(any(User.class))).thenReturn(dto);
         when(mapper.convertToUser(any(UserDto.class))).thenReturn(user);
-        when(mapper.convertToDtos(anyList())).thenReturn(asList(dto));
+        when(mapper.convertToDtos(anyList())).thenReturn(singletonList(dto));
 
         return mapper;
     }

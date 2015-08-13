@@ -6,6 +6,7 @@ import com.withblacks.repository.user.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.common.collect.Iterables.size;
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.rest.utils.MatcherUtils.hasProperties;
 import static java.util.Arrays.asList;
@@ -39,7 +40,7 @@ public class UserLayerImplTest {
     public void itShouldFindAllUsers() throws Exception {
         doReturn(asList(user, user)).when(repository).findAll();
 
-        assertThat(Iterables.size(layer.findAll()), is(2));
+        assertThat(size(layer.findAll()), is(2));
     }
 
     @Test

@@ -16,7 +16,7 @@ import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUser;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
 import static com.withblacks.rest.utils.MatcherUtils.dtoHasProperties;
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 public class UserFacadeImplTest {
 
     private UserFacadeImpl userFacadeLayer;
-    private UserLayer layer;
+    private UserLayer<User> layer;
     private User user;
     private UserDto dto;
     private UserMapper mapper;
@@ -52,7 +52,7 @@ public class UserFacadeImplTest {
 
     @Test
     public void testGetUsers() throws Exception {
-        doReturn(asList(user)).when(layer).findAll();
+        doReturn(singletonList(user)).when(layer).findAll();
         assertThat(size(userFacadeLayer.getUsers()), is(1));
     }
 

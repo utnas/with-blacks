@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.common.collect.Iterables.getLast;
-import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.*;
@@ -35,7 +35,7 @@ public class ProjectLayerImplTest {
 
     @Test
     public void testFindAll() throws Exception {
-        doReturn(asList(project)).when(repository).findAll();
+        doReturn(singletonList(project)).when(repository).findAll();
 
         assertThat(getLast(layer.findAll()).getName(), is("Iron"));
     }
