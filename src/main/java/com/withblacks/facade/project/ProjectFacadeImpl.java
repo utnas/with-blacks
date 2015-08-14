@@ -24,17 +24,17 @@ public class ProjectFacadeImpl implements ProjectFacade {
     }
 
     @Override
-    public ProjectDto getProject(final String userName) {
+    public ProjectDto getOne(final String userName) {
         return mapper.convertToDto(layer.find(userName));
     }
 
     @Override
-    public ProjectDto getProject(final Long id) throws NoSuchElementException {
+    public ProjectDto getOne(final Long id) throws NoSuchElementException {
         return mapper.convertToDto(layer.find(id));
     }
 
     @Override
-    public Iterable<ProjectDto> getProjects() {
+    public Iterable<ProjectDto> getAll() {
         return mapper.convertToDtos(layer.findAll());
     }
 

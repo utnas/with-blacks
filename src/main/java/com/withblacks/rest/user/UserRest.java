@@ -34,13 +34,13 @@ public class UserRest implements RestLayer<UserDto> {
 
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
-        return new ResponseEntity<>(facade.getUsers(), OK);
+        return new ResponseEntity<>(facade.getAll(), OK);
     }
 
     @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return new ResponseEntity<>(facade.getUser(id), OK);
+            return new ResponseEntity<>(facade.getOne(id), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         } catch (NullPointerException e) {

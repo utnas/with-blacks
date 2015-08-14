@@ -47,20 +47,20 @@ public class UserFacadeImplTest {
     public void testGetUserByName() throws Exception {
         doReturn(user).when(layer).find(anyString());
 
-        assertThat(userFacadeLayer.getUser("Iron"), dtoHasProperties("Iron", "Man", MALE));
+        assertThat(userFacadeLayer.getOne("Iron"), dtoHasProperties("Iron", "Man", MALE));
     }
 
     @Test
     public void testGetUsers() throws Exception {
         doReturn(singletonList(user)).when(layer).findAll();
-        assertThat(size(userFacadeLayer.getUsers()), is(1));
+        assertThat(size(userFacadeLayer.getAll()), is(1));
     }
 
     @Test
     public void testGetUserById() throws Exception {
         when(layer.find(anyLong())).thenReturn(user);
 
-        assertThat(userFacadeLayer.getUser(1L), dtoHasProperties("Iron", "Man", MALE));
+        assertThat(userFacadeLayer.getOne(1L), dtoHasProperties("Iron", "Man", MALE));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class UserFacadeImplTest {
         userFacadeLayer.create(dto);
         userFacadeLayer.remove(1L);
         try {
-            userFacadeLayer.getUser(1L);
+            userFacadeLayer.getOne(1L);
         } catch (Exception e) {
             assertThat(e instanceof NoSuchElementException, is(true));
         }

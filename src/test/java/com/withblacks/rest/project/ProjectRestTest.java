@@ -32,13 +32,13 @@ public class ProjectRestTest {
 
     @Test
     public void testFindAll() throws Exception {
-        doReturn(singletonList(projectDto)).when(facade).getProjects();
+        doReturn(singletonList(projectDto)).when(facade).getAll();
         assertThat(restAPI.findAll().getStatusCode(), is(OK));
     }
 
     @Test
     public void testFindById() throws Exception {
-        doReturn(projectDto).when(facade).getProject(anyLong());
+        doReturn(projectDto).when(facade).getOne(anyLong());
         assertThat(restAPI.findById(1L).getStatusCode(), is(OK));
     }
 

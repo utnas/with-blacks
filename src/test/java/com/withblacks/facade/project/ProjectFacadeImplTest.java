@@ -38,19 +38,19 @@ public class ProjectFacadeImplTest {
     @Test
     public void testGetProject() throws Exception {
         doReturn(project).when(layer).find(anyLong());
-        assertThat(facade.getProject(1L).getName(), is("Iron"));
+        assertThat(facade.getOne(1L).getName(), is("Iron"));
     }
 
     @Test
     public void testGetProjectByName() throws Exception {
         doReturn(project).when(layer).find(anyString());
-        assertThat(facade.getProject("Iron").getName(), is("Iron"));
+        assertThat(facade.getOne("Iron").getName(), is("Iron"));
     }
 
     @Test
     public void testGetProjects() throws Exception {
         doReturn(singletonList(project)).when(layer).findAll();
-        assertThat(Iterables.getLast(facade.getProjects()).getName(), is("Iron"));
+        assertThat(Iterables.getLast(facade.getAll()).getName(), is("Iron"));
     }
 
     @Test

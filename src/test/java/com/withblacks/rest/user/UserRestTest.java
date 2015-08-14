@@ -30,13 +30,13 @@ public class UserRestTest {
 
     @Test
     public void testFindAll() throws Exception {
-        doReturn(singletonList(dto)).when(facade).getUsers();
+        doReturn(singletonList(dto)).when(facade).getAll();
         assertThat(rest.findAll().getStatusCode(), is(OK));
     }
 
     @Test
     public void testFindById() throws Exception {
-        doReturn(dto).when(facade).getUser(anyLong());
+        doReturn(dto).when(facade).getOne(anyLong());
         assertThat(rest.findById(1L).getStatusCode(), is(OK));
     }
 

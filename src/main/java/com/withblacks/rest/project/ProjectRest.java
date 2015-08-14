@@ -40,7 +40,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     @RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findAll() {
         try {
-            return new ResponseEntity<>(facade.getProjects(), OK);
+            return new ResponseEntity<>(facade.getAll(), OK);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -50,7 +50,7 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
-            return new ResponseEntity<>(facade.getProject(id), OK);
+            return new ResponseEntity<>(facade.getOne(id), OK);
         } catch (NoSuchElementException e) {
             return new ResponseEntity(NOT_FOUND);
         }

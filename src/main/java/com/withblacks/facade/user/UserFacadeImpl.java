@@ -25,17 +25,17 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public UserDto getUser(final String userName) throws NoSuchElementException {
+    public UserDto getOne(final String userName) throws NoSuchElementException {
         return mapper.convertToDto(layer.find(userName));
     }
 
     @Override
-    public Iterable<UserDto> getUsers() {
+    public Iterable<UserDto> getAll() {
         return mapper.convertToDtos(layer.findAll());
     }
 
     @Override
-    public UserDto getUser(final Long id) throws NoSuchElementException {
+    public UserDto getOne(final Long id) throws NoSuchElementException {
         return mapper.convertToDto(layer.find(id));
     }
 
