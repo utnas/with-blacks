@@ -1,4 +1,4 @@
-package com.withblacks;
+package com.withblacks.repository;
 
 import com.withblacks.business.entities.project.ProjectBuilder;
 import com.withblacks.business.entities.user.UserBuilder;
