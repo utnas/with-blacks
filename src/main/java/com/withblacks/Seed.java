@@ -21,7 +21,7 @@ public class Seed {
         this.projectRepository = projectRepository;
     }
 
-    public void seed() {
+    public void seeds() {
         userRepository.save(new UserBuilder()
                 .setFirstName("Iron")
                 .setLastName("Man")
