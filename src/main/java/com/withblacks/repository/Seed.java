@@ -1,14 +1,17 @@
 package com.withblacks.repository;
 
+import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.project.ProjectBuilder;
 import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.repository.project.ProjectRepository;
 import com.withblacks.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
 import static com.withblacks.business.entities.user.GENDER.MALE;
 
+@Component
 public class Seed {
     private  UserRepository userRepository;
     private  ProjectRepository projectRepository;
@@ -21,16 +24,27 @@ public class Seed {
         this.projectRepository = projectRepository;
     }
 
-    public void seeds() {
+    public void populate() {
+        Project spmST = new ProjectBuilder()
+                .setName("SPM-st").build();
+        Project armST = new ProjectBuilder()
+                .setName("Arm-st").build();
+
+        projectRepository.save(spmST);
+
+        projectRepository.save(armST);
+
         userRepository.save(new UserBuilder()
                 .setFirstName("Iron")
                 .setLastName("Man")
-                .setGender(MALE).build());
+                .setGender(MALE)
+                .addProject(spmST).build());
 
         userRepository.save(new UserBuilder()
                 .setFirstName("Super")
                 .setLastName("Man")
-                .setGender(MALE).build());
+                .setGender(MALE)
+                .addProject(armST).build());
 
         userRepository.save(new UserBuilder()
                 .setFirstName("Cat")
@@ -41,11 +55,5 @@ public class Seed {
                 .setFirstName("Spider")
                 .setLastName("Man")
                 .setGender(MALE).build());
-
-        projectRepository.save(new ProjectBuilder()
-                .setName("SPM-st").build());
-
-        projectRepository.save(new ProjectBuilder()
-                .setName("Arm-st").build());
     }
 }

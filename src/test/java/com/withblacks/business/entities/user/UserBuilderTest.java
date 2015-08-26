@@ -1,11 +1,12 @@
 package com.withblacks.business.entities.user;
 
-import com.withblacks.business.entities.user.User;
-import com.withblacks.business.entities.user.UserBuilder;
+import com.withblacks.business.entities.project.Project;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.google.common.collect.Iterables.getLast;
 import static com.withblacks.business.entities.user.GENDER.MALE;
+import static com.withblacks.business.layers.project.ProjectMockHelper.mockProject;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,6 +32,13 @@ public class UserBuilderTest {
     @Test
     public void itShouldSetGender() {
         assertThat(builder.setGender(MALE).getGender(), is(MALE));
+    }
+
+    @Test
+    public void itShouldAddProject() {
+        Project project = mockProject("Iron");
+        User user = builder.addProject(project).build();
+        assertThat(getLast(user.getProjects()).getName(), is("Iron"));
     }
 
     @Test

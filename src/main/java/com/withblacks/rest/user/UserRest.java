@@ -37,7 +37,7 @@ public class UserRest implements RestLayer<UserDto> {
         return new ResponseEntity<>(facade.getAll(), OK);
     }
 
-    @RequestMapping(value = "{API_REVISION}/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = GET, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findById(@PathVariable("id") final Long id) {
         try {
             return new ResponseEntity<>(facade.getOne(id), OK);
@@ -57,7 +57,7 @@ public class UserRest implements RestLayer<UserDto> {
         }
     }
 
-    @RequestMapping(value = "{API_REVISION}/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
         try {
             return new ResponseEntity<>(facade.update(id, userDto), OK);
@@ -70,7 +70,7 @@ public class UserRest implements RestLayer<UserDto> {
         }
     }
 
-    @RequestMapping(value = "{API_REVISION}/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
         try {
             return new ResponseEntity<>(facade.update(id, resource), OK);
@@ -80,7 +80,7 @@ public class UserRest implements RestLayer<UserDto> {
     }
 
     @Override
-    @RequestMapping(value = "{API_REVISION}/{id}", method = DELETE)
+    @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
         try {
             facade.remove(id);

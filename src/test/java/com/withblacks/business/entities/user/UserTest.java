@@ -1,11 +1,13 @@
 package com.withblacks.business.entities.user;
 
+import com.withblacks.business.entities.project.Project;
 import org.junit.Before;
 import org.junit.Test;
 
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
 import static com.withblacks.business.entities.user.UserBuilder.build;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
 public class UserTest {
@@ -35,5 +37,10 @@ public class UserTest {
     @Test
     public void testEquals() throws Exception {
         assertThat(user, is(user));
+    }
+
+    @Test
+    public void itShouldAddAProject() {
+        assertThat(user.addProject(mock(Project.class)), is(true));
     }
 }

@@ -1,15 +1,19 @@
 package com.withblacks.business.entities.user;
 
 import com.withblacks.business.entities.project.Project;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 @Component
 @Entity
 @Table(name = "Users")
+@Data
 public class User {
 
     private static final long serialVersionUID = -2952735933715107252L;
@@ -25,13 +29,9 @@ public class User {
     private GENDER gender;
 
     @OneToMany
-    private List<Project> projects;
+    private List<Project> projects = newArrayList();
 
     public User() {
-    }
-
-    public User(final List<Project> projects) {
-        this.projects = projects;
     }
 
     public String getFirstName() {
@@ -60,5 +60,13 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    public Iterable<Project> getProjects(){
+        return projects;
+    }
+
+    public boolean addProject(final Project project) {
+        return projects.add(project);
     }
 }

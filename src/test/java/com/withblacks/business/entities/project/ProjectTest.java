@@ -1,12 +1,13 @@
 package com.withblacks.business.entities.project;
 
-import com.withblacks.business.entities.project.Project;
-import com.withblacks.business.entities.project.ProjectBuilder;
+import com.withblacks.business.entities.user.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
 public class ProjectTest {
 
@@ -21,5 +22,12 @@ public class ProjectTest {
     public void itShouldSetName() {
         project.setName("Iron");
         assertThat(project.getName(), is("Iron"));
+    }
+
+    @Test
+    public <T> void itShoulAddMember() {
+        User user = mock(User.class);
+        project.addMember(user);
+        assertThat(project.getMembers(), hasItem(user));
     }
 }

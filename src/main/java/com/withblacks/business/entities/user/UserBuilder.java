@@ -1,7 +1,7 @@
 package com.withblacks.business.entities.user;
 
+import com.withblacks.business.entities.project.Project;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 
 @Component
 public class UserBuilder {
@@ -9,25 +9,19 @@ public class UserBuilder {
     private String firstName;
     private String lastName;
     private GENDER gender;
+    private Project project;
 
     public UserBuilder() {
     }
 
     public static User build(final String firstName, final String lastName, final GENDER gender) {
-        notNull(firstName + " , " + lastName + " , " + gender + " , are null.", firstName, lastName, gender);
-
         final User user = new User();
+
         user.setGender(gender);
         user.setFirstName(firstName);
         user.setLastName(lastName);
 
         return user;
-    }
-
-    private static void notNull(final String message, final Object... values) {
-        for (final Object value : values) {
-            Assert.notNull(value, message);
-        }
     }
 
     public User build() {
@@ -36,10 +30,10 @@ public class UserBuilder {
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setGender(getGender());
+        user.addProject(project);
 
         return user;
     }
-
 
     public UserBuilder setFirstName(final String firstName) {
         this.firstName = firstName;
@@ -66,5 +60,14 @@ public class UserBuilder {
 
     public GENDER getGender() {
         return gender;
+    }
+
+    public UserBuilder addProject(final Project project) {
+        this.project = project;
+        return this;
+    }
+
+    public Project getProject() {
+        return project;
     }
 }
