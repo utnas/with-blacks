@@ -41,6 +41,6 @@ public class UserTest {
 
     @Test
     public void itShouldAddAProject() {
-        assertThat(user.addProject(mock(Project.class)), is(true));
+        assertThat(user.addOneProject(mock(Project.class)), is(true));
     }
 }

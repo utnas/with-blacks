@@ -1,8 +1,13 @@
 package com.withblacks.facade.user.dto;
 
+import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.user.GENDER;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Component
 public class UserDto extends ResourceSupport {
@@ -11,6 +16,9 @@ public class UserDto extends ResourceSupport {
     private String firstName;
     private String lastName;
     private GENDER gender;
+
+
+    private List<Project> projects = newArrayList();
 
     public UserDto() {
     }
@@ -41,5 +49,13 @@ public class UserDto extends ResourceSupport {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(final List<Project> projects) {
+        this.projects.addAll(projects);
     }
 }

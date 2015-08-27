@@ -1,5 +1,7 @@
 package com.withblacks.facade.user.dto;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.business.entities.user.User;
 import com.withblacks.facade.user.dto.UserDto;
@@ -7,9 +9,13 @@ import com.withblacks.facade.user.dto.UserDtoBuilder;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
+import java.util.Collections;
 
+import static com.google.common.collect.Iterables.transform;
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Collections.EMPTY_LIST;
 
 @Component
 public class UserMapper {
@@ -21,26 +27,29 @@ public class UserMapper {
     }
 
     public User convertToUser(final UserDto dto) {
-        final User user = new UserBuilder()
+        return new UserBuilder()
                 .setFirstName(dto.getFirstName())
                 .setLastName(dto.getLastName())
-                .setGender(dto.getGender()).build();
-        return user;
+                .setGender(dto.getGender())
+                .setProjects(dto.getProjects()).build();
     }
 
     public UserDto convertToDto(final User user) {
-        final UserDto dto = new UserDtoBuilder()
+        return new UserDtoBuilder()
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
                 .setGender(user.getGender()).build();
-        return dto;
     }
 
     public Iterable<UserDto> convertToDtos(final Iterable<User> users) {
-        final Collection<UserDto> dtos = newArrayList();
-        for (final User user : users) {
-            dtos.add(convertToDto(user));
+        try {
+            return transform(users, toDto());
+        } catch (IndexOutOfBoundsException e) {
+            return EMPTY_LIST;
         }
-        return dtos;
+    }
+
+    private Function<User, UserDto> toDto() {
+        return input -> convertToDto(input);
     }
 }

@@ -54,7 +54,7 @@ public class User {
         return gender;
     }
 
-    public void setGender(final GENDER gender){
+    public void setGender(final GENDER gender) {
         this.gender = gender;
     }
 
@@ -62,11 +62,14 @@ public class User {
         return id;
     }
 
-    public Iterable<Project> getProjects(){
+    public Iterable<Project> getProjects() {
         return projects;
     }
 
-    public boolean addProject(final Project project) {
+    public void setProjects(final List<Project> projects) {
+        this.projects.addAll(projects);
+    }
+    public boolean addOneProject(final Project project) {
         return projects.add(project);
     }
 }
