@@ -3,17 +3,19 @@ package com.withblacks.rest.project;
 import com.withblacks.facade.project.ProjectFacade;
 import com.withblacks.facade.project.ProjectFacadeImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
+import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.ResponseEntity;
 
 import static com.withblacks.business.layers.project.ProjectMockHelper.mockProjectDto;
+import static com.withblacks.rest.utils.ActionResponseUtil.mockActionResponse;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.OK;
 
 public class ProjectRestTest {
@@ -25,9 +27,8 @@ public class ProjectRestTest {
     @Before
     public void setUp() {
         facade = mock(ProjectFacadeImpl.class);
-
         projectDto = mockProjectDto("Iron");
-        restAPI = new ProjectRest(facade);
+        restAPI = new ProjectRest(facade, mockActionResponse(new ResponseEntity<>(OK)));
     }
 
     @Test
@@ -52,5 +53,11 @@ public class ProjectRestTest {
     public void testUpdate() throws Exception {
         doReturn(projectDto).when(facade).update(anyLong(), any(ProjectDto.class));
         assertThat(restAPI.update(1L, projectDto).getStatusCode(), is(OK));
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        doNothing().when(facade).remove(1L);
+        MatcherAssert.assertThat(restAPI.delete(1L).getStatusCode(), is(OK));
     }
 }

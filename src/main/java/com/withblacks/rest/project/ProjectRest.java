@@ -3,7 +3,7 @@ package com.withblacks.rest.project;
 import com.withblacks.facade.project.ProjectFacade;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.rest.RestLayer;
-import com.withblacks.rest.toolbox.RestResponseUtil;
+import com.withblacks.rest.toolbox.RestActionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -23,18 +23,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 @PropertySource("classpath:application.properties")
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/projects")
-public class ProjectRest extends RestResponseUtil implements RestLayer<ProjectDto> {
+public class ProjectRest implements RestLayer<ProjectDto> {
 
+    private RestActionResponse actionResponse;
     private ProjectFacade facade;
     @Value("${spring.rest.version}")
     private String API_REVISION;
 
-    public ProjectRest() {
-    }
-
     @Autowired
-    public ProjectRest(final ProjectFacade facade) {
+    public ProjectRest(final ProjectFacade facade, final RestActionResponse actionResponse) {
         this.facade = facade;
+        this.actionResponse = actionResponse;
     }
 
     @Override
@@ -70,17 +69,17 @@ public class ProjectRest extends RestResponseUtil implements RestLayer<ProjectDt
     @Override
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
-        return getResponseEntity(facade, id, resource);
+        return actionResponse.updateEntity(id, resource);
     }
 
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
-        return getResponseEntity(facade, id, resource);
+        return actionResponse.updateEntity(id, resource);
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
-        return getResponseEntity(facade, id);
+        return actionResponse.deleteEntity(id);
     }
 }

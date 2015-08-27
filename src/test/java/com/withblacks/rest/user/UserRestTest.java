@@ -4,9 +4,11 @@ import com.withblacks.facade.user.UserFacade;
 import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.ResponseEntity;
 
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
+import static com.withblacks.rest.utils.ActionResponseUtil.mockActionResponse;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -25,7 +27,7 @@ public class UserRestTest {
     public void setUp() throws Exception {
         facade = mock(UserFacade.class);
         dto = mockUserDto("Iron", "Man", MALE);
-        rest = new UserRest(facade);
+        rest = new UserRest(facade, mockActionResponse(new ResponseEntity<>(OK)));
     }
 
     @Test
