@@ -3,6 +3,7 @@ package com.withblacks.rest.project;
 import com.withblacks.facade.project.ProjectFacade;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.rest.RestLayer;
+import com.withblacks.rest.toolbox.RestResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -22,7 +23,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RestController
 @PropertySource("classpath:application.properties")
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/projects")
-public class ProjectRest implements RestLayer<ProjectDto> {
+public class ProjectRest extends RestResponseUtil implements RestLayer<ProjectDto> {
 
     private ProjectFacade facade;
     @Value("${spring.rest.version}")
@@ -69,27 +70,17 @@ public class ProjectRest implements RestLayer<ProjectDto> {
     @Override
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
-        try {
-            return new ResponseEntity<>(facade.update(id, resource), OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity(NOT_FOUND);
-        } catch (ClassCastException e) {
-            return new ResponseEntity(NOT_ACCEPTABLE);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity(BAD_REQUEST);
-        }
+        return getResponseEntity(facade, id, resource);
+    }
+
+    @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final ProjectDto resource) {
+        return getResponseEntity(facade, id, resource);
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
-        try {
-            facade.remove(id);
-            return new ResponseEntity(OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity(NOT_FOUND);
-        } catch (NullPointerException e) {
-            return new ResponseEntity(NOT_FOUND);
-        }
+        return getResponseEntity(facade, id);
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.NoSuchElementException;
 
+import static com.withblacks.rest.project.ProjectRest.getResponseEntity;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
@@ -58,37 +59,18 @@ public class UserRest implements RestLayer<UserDto> {
     }
 
     @RequestMapping(value = "/{id}", method = PATCH, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto userDto) {
-        try {
-            return new ResponseEntity<>(facade.update(id, userDto), OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity(NOT_FOUND);
-        } catch (ClassCastException e) {
-            return new ResponseEntity(NOT_ACCEPTABLE);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity(BAD_REQUEST);
-        }
+    public ResponseEntity<?> patch(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
+        return getResponseEntity(facade, id, resource);
     }
 
     @RequestMapping(value = "/{id}", method = PUT, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> update(@PathVariable("id") final Long id, @RequestBody final UserDto resource) {
-        try {
-            return new ResponseEntity<>(facade.update(id, resource), OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity(NOT_FOUND);
-        }
+        return getResponseEntity(facade, id, resource);
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") final Long id) {
-        try {
-            facade.remove(id);
-            return new ResponseEntity(OK);
-        } catch (NoSuchElementException e) {
-            return new ResponseEntity(NOT_FOUND);
-        } catch (NullPointerException e) {
-            return new ResponseEntity(NOT_FOUND);
-        }
+        return getResponseEntity(facade, id);
     }
 }

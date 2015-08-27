@@ -2,6 +2,7 @@ package com.withblacks.facade.user.dto;
 
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.user.GENDER;
+import com.withblacks.facade.EntityDto;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 
 @Component
-public class UserDto extends ResourceSupport {
+public class UserDto extends ResourceSupport implements EntityDto {
 
     private long id;
     private String firstName;
