@@ -70,6 +70,7 @@ public class User {
         this.projects.clear();
         this.projects.addAll(projects);
     }
+
     public boolean addOneProject(final Project project) {
         return projects.add(project);
     }

@@ -7,6 +7,7 @@ import org.junit.Test;
 import static com.google.common.collect.Iterables.getLast;
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.project.ProjectMockHelper.mockProject;
+import static java.util.Collections.emptyList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -36,7 +37,7 @@ public class UserBuilderTest {
 
     @Test
     public void itShouldAddProject() {
-        Project project = mockProject("Iron");
+        Project project = mockProject("Iron", emptyList());
         User user = builder.addProject(project).build();
         assertThat(getLast(user.getProjects()).getName(), is("Iron"));
     }

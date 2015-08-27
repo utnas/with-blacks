@@ -5,14 +5,13 @@ import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.layers.project.ProjectLayer;
 import com.withblacks.business.layers.project.ProjectLayerImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
-import com.withblacks.facade.project.dto.ProjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Collections;
 
 import static com.withblacks.business.layers.project.ProjectMockHelper.*;
-import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -30,7 +29,7 @@ public class ProjectFacadeImplTest {
     @Before
     public void setUp() {
         layer = mock(ProjectLayerImpl.class);
-        project = mockProject("Iron");
+        project = mockProject("Iron", emptyList());
         projectDto = mockProjectDto("Iron");
         facade = new ProjectFacadeImpl(layer, mockProjectMapper(projectDto, project));
     }

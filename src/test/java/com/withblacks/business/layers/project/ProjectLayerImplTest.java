@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.google.common.collect.Iterables.getLast;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -22,7 +23,7 @@ public class ProjectLayerImplTest {
     @Before
     public void setUp() {
         repository = mock(ProjectRepository.class);
-        project = ProjectMockHelper.mockProject("Iron");
+        project = ProjectMockHelper.mockProject("Iron", emptyList());
         layer = new ProjectLayerImpl(repository);
     }
 

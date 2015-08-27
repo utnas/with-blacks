@@ -19,8 +19,11 @@ public class UserDtoBuilder {
         dto.setLastName(lastName);
         dto.setGender(gender);
         dto.setProjects(projects);
-
         return dto;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     public UserDtoBuilder setFirstName(final String firstName) {
@@ -28,8 +31,8 @@ public class UserDtoBuilder {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getLastName() {
+        return lastName;
     }
 
     public UserDtoBuilder setLastName(final String lastName) {
@@ -37,17 +40,13 @@ public class UserDtoBuilder {
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
+    public GENDER getGender() {
+        return gender;
     }
 
     public UserDtoBuilder setGender(final GENDER gender) {
         this.gender = gender;
         return this;
-    }
-
-    public GENDER getGender() {
-        return gender;
     }
 
     public List<Project> getProjects() {

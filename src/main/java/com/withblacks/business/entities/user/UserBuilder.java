@@ -1,5 +1,6 @@
 package com.withblacks.business.entities.user;
 
+import com.google.common.collect.Lists;
 import com.withblacks.business.entities.project.Project;
 import org.springframework.stereotype.Component;
 
@@ -36,17 +37,12 @@ public class UserBuilder {
         return user;
     }
 
-    public UserBuilder setFirstName(final String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
     public String getFirstName() {
         return firstName;
     }
 
-    public UserBuilder setLastName(final String lastName) {
-        this.lastName = lastName;
+    public UserBuilder setFirstName(final String firstName) {
+        this.firstName = firstName;
         return this;
     }
 
@@ -54,13 +50,18 @@ public class UserBuilder {
         return lastName;
     }
 
-    public UserBuilder setGender(final GENDER gender) {
-        this.gender = gender;
+    public UserBuilder setLastName(final String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
     public GENDER getGender() {
         return gender;
+    }
+
+    public UserBuilder setGender(final GENDER gender) {
+        this.gender = gender;
+        return this;
     }
 
     public UserBuilder addProject(final Project project) {

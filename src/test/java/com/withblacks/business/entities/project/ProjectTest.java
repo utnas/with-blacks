@@ -7,6 +7,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class ProjectTest {
@@ -25,9 +26,12 @@ public class ProjectTest {
     }
 
     @Test
-    public <T> void itShoulAddMember() {
+    public void itShouldAddMember() {
         User user = mock(User.class);
-        project.addMember(user);
+
+        boolean result = project.addMember(user);
+
+        assertTrue(result);
         assertThat(project.getMembers(), hasItem(user));
     }
 }

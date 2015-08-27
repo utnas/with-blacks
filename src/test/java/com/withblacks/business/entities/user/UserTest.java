@@ -1,18 +1,16 @@
 package com.withblacks.business.entities.user;
 
+import com.google.common.collect.Lists;
 import com.withblacks.business.entities.project.Project;
+import com.withblacks.business.entities.project.ProjectBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collections;
-
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
 import static com.withblacks.business.entities.user.UserBuilder.build;
-import static com.withblacks.business.layers.project.ProjectMockHelper.mockProject;
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
 public class UserTest {
@@ -21,7 +19,7 @@ public class UserTest {
 
     @Before
     public void setUp() throws Exception {
-        user = build("Super", "Man", FEMALE, singletonList(mockProject("Iron")));
+        user = build("Super", "Man", FEMALE, Lists.<Project>newArrayList());
     }
 
     @Test
@@ -46,6 +44,11 @@ public class UserTest {
 
     @Test
     public void itShouldAddAProject() {
-        assertThat(user.addOneProject(mock(Project.class)), is(true));
+        Project project = new ProjectBuilder().setName("NewProject").build();
+
+        boolean actual = user.addOneProject(project);
+
+        assertTrue(actual);
+        assertThat(user.getProjects(), hasItem(project));
     }
 }
