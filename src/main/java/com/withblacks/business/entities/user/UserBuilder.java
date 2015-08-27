@@ -18,11 +18,12 @@ public class UserBuilder {
     public UserBuilder() {
     }
 
-    public static User build(final String firstName, final String lastName, final GENDER gender) {
+    public static User build(final String firstName, final String lastName, final GENDER gender, final List<Project> projects) {
         final User user = new User();
         user.setGender(gender);
         user.setFirstName(firstName);
         user.setLastName(lastName);
+        user.setProjects(projects);
         return user;
     }
 
@@ -72,6 +73,7 @@ public class UserBuilder {
     }
 
     public UserBuilder setProjects(final List<Project> projects) {
+        this.projects.clear();
         this.projects.addAll(projects);
         return this;
     }

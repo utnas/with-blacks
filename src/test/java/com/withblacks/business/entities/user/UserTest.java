@@ -4,8 +4,13 @@ import com.withblacks.business.entities.project.Project;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
 import static com.withblacks.business.entities.user.UserBuilder.build;
+import static com.withblacks.business.layers.project.ProjectMockHelper.mockProject;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
@@ -16,7 +21,7 @@ public class UserTest {
 
     @Before
     public void setUp() throws Exception {
-        user = build("Super", "Man", FEMALE);
+        user = build("Super", "Man", FEMALE, singletonList(mockProject("Iron")));
     }
 
     @Test

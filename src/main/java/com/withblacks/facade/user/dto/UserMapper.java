@@ -1,20 +1,12 @@
 package com.withblacks.facade.user.dto;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
-import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.business.entities.user.User;
-import com.withblacks.facade.user.dto.UserDto;
-import com.withblacks.facade.user.dto.UserDtoBuilder;
+import com.withblacks.business.entities.user.UserBuilder;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-
 import static com.google.common.collect.Iterables.transform;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.EMPTY_LIST;
 
 @Component
@@ -38,6 +30,7 @@ public class UserMapper {
         return new UserDtoBuilder()
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
+                .setProjects(user.getProjects())
                 .setGender(user.getGender()).build();
     }
 

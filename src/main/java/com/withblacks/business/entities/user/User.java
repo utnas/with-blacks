@@ -62,11 +62,12 @@ public class User {
         return id;
     }
 
-    public Iterable<Project> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
 
     public void setProjects(final List<Project> projects) {
+        this.projects.clear();
         this.projects.addAll(projects);
     }
     public boolean addOneProject(final Project project) {
