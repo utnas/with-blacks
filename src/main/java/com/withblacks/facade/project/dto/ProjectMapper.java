@@ -1,20 +1,12 @@
 package com.withblacks.facade.project.dto;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
-import com.withblacks.business.entities.project.ProjectBuilder;
 import com.withblacks.business.entities.project.Project;
-import com.withblacks.facade.project.dto.ProjectDto;
-import com.withblacks.facade.project.dto.ProjectDtoBuilder;
+import com.withblacks.business.entities.project.ProjectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-
 import static com.google.common.collect.Iterables.transform;
-import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.EMPTY_LIST;
 
 @Component
