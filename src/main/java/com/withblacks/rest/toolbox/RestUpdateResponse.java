@@ -11,6 +11,7 @@ import static org.springframework.http.HttpStatus.*;
 
 @Component
 public class RestUpdateResponse {
+
     private EntityFacade facade;
 
     public RestUpdateResponse() {
