@@ -1,7 +1,7 @@
 package com.withblacks.facade.user.dto;
 
-import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.user.GENDER;
+import com.withblacks.facade.project.dto.ProjectDto;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class UserDtoBuilder {
     private String firstName;
     private String lastName;
     private GENDER gender;
-    private List<Project> projects = newArrayList();
+    private List<ProjectDto> projects = newArrayList();
 
     public UserDto build() {
         final UserDto dto = new UserDto();
@@ -49,11 +49,11 @@ public class UserDtoBuilder {
         return this;
     }
 
-    public List<Project> getProjects() {
+    public List<ProjectDto> getProjects() {
         return projects;
     }
 
-    public UserDtoBuilder setProjects(final List<Project> projects) {
+    public UserDtoBuilder setProjects(final List<ProjectDto> projects) {
         this.projects.clear();
         this.projects.addAll(projects);
         return this;

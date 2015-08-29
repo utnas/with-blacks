@@ -1,12 +1,14 @@
 package com.withblacks.facade.user.dto;
 
-import com.google.common.base.Function;
 import com.withblacks.business.entities.user.User;
 import com.withblacks.business.entities.user.UserBuilder;
+import com.withblacks.facade.project.dto.ProjectMapper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
-import static com.google.common.collect.Iterables.transform;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.EMPTY_LIST;
 
 @Component
@@ -23,26 +25,26 @@ public class UserMapper {
                 .setFirstName(dto.getFirstName())
                 .setLastName(dto.getLastName())
                 .setGender(dto.getGender())
-                .setProjects(dto.getProjects()).build();
+                .setProjects(ProjectMapper.convertToProjects(dto.getProjects())).build();
     }
 
     public UserDto convertToDto(final User user) {
         return new UserDtoBuilder()
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
-                .setProjects(user.getProjects())
+                .setProjects(ProjectMapper.convertToDtos(user.getProjects()))
                 .setGender(user.getGender()).build();
     }
 
-    public Iterable<UserDto> convertToDtos(final Iterable<User> users) {
+    public List<UserDto> convertToDtos(final Iterable<User> users) {
         try {
-            return transform(users, toDto());
+            List<UserDto> userDtos = newArrayList();
+            for (final User user : users) {
+                userDtos.add(convertToDto(user));
+            }
+            return userDtos;
         } catch (IndexOutOfBoundsException e) {
             return EMPTY_LIST;
         }
-    }
-
-    private Function<User, UserDto> toDto() {
-        return input -> convertToDto(input);
     }
 }

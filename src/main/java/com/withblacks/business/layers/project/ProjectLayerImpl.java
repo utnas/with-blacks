@@ -4,7 +4,10 @@ import com.withblacks.business.entities.project.Project;
 import com.withblacks.repository.project.ProjectRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Component
 public class ProjectLayerImpl implements ProjectLayer {
@@ -24,8 +27,8 @@ public class ProjectLayerImpl implements ProjectLayer {
     }
 
     @Override
-    public Iterable<Project> findAll() {
-        return repository.findAll();
+    public List<Project> findAll() {
+        return newArrayList(repository.findAll());
     }
 
     @Override

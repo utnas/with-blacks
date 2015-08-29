@@ -3,6 +3,7 @@ package com.withblacks.facade.user.dto;
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.user.GENDER;
 import com.withblacks.facade.EntityDto;
+import com.withblacks.facade.project.dto.ProjectDto;
 import org.springframework.hateoas.ResourceSupport;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ public class UserDto extends ResourceSupport implements EntityDto {
     private GENDER gender;
 
 
-    private List<Project> projects = newArrayList();
+    private List<ProjectDto> projects = newArrayList();
 
     public UserDto() {
     }
@@ -52,11 +53,11 @@ public class UserDto extends ResourceSupport implements EntityDto {
         this.id = id;
     }
 
-    public List<Project> getProjects() {
+    public List<ProjectDto> getProjects() {
         return projects;
     }
 
-    public void setProjects(final List<Project> projects) {
+    public void setProjects(final List<ProjectDto> projects) {
         this.projects.addAll(projects);
     }
 }

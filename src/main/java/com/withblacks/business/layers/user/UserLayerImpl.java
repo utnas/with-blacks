@@ -5,7 +5,10 @@ import com.withblacks.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Component
 public class UserLayerImpl implements UserLayer<User> {
@@ -26,8 +29,8 @@ public class UserLayerImpl implements UserLayer<User> {
     }
 
     @Override
-    public Iterable<User> findAll() {
-        return repository.findAll();
+    public List<User> findAll() {
+        return newArrayList(repository.findAll());
     }
 
     @Override

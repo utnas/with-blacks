@@ -1,13 +1,14 @@
 package com.withblacks.business.layers;
 
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public interface EntityLayer<T> {
 
     T find(final String entityName) throws NoSuchElementException;
 
-    Iterable<T> findAll();
+    List<T> findAll();
 
     T find(final Long id) throws NoSuchElementException;
 
