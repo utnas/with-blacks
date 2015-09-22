@@ -8,9 +8,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
-import static com.withblacks.facade.project.dto.ProjectMapper.convertToDtos;
-import static com.withblacks.facade.project.dto.ProjectMapper.convertToProject;
-
 @Component
 public class ProjectFacadeImpl implements ProjectFacade {
 
@@ -38,17 +35,17 @@ public class ProjectFacadeImpl implements ProjectFacade {
 
     @Override
     public Iterable<ProjectDto> getAll() {
-        return convertToDtos(layer.findAll());
+        return mapper.convertToDtos(layer.findAll());
     }
 
     @Override
     public ProjectDto create(final ProjectDto dto) throws NoSuchElementException {
-        return mapper.convertToDto(layer.create(convertToProject(dto)));
+        return mapper.convertToDto(layer.create(mapper.convertToProject(dto)));
     }
 
     @Override
     public ProjectDto update(final Long id, final ProjectDto dto) throws NoSuchElementException, ClassCastException, IllegalArgumentException {
-        return mapper.convertToDto(layer.update(id, convertToProject(dto)));
+        return mapper.convertToDto(layer.update(id, mapper.convertToProject(dto)));
     }
 
     @Override

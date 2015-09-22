@@ -2,13 +2,10 @@ package com.withblacks.facade.project;
 
 import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.project.Project;
-import com.withblacks.business.layers.project.ProjectLayer;
 import com.withblacks.business.layers.project.ProjectLayerImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Collections;
 
 import static com.withblacks.business.layers.project.ProjectMockHelper.*;
 import static java.util.Collections.emptyList;

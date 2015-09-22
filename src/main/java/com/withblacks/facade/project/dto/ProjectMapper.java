@@ -1,10 +1,12 @@
 package com.withblacks.facade.project.dto;
 
+import com.google.common.base.Function;
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.project.ProjectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.google.common.collect.Iterables.transform;
@@ -19,28 +21,43 @@ public class ProjectMapper {
         return new ProjectDtoBuilder().setName(project.getName()).build();
     }
 
-    public static ProjectDto convertToProjectDto(final Project project) {
+    public ProjectDto convertToProjectDto(final Project project) {
         return new ProjectDtoBuilder().setName(project.getName()).build();
     }
 
-    public static Project convertToProject(final ProjectDto projectDto) {
+    public  Project convertToProject(final ProjectDto projectDto) {
         return new ProjectBuilder().setName(projectDto.getName()).build();
     }
 
-    public static List<Project> convertToProjects(final Iterable<ProjectDto> projects) {
+    public  List<Project> convertToProjects(final Iterable<ProjectDto> projects) {
         try {
-            return newArrayList(transform(projects, ProjectMapper::convertToProject));
+            return newArrayList(transform(projects, toProject()));
         } catch (IndexOutOfBoundsException e) {
             return EMPTY_LIST;
         }
     }
 
-    public static List<ProjectDto> convertToDtos(final List<Project> projects) {
+    private Function<ProjectDto, Project> toProject() {
+        return new Function<ProjectDto, Project>() {
+            public Project apply(ProjectDto input) {
+                return new ProjectBuilder().setName(input.getName()).build();
+            }
+        };
+    }
+
+    public  List<ProjectDto> convertToDtos(final List<Project> projects) {
         try {
-            return newArrayList(transform(projects, ProjectMapper::convertToProjectDto));
+            return newArrayList(transform(projects, toProjectDto()));
         } catch (IndexOutOfBoundsException e) {
             return EMPTY_LIST;
         }
     }
 
+    private Function<Project, ProjectDto> toProjectDto() {
+        return new Function<Project, ProjectDto>() {
+            public ProjectDto apply(Project input) {
+                return new ProjectDtoBuilder().setName(input.getName()).build();
+            }
+        };
+    }
 }

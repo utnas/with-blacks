@@ -1,6 +1,7 @@
 package com.withblacks.facade.user.dto;
 
 import com.withblacks.business.entities.user.User;
+import com.withblacks.facade.project.dto.ProjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +20,7 @@ public class UserMapperTest {
 
     @Before
     public void setUp() {
-        mapper = new UserMapper();
+        mapper = new UserMapper( new ProjectMapper());
     }
 
     @Test

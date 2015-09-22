@@ -28,7 +28,7 @@ public class ProjectMockHelper {
     }
 
     public static ProjectMapper mockProjectMapper(ProjectDto projectDto, Project project) {
-        final ProjectMapper mapper = mock(ProjectMapper.class);
+        ProjectMapper mapper = mock(ProjectMapper.class);
         doReturn(projectDto).when(mapper).convertToDto(project);
         doReturn(singletonList(projectDto)).when(mapper).convertToDtos(singletonList(project));
         doReturn(project).when(mapper).convertToProject(projectDto);

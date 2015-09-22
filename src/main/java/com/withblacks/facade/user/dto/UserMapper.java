@@ -6,6 +6,7 @@ import com.withblacks.facade.project.dto.ProjectMapper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -14,10 +15,11 @@ import static java.util.Collections.EMPTY_LIST;
 @Component
 public class UserMapper {
 
-    private DozerBeanMapper mapper;
+    private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+    private ProjectMapper projectMapper;
 
-    public UserMapper() {
-        mapper = new DozerBeanMapper();
+    public UserMapper(final ProjectMapper projectMapper) {
+        this.projectMapper = projectMapper;
     }
 
     public User convertToUser(final UserDto dto) {
@@ -25,14 +27,14 @@ public class UserMapper {
                 .setFirstName(dto.getFirstName())
                 .setLastName(dto.getLastName())
                 .setGender(dto.getGender())
-                .setProjects(ProjectMapper.convertToProjects(dto.getProjects())).build();
+                .setProjects(projectMapper.convertToProjects(dto.getProjects())).build();
     }
 
     public UserDto convertToDto(final User user) {
         return new UserDtoBuilder()
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
-                .setProjects(ProjectMapper.convertToDtos(user.getProjects()))
+                .setProjects(projectMapper.convertToDtos(user.getProjects()))
                 .setGender(user.getGender()).build();
     }
 
