@@ -6,11 +6,10 @@ import com.withblacks.facade.project.dto.ProjectMapper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Collections.EMPTY_LIST;
+import static java.util.Collections.emptyList;
 
 @Component
 public class UserMapper {
@@ -18,7 +17,7 @@ public class UserMapper {
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private ProjectMapper projectMapper;
 
-    public UserMapper(){
+    public UserMapper() {
     }
 
     public UserMapper(final ProjectMapper projectMapper) {
@@ -49,7 +48,7 @@ public class UserMapper {
             }
             return userDtos;
         } catch (IndexOutOfBoundsException e) {
-            return EMPTY_LIST;
+            return emptyList();
         }
     }
 }

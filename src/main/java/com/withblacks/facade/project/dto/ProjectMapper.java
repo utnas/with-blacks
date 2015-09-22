@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Iterables.transform;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.EMPTY_LIST;
+import static java.util.Collections.emptyList;
 
 @Component
 public class ProjectMapper {
@@ -32,7 +34,7 @@ public class ProjectMapper {
         try {
             return newArrayList(transform(projects, toProject()));
         } catch (IndexOutOfBoundsException e) {
-            return EMPTY_LIST;
+            return emptyList();
         }
     }
 
@@ -40,7 +42,7 @@ public class ProjectMapper {
         try {
             return newArrayList(transform(projects, toProjectDto()));
         } catch (IndexOutOfBoundsException e) {
-            return EMPTY_LIST;
+            return emptyList();
         }
     }
 
