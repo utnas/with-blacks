@@ -18,6 +18,8 @@ public class UserMapper {
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private ProjectMapper projectMapper;
 
+    public UserMapper(){}
+
     public UserMapper(final ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
     }
