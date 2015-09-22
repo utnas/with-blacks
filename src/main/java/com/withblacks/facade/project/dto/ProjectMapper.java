@@ -24,10 +24,6 @@ public class ProjectMapper {
         return new ProjectDtoBuilder().setName(project.getName()).build();
     }
 
-    public ProjectDto convertToProjectDto(final Project project) {
-        return new ProjectDtoBuilder().setName(project.getName()).build();
-    }
-
     public  Project convertToProject(final ProjectDto projectDto) {
         return new ProjectBuilder().setName(projectDto.getName()).build();
     }
@@ -39,7 +35,6 @@ public class ProjectMapper {
             return EMPTY_LIST;
         }
     }
-
 
     public  List<ProjectDto> convertToDtos(final List<Project> projects) {
         try {

@@ -18,7 +18,8 @@ public class UserMapper {
     private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private ProjectMapper projectMapper;
 
-    public UserMapper(){}
+    public UserMapper(){
+    }
 
     public UserMapper(final ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
@@ -42,7 +43,7 @@ public class UserMapper {
 
     public List<UserDto> convertToDtos(final Iterable<User> users) {
         try {
-            List<UserDto> userDtos = newArrayList();
+            final List<UserDto> userDtos = newArrayList();
             for (final User user : users) {
                 userDtos.add(convertToDto(user));
             }
