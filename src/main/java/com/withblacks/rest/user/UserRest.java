@@ -20,7 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:version.properties")
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/users")
 public class UserRest implements RestLayer<UserDto> {
 
