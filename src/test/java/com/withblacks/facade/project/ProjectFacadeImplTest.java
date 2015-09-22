@@ -22,7 +22,7 @@ import static org.mockito.Mockito.mock;
 public class ProjectFacadeImplTest {
 
     private ProjectFacadeImpl facade;
-    private ProjectLayer layer;
+    private ProjectLayerImpl layer;
     private Project project;
     private ProjectDto projectDto;
 
@@ -36,7 +36,7 @@ public class ProjectFacadeImplTest {
 
     @Test
     public void testGetProject() throws Exception {
-        doReturn(project).when(layer).find(anyLong());
+        doReturn(project).when(layer).find(1L);
         assertThat(facade.getOne(1L).getName(), is("Iron"));
     }
 
