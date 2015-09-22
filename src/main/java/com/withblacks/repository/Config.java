@@ -22,10 +22,13 @@ public class Config {
 
     @Value("${spring.database.driverClassName}")
     private String driverClassName;
+
     @Value("${spring.datasource.url}")
     private String dbUrl;
+
     @Value("${spring.datasource.username}")
     private String dbUserName;
+
     @Value("${spring.datasource.password}")
     private String dbPassword;
 
