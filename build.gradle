@@ -27,8 +27,12 @@ dependencies {
     compile("com.google.guava:guava")
     compile("org.projectlombok:lombok:1.16.4")
 
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa"){
+        exclude module: "spring-boot-starter-logging"
+    }
+    compile("org.springframework.boot:spring-boot-starter-data-rest"){
+        exclude module: "spring-boot-starter-logging"
+    }
     compile("com.h2database:h2")
     compile("net.sf.dozer:dozer:5.4.0")
     compile('net.sf.dozer:dozer-spring:5.5.1')
@@ -37,7 +41,9 @@ dependencies {
     // Testing
     testCompile("org.mockito:mockito-core")
     testCompile("org.spockframework:spock-spring")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.springframework.boot:spring-boot-starter-test"){
+        exclude module: "spring-boot-starter-logging"
+    }
 }
 
 jar{
