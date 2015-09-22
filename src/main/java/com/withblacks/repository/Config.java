@@ -1,5 +1,7 @@
 package com.withblacks.repository;
 
+import com.google.common.base.Throwables;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
@@ -20,17 +22,19 @@ import java.sql.SQLException;
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
 public class Config {
 
+    private final Logger logger = Logger.getLogger(Config.class);
+
     @Value("${spring.database.driverClassName}")
     private String driverClassName;
 
     @Value("${spring.datasource.url}")
-    private String dbUrl;
+    private String databaseUrl;
 
     @Value("${spring.datasource.username}")
-    private String dbUserName;
+    private String databaseUserName;
 
     @Value("${spring.datasource.password}")
-    private String dbPassword;
+    private String databasePassword;
 
     public void connection() {
         try {
@@ -40,12 +44,11 @@ public class Config {
         }
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection(
-                    dbUrl, dbUserName, dbPassword);
-
+            connection = DriverManager.getConnection(databaseUrl, databaseUserName, databasePassword);
             connection.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
+            Throwables.propagate(e);
         }
     }
 }
