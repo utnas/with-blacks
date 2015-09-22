@@ -16,6 +16,9 @@ import static java.util.Collections.EMPTY_LIST;
 @Component
 public class ProjectMapper {
 
+    public ProjectMapper(){
+    }
+
     @Autowired
     public ProjectDto convertToDto(final Project project) {
         return new ProjectDtoBuilder().setName(project.getName()).build();
