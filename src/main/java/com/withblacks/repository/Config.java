@@ -22,7 +22,7 @@ import java.sql.SQLException;
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
 public class Config {
 
-    private final Logger logger = Logger.getLogger(Config.class);
+    private static final Logger LOGGER = Logger.getLogger(Config.class);
 
     @Value("${spring.database.driverClassName}")
     private String driverClassName;
@@ -47,7 +47,7 @@ public class Config {
             connection = DriverManager.getConnection(databaseUrl, databaseUserName, databasePassword);
             connection.close();
         } catch (SQLException e) {
-            logger.error(e);
+            LOGGER.error(e);
             Throwables.propagate(e);
         }
     }

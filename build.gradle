@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+
     // Libraries
     compile("com.google.guava:guava")
     compile("org.projectlombok:lombok:1.16.4")
@@ -34,6 +35,9 @@ dependencies {
         exclude module: "spring-boot-starter-logging"
     }
 
+    compile("org.springframework.boot:spring-boot-starter-security"){
+        exclude module: "spring-boot-starter-logging"
+    }
 
     compile("com.h2database:h2")
     compile("net.sf.dozer:dozer:5.4.0")
@@ -42,18 +46,17 @@ dependencies {
 
     // Testing
     testCompile("org.mockito:mockito-core")
-    testCompile("'org.powermock:powermock-mockito-release-full")
     testCompile("org.spockframework:spock-spring")
     testCompile("org.springframework.boot:spring-boot-starter-test") {
         exclude module: "spring-boot-starter-logging"
     }
 
-    //DevTools
+    // DevTools
     compile("org.springframework.boot:spring-boot-devtools")
 }
 
 jar {
-    baseName = 'with-blacks-rest-service-core'
+    baseName = 'with-blacks-api'
     version = '001-SNAPSHOT'
 }
 
