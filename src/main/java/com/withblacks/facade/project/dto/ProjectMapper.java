@@ -37,13 +37,6 @@ public class ProjectMapper {
         }
     }
 
-    private Function<ProjectDto, Project> toProject() {
-        return new Function<ProjectDto, Project>() {
-            public Project apply(ProjectDto input) {
-                return new ProjectBuilder().setName(input.getName()).build();
-            }
-        };
-    }
 
     public  List<ProjectDto> convertToDtos(final List<Project> projects) {
         try {
@@ -53,11 +46,11 @@ public class ProjectMapper {
         }
     }
 
+    private Function<ProjectDto, Project> toProject() {
+        return input -> new ProjectBuilder().setName(input.getName()).build();
+    }
+
     private Function<Project, ProjectDto> toProjectDto() {
-        return new Function<Project, ProjectDto>() {
-            public ProjectDto apply(Project input) {
-                return new ProjectDtoBuilder().setName(input.getName()).build();
-            }
-        };
+        return input -> new ProjectDtoBuilder().setName(input.getName()).build();
     }
 }
