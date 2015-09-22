@@ -27,8 +27,9 @@ public class ProjectRest implements RestLayer<ProjectDto> {
 
     private RestActionResponse actionResponse;
     private ProjectFacade facade;
+
     @Value("${spring.rest.version}")
-    private String API_REVISION;
+    private String apiRevision;
 
     @Autowired
     public ProjectRest(final ProjectFacade facade, final RestActionResponse actionResponse) {

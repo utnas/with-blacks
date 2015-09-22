@@ -26,7 +26,6 @@ public class UserRest implements RestLayer<UserDto> {
 
     @Autowired
     private RestActionResponse actionResponse;
-
     private UserFacade facade;
 
     @Value("${spring.rest.version}")
