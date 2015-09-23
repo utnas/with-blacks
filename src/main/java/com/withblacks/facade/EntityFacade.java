@@ -1,7 +1,5 @@
 package com.withblacks.facade;
 
-import com.withblacks.facade.user.dto.UserDto;
-
 import java.util.NoSuchElementException;
 
 public interface EntityFacade<T> {

@@ -1,7 +1,6 @@
 package com.withblacks.rest.toolbox;
 
 import com.withblacks.facade.EntityDto;
-import com.withblacks.facade.user.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -9,13 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class RestActionResponse {
 
-    private UserFacade facade;
     private RestUpdateResponse restUpdateResponse;
     private RestRemoveResponse restRemoveResponse;
 
     @Autowired
-    public RestActionResponse(final UserFacade facade, final RestUpdateResponse restUpdateResponse, final RestRemoveResponse restRemoveResponse) {
-        this.facade = facade;
+    public RestActionResponse(final RestUpdateResponse restUpdateResponse, final RestRemoveResponse restRemoveResponse) {
         this.restUpdateResponse = restUpdateResponse;
         this.restRemoveResponse = restRemoveResponse;
     }

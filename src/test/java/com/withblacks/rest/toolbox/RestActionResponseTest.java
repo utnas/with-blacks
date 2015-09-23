@@ -1,7 +1,6 @@
 package com.withblacks.rest.toolbox;
 
 import com.withblacks.business.layers.user.UserMockHelper;
-import com.withblacks.facade.user.UserFacade;
 import com.withblacks.facade.user.dto.UserDto;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class RestActionResponseTest {
         RestRemoveResponse removeResponse = mock(RestRemoveResponse.class);
         doReturn(new ResponseEntity(OK)).when(removeResponse).getResponseEntity(1L);
 
-        actionResponse = new RestActionResponse(mock(UserFacade.class), updateResponse, removeResponse);
+        actionResponse = new RestActionResponse(updateResponse, removeResponse);
     }
 
     @Test
