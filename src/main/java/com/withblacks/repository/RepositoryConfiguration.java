@@ -11,8 +11,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import static java.sql.DriverManager.getConnection;
 
 @Configuration
 @ComponentScan
@@ -20,9 +21,9 @@ import java.sql.SQLException;
 @EnableAutoConfiguration
 @PropertySource("classpath:database.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
-class Config {
+class RepositoryConfiguration {
 
-    private static final Logger LOGGER = Logger.getLogger(Config.class);
+    private static final Logger LOGGER = Logger.getLogger(RepositoryConfiguration.class);
 
     @Value("${spring.database.driverClassName}")
     private String driverClassName;
@@ -40,11 +41,12 @@ class Config {
         try {
             Class.forName(driverClassName);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
+            Throwables.propagate(e);
         }
         Connection connection;
         try {
-            connection = DriverManager.getConnection(databaseUrl, databaseUserName, databasePassword);
+            connection = getConnection(databaseUrl, databaseUserName, databasePassword);
             connection.close();
         } catch (SQLException e) {
             LOGGER.error(e);
