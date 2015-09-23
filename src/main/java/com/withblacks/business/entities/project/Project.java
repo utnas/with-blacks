@@ -21,7 +21,7 @@ public class Project {
     private String name;
 
     @OneToMany
-    private List<User> members = newArrayList();
+    private final List<User> members = newArrayList();
 
     public void setName(final String name) {
         this.name = name;

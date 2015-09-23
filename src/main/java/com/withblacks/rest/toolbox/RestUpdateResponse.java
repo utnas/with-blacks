@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 import static org.springframework.http.HttpStatus.*;
 
 @Component
-public class RestUpdateResponse {
+class RestUpdateResponse {
 
     private EntityFacade facade;
 

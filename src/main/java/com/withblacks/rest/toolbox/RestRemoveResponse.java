@@ -10,7 +10,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 
 @Component
-public class RestRemoveResponse {
+class RestRemoveResponse {
     private EntityFacade facade;
 
     public RestRemoveResponse() {

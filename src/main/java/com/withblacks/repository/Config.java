@@ -20,7 +20,7 @@ import java.sql.SQLException;
 @EnableAutoConfiguration
 @PropertySource("classpath:database.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
-public class Config {
+class Config {
 
     private static final Logger LOGGER = Logger.getLogger(Config.class);
 
@@ -42,7 +42,7 @@ public class Config {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Connection connection = null;
+        Connection connection;
         try {
             connection = DriverManager.getConnection(databaseUrl, databaseUserName, databasePassword);
             connection.close();

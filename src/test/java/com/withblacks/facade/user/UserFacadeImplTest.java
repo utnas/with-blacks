@@ -3,9 +3,7 @@ package com.withblacks.facade.user;
 import com.withblacks.business.entities.user.User;
 import com.withblacks.business.layers.user.UserLayer;
 import com.withblacks.business.layers.user.UserLayerImpl;
-import com.withblacks.business.layers.user.UserMockHelper;
 import com.withblacks.facade.user.dto.UserDto;
-import com.withblacks.facade.user.dto.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +11,7 @@ import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Iterables.size;
 import static com.withblacks.business.entities.user.GENDER.MALE;
-import static com.withblacks.business.layers.user.UserMockHelper.mockUser;
-import static com.withblacks.business.layers.user.UserMockHelper.mockUserDto;
+import static com.withblacks.business.layers.user.UserMockHelper.*;
 import static com.withblacks.rest.utils.MatcherUtils.dtoHasProperties;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
@@ -30,7 +27,6 @@ public class UserFacadeImplTest {
     private UserLayer<User> layer;
     private User user;
     private UserDto dto;
-    private UserMapper mapper;
 
     @Before
     public void setUp() throws Exception {
@@ -38,9 +34,7 @@ public class UserFacadeImplTest {
         dto = mockUserDto("Iron", "Man", MALE);
 
         layer = mock(UserLayerImpl.class);
-        mapper = UserMockHelper.mockUserMapper(dto, user);
-        userFacadeLayer = new UserFacadeImpl(layer, mapper);
-
+        userFacadeLayer = new UserFacadeImpl(layer, mockUserMapper(dto, user));
     }
 
     @Test

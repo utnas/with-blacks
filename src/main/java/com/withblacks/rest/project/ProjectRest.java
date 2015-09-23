@@ -25,8 +25,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 @RequestMapping(value = "{@Value(\"${spring.rest.version}\")}/projects")
 public class ProjectRest implements RestLayer<ProjectDto> {
 
-    private RestActionResponse actionResponse;
-    private ProjectFacade facade;
+    private final RestActionResponse actionResponse;
+    private final ProjectFacade facade;
 
     @Value("${spring.rest.version}")
     private String apiRevision;

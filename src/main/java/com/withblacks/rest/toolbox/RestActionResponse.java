@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class RestActionResponse {
 
-    private RestUpdateResponse restUpdateResponse;
-    private RestRemoveResponse restRemoveResponse;
+    private final RestUpdateResponse restUpdateResponse;
+    private final RestRemoveResponse restRemoveResponse;
 
     @Autowired
     public RestActionResponse(final RestUpdateResponse restUpdateResponse, final RestRemoveResponse restRemoveResponse) {

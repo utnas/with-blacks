@@ -1,6 +1,5 @@
 package com.withblacks.business.layers.user;
 
-import com.google.common.collect.Iterables;
 import com.withblacks.business.entities.user.User;
 import com.withblacks.repository.user.UserRepository;
 import org.junit.Before;

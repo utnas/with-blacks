@@ -11,7 +11,7 @@ public class UserDtoBuilder {
     private String firstName;
     private String lastName;
     private GENDER gender;
-    private List<ProjectDto> projects = newArrayList();
+    private final List<ProjectDto> projects = newArrayList();
 
     public UserDto build() {
         final UserDto dto = new UserDto();

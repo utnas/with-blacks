@@ -25,8 +25,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class UserRest implements RestLayer<UserDto> {
 
     @Autowired
-    private RestActionResponse actionResponse;
-    private UserFacade facade;
+    private final RestActionResponse actionResponse;
+    private final UserFacade facade;
 
     @Value("${spring.rest.version}")
     private String apiRevision;

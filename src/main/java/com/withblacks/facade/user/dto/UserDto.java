@@ -1,6 +1,5 @@
 package com.withblacks.facade.user.dto;
 
-import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.user.GENDER;
 import com.withblacks.facade.EntityDto;
 import com.withblacks.facade.project.dto.ProjectDto;
@@ -14,13 +13,11 @@ import static com.google.common.collect.Lists.newArrayList;
 @Component
 public class UserDto extends ResourceSupport implements EntityDto {
 
+    private final List<ProjectDto> projects = newArrayList();
     private long id;
     private String firstName;
     private String lastName;
     private GENDER gender;
-
-
-    private List<ProjectDto> projects = newArrayList();
 
     public UserDto() {
     }

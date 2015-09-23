@@ -2,14 +2,13 @@ package com.withblacks.business.entities.project;
 
 import com.withblacks.business.entities.user.User;
 
-import java.util.Collection;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 public class ProjectBuilder {
+    private final List<User> members = newArrayList();
     private String name;
-    private List<User> members = newArrayList();
 
     public ProjectBuilder setName(final String name) {
         this.name = name;

@@ -29,7 +29,7 @@ public class User {
     private GENDER gender;
 
     @OneToMany
-    private List<Project> projects = newArrayList();
+    private final List<Project> projects = newArrayList();
 
     public User() {
     }

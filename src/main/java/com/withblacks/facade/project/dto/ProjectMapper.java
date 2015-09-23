@@ -6,19 +6,16 @@ import com.withblacks.business.entities.project.ProjectBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Iterables.transform;
 import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Collections.EMPTY_LIST;
 import static java.util.Collections.emptyList;
 
 @Component
 public class ProjectMapper {
 
-    public ProjectMapper(){
+    public ProjectMapper() {
     }
 
     @Autowired
@@ -26,11 +23,11 @@ public class ProjectMapper {
         return new ProjectDtoBuilder().setName(project.getName()).build();
     }
 
-    public  Project convertToProject(final ProjectDto projectDto) {
+    public Project convertToProject(final ProjectDto projectDto) {
         return new ProjectBuilder().setName(projectDto.getName()).build();
     }
 
-    public  List<Project> convertToProjects(final Iterable<ProjectDto> projects) {
+    public List<Project> convertToProjects(final Iterable<ProjectDto> projects) {
         try {
             return newArrayList(transform(projects, toProject()));
         } catch (IndexOutOfBoundsException e) {
@@ -38,7 +35,7 @@ public class ProjectMapper {
         }
     }
 
-    public  List<ProjectDto> convertToDtos(final List<Project> projects) {
+    public List<ProjectDto> convertToDtos(final List<Project> projects) {
         try {
             return newArrayList(transform(projects, toProjectDto()));
         } catch (IndexOutOfBoundsException e) {

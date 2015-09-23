@@ -1,6 +1,5 @@
 package com.withblacks.business.entities.user;
 
-import com.google.common.collect.Lists;
 import com.withblacks.business.entities.project.Project;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +10,10 @@ import static com.google.common.collect.Lists.newArrayList;
 @Component
 public class UserBuilder {
 
+    private final List<Project> projects = newArrayList();
     private String firstName;
     private String lastName;
     private GENDER gender;
-    private List<Project> projects = newArrayList();
 
     public UserBuilder() {
     }
