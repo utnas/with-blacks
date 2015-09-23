@@ -23,7 +23,7 @@ public class CredentialsTest {
 
     @Test
     public void itShouldSetPassword() {
-        credentials.setLogin("NewPassword");
-        assertThat(credentials.getLogin(), is("NewPassword"));
+        credentials.setPassword("NewPassword");
+        assertThat(credentials.getPassword(), is("NewPassword"));
     }
 }
