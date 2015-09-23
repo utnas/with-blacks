@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
-import static com.withblacks.business.entities.user.UserBuilder.build;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +18,8 @@ public class UserTest {
 
     @Before
     public void setUp() throws Exception {
-        user = build("Super", "Man", FEMALE, Lists.<Project>newArrayList());
+        user = new UserBuilder().
+                build("Super", "Man", FEMALE, Lists.<Project>newArrayList());
     }
 
     @Test

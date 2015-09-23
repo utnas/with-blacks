@@ -19,7 +19,7 @@ public class UserBuilder {
     public UserBuilder() {
     }
 
-    public static User build(final String firstName, final String lastName, final GENDER gender, final List<Project> projects) {
+    public User build(final String firstName, final String lastName, final GENDER gender, final List<Project> projects) {
         final User user = new User();
         user.setGender(gender);
         user.setFirstName(firstName);
@@ -67,10 +67,6 @@ public class UserBuilder {
     public UserBuilder addProject(final Project project) {
         this.projects.add(project);
         return this;
-    }
-
-    public List<Project> getProjects() {
-        return projects;
     }
 
     public UserBuilder setProjects(final List<Project> projects) {
