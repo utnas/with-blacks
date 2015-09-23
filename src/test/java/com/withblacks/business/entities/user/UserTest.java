@@ -45,10 +45,8 @@ public class UserTest {
     @Test
     public void itShouldAddAProject() {
         Project project = new ProjectBuilder().setName("NewProject").build();
-
-        boolean actual = user.addOneProject(project);
-
-        assertTrue(actual);
+        
+        assertTrue(user.addOneProject(project));
         assertThat(user.getProjects(), hasItem(project));
     }
 }

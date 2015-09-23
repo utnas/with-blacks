@@ -7,7 +7,7 @@ import org.junit.Test;
 import static com.withblacks.business.entities.user.GENDER.FEMALE;
 import static com.withblacks.business.entities.user.GENDER.MALE;
 import static com.withblacks.business.layers.user.UserMockHelper.mockUser;
-import static org.codehaus.groovy.runtime.InvokerHelper.asList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -40,7 +40,7 @@ public class ProjectBuilderTest {
 
         Project project = builder.setName("Iron")
                 .addMember(iron)
-                .addMembers(asList(cat))
+                .addMembers(singletonList(cat))
                 .build();
 
         assertThat(project.getMembers(), hasItems(iron, cat));
