@@ -39,6 +39,16 @@ dependencies {
         exclude module: "spring-boot-starter-logging"
     }
 
+    compile('org.springframework.boot:spring-boot-starter-security') {
+        exclude module: "spring-boot-starter-logging"
+    }
+    compile('org.springframework.boot:spring-boot-starter-actuator') {
+        exclude module: "spring-boot-starter-logging"
+    }
+    compile('org.springframework.boot:spring-boot-starter-aop') {
+        exclude module: "spring-boot-starter-logging"
+    }
+
     compile("com.h2database:h2")
     compile("net.sf.dozer:dozer:5.4.0")
     compile('net.sf.dozer:dozer-spring:5.5.1')
