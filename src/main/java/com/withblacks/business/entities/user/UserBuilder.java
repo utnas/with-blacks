@@ -14,17 +14,9 @@ public class UserBuilder {
     private String firstName;
     private String lastName;
     private GENDER gender;
+    private Credentials credentials;
 
     public UserBuilder() {
-    }
-
-    public User build(final String firstName, final String lastName, final GENDER gender, final List<Project> projects) {
-        final User user = new User();
-        user.setGender(gender);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setProjects(projects);
-        return user;
     }
 
     public User build() {
@@ -33,6 +25,7 @@ public class UserBuilder {
         user.setLastName(lastName);
         user.setGender(getGender());
         user.setProjects(projects);
+        user.setCredentials(credentials);
         return user;
     }
 
@@ -71,6 +64,15 @@ public class UserBuilder {
     public UserBuilder setProjects(final List<Project> projects) {
         this.projects.clear();
         this.projects.addAll(projects);
+        return this;
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public UserBuilder setCredentials(final Credentials credentials) {
+        this.credentials = credentials;
         return this;
     }
 }

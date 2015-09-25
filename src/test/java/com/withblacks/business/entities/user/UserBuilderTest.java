@@ -36,6 +36,16 @@ public class UserBuilderTest {
     }
 
     @Test
+    public void itShouldSetCredentials() {
+        // When
+        UserBuilder userBuilder = builder.setCredentials(new Credentials("NewLogin", "NewPassword"));
+        Credentials credentials = userBuilder.getCredentials();
+        //Then
+        assertThat(credentials.getLogin(), is("NewLogin"));
+        assertThat(credentials.getPassword(), is("NewPassword"));
+    }
+
+    @Test
     public void itShouldAddProject() {
         Project project = mockProject("Iron", emptyList());
         User user = builder.addProject(project).build();

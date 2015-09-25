@@ -29,6 +29,7 @@ public class UserMapper {
                 .setFirstName(dto.getFirstName())
                 .setLastName(dto.getLastName())
                 .setGender(dto.getGender())
+                .setCredentials(dto.getCredentials())
                 .setProjects(projectMapper.convertToProjects(dto.getProjects())).build();
     }
 

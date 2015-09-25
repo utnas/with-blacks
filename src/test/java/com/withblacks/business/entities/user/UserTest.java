@@ -18,8 +18,13 @@ public class UserTest {
 
     @Before
     public void setUp() throws Exception {
-        user = new UserBuilder().
-                build("Super", "Man", FEMALE, Lists.<Project>newArrayList());
+        user = new UserBuilder()
+                .setFirstName("Super")
+                .setLastName("Man")
+                .setGender(FEMALE)
+                .setCredentials(new Credentials("userName", "Password"))
+                .setProjects(Lists.<Project>newArrayList())
+                .build();
     }
 
     @Test
@@ -45,8 +50,15 @@ public class UserTest {
     @Test
     public void itShouldAddAProject() {
         Project project = new ProjectBuilder().setName("NewProject").build();
-        
+
         assertTrue(user.addOneProject(project));
         assertThat(user.getProjects(), hasItem(project));
+    }
+
+    @Test
+    public void itShouldSetCredentials() {
+        user.setCredentials("NewLogin", "NewPassword");
+        assertThat(user.getCredentials().getLogin(), is("NewLogin"));
+        assertThat(user.getCredentials().getPassword(), is("NewPassword"));
     }
 }

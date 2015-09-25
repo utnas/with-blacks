@@ -17,7 +17,8 @@ import static com.google.common.collect.Lists.newArrayList;
 public class User {
 
     private static final long serialVersionUID = -2952735933715107252L;
-
+    @OneToMany
+    private final List<Project> projects = newArrayList();
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -28,8 +29,8 @@ public class User {
     @NotNull
     private GENDER gender;
 
-    @OneToMany
-    private final List<Project> projects = newArrayList();
+    @OneToOne
+    private Credentials credentials;
 
     public User() {
     }
@@ -73,5 +74,17 @@ public class User {
 
     public boolean addOneProject(final Project project) {
         return projects.add(project);
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(final Credentials credentials) {
+        this.credentials = credentials;
+    }
+
+    public void setCredentials(final String login, final String password) {
+        this.credentials = new Credentials(login, password);
     }
 }

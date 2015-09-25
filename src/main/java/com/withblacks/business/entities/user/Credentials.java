@@ -1,9 +1,18 @@
 package com.withblacks.business.entities.user;
 
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Credentials")
 @Component
+@Data
 public class Credentials {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String login;
     private String password;
 

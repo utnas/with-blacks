@@ -1,5 +1,6 @@
 package com.withblacks.facade.user.dto;
 
+import com.withblacks.business.entities.user.Credentials;
 import com.withblacks.business.entities.user.GENDER;
 import com.withblacks.facade.EntityDto;
 import com.withblacks.facade.project.dto.ProjectDto;
@@ -18,6 +19,7 @@ public class UserDto extends ResourceSupport implements EntityDto {
     private String firstName;
     private String lastName;
     private GENDER gender;
+    private Credentials credentials;
 
     public UserDto() {
     }
@@ -56,5 +58,13 @@ public class UserDto extends ResourceSupport implements EntityDto {
 
     public void setProjects(final List<ProjectDto> projects) {
         this.projects.addAll(projects);
+    }
+
+    public Credentials getCredentials() {
+        return credentials;
+    }
+
+    public void setCredentials(final Credentials credentials) {
+        this.credentials = credentials;
     }
 }
