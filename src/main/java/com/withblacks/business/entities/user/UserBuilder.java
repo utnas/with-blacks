@@ -3,6 +3,7 @@ package com.withblacks.business.entities.user;
 import com.withblacks.business.entities.project.Project;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -56,8 +57,8 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder addProject(final Project project) {
-        this.projects.add(project);
+    public UserBuilder addProjects(final Project... projects) {
+        Collections.addAll(this.projects, projects);
         return this;
     }
 

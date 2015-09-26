@@ -48,7 +48,7 @@ public class UserBuilderTest {
     @Test
     public void itShouldAddProject() {
         Project project = mockProject("Iron", emptyList());
-        User user = builder.addProject(project).build();
+        User user = builder.addProjects(project).build();
         assertThat(getLast(user.getProjects()).getName(), is("Iron"));
     }
 

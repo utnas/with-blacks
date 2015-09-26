@@ -38,13 +38,13 @@ public class Seed {
                 .setFirstName("Iron")
                 .setLastName("Man")
                 .setGender(MALE)
-                .addProject(spmST).build());
+                .addProjects(spmST).build());
 
         userRepository.save(new UserBuilder()
                 .setFirstName("Super")
                 .setLastName("Man")
                 .setGender(MALE)
-                .addProject(armST).build());
+                .addProjects(armST).build());
 
         userRepository.save(new UserBuilder()
                 .setFirstName("Cat")
