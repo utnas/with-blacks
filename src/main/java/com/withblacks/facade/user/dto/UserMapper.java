@@ -4,6 +4,7 @@ import com.withblacks.business.entities.user.User;
 import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.facade.project.dto.ProjectMapper;
 import org.dozer.DozerBeanMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class UserMapper {
     public UserMapper() {
     }
 
+    @Autowired
     public UserMapper(final ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
     }
