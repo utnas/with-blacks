@@ -1,5 +1,6 @@
 package com.withblacks.facade.user.dto;
 
+import com.google.common.base.Function;
 import com.withblacks.business.entities.user.User;
 import com.withblacks.business.entities.user.UserBuilder;
 import com.withblacks.facade.project.dto.ProjectMapper;
@@ -7,8 +8,10 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
+import static com.google.common.collect.Iterables.transform;
 import static com.google.common.collect.Lists.newArrayList;
 import static java.util.Collections.emptyList;
 
@@ -45,13 +48,18 @@ public class UserMapper {
 
     public List<UserDto> convertToDtos(final Iterable<User> users) {
         try {
-            final List<UserDto> userDtos = newArrayList();
-            for (final User user : users) {
-                userDtos.add(convertToDto(user));
-            }
-            return userDtos;
-        } catch (IndexOutOfBoundsException e) {
+            return newArrayList(transform(users, toUserDtoFunction()));
+        } catch (NullPointerException e) {
             return emptyList();
         }
+    }
+
+    private Function<User, UserDto> toUserDtoFunction() {
+        return new Function<User, UserDto>() {
+            @Nullable
+            public UserDto apply(User input) {
+                return convertToDto(input);
+            }
+        };
     }
 }
