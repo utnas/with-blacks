@@ -34,21 +34,18 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
-                .resourceIds("sparklr")
                 .accessTokenValiditySeconds(60)
                 .and()
                 .withClient("client-with-registered-redirect")
                 .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "trust")
-                .resourceIds("sparklr")
                 .redirectUris("http://anywhere?key=value")
                 .and()
                 .withClient("client-with-secret")
                 .authorizedGrantTypes("client_credentials", "password")
                 .authorities("ROLE_CLIENT")
                 .scopes("read")
-                .resourceIds("sparklr")
                 .secret("pwd");
     }
 }
