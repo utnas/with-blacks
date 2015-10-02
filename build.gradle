@@ -41,10 +41,6 @@ dependencies {
         exclude module: "spring-boot-starter-logging"
     }
 
-    /*compile("org.springframework.boot:spring-boot-starter-security") {
-        exclude module: "spring-boot-starter-logging"
-    }*/
-
     compile("org.springframework.boot:spring-boot-devtools")
 
     compile("org.springframework.security.oauth:spring-security-oauth2"){
