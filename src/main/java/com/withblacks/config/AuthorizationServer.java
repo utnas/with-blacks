@@ -23,7 +23,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(final AuthorizationServerSecurityConfigurer security) throws Exception {
-
+        // do something
     }
 
     @Override
