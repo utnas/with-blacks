@@ -26,11 +26,17 @@ dependencies {
 
     // Libraries
     compile("com.google.guava:guava")
+
     compile("org.projectlombok:lombok:1.16.4")
+
+    compile('io.katharsis:katharsis-core:0.9.4')
+
+    compile('io.katharsis:katharsis-servlet:0.9.4')
 
     compile("org.springframework.boot:spring-boot-starter-data-jpa") {
         exclude module: "spring-boot-starter-logging"
     }
+
     compile("org.springframework.boot:spring-boot-starter-data-rest") {
         exclude module: "spring-boot-starter-logging"
     }
@@ -48,6 +54,11 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator') {
         exclude module: "spring-boot-starter-logging"
     }
+
+    / * compile("org.springframework.boot:spring-boot-starter-security") {
+    exclude module: "spring-boot-starter-logging"
+    }*/
+
 
     compile('org.springframework.boot:spring-boot-starter-aop') {
         exclude module: "spring-boot-starter-logging"
