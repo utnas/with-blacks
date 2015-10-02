@@ -1,4 +1,4 @@
-package com.withblacks.business.seeding;
+package com.withblacks.business.seeds;
 
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.project.ProjectBuilder;

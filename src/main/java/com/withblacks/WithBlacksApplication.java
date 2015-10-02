@@ -1,6 +1,6 @@
 package com.withblacks;
 
-import com.withblacks.business.seeding.Seed;
+import com.withblacks.business.seeds.Seed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
