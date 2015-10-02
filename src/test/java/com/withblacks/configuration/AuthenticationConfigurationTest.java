@@ -1,4 +1,4 @@
-package com.withblacks.config;
+package com.withblacks.configuration;
 
 import org.junit.Before;
 
