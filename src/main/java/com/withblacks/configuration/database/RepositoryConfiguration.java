@@ -1,4 +1,4 @@
-package com.withblacks.configuration;
+package com.withblacks.configuration.database;
 
 import com.google.common.base.Throwables;
 import org.apache.log4j.Logger;
