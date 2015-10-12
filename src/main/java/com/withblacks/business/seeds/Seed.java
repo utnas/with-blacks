@@ -3,8 +3,8 @@ package com.withblacks.business.seeds;
 import com.withblacks.business.entities.project.Project;
 import com.withblacks.business.entities.project.ProjectBuilder;
 import com.withblacks.business.entities.user.UserBuilder;
-import com.withblacks.repository.project.ProjectRepository;
-import com.withblacks.repository.user.UserRepository;
+import com.withblacks.repository.ProjectRepository;
+import com.withblacks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

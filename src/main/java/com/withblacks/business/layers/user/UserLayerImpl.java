@@ -1,7 +1,7 @@
 package com.withblacks.business.layers.user;
 
 import com.withblacks.business.entities.user.User;
-import com.withblacks.repository.user.UserRepository;
+import com.withblacks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

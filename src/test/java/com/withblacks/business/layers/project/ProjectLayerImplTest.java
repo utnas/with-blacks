@@ -1,7 +1,7 @@
 package com.withblacks.business.layers.project;
 
 import com.withblacks.business.entities.project.Project;
-import com.withblacks.repository.project.ProjectRepository;
+import com.withblacks.repository.ProjectRepository;
 import org.junit.Before;
 import org.junit.Test;
 

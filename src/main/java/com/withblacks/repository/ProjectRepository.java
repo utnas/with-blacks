@@ -1,4 +1,4 @@
-package com.withblacks.repository.project;
+package com.withblacks.repository;
 
 import com.withblacks.business.entities.project.Project;
 import org.springframework.data.repository.CrudRepository;
