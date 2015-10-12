@@ -20,6 +20,7 @@ import static java.sql.DriverManager.getConnection;
 @EnableJpaRepositories(basePackages = "com.withblacks.repository")
 @EnableAutoConfiguration
 @PropertySource("classpath:database.properties")
+@PropertySource("classpath:secret.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
 class RepositoryConfiguration {
 
