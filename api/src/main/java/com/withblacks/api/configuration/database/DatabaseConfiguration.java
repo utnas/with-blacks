@@ -1,9 +1,9 @@
 package com.withblacks.api.configuration.database;
 
 import com.google.common.base.Throwables;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
@@ -13,14 +13,12 @@ import java.sql.SQLException;
 
 import static java.sql.DriverManager.getConnection;
 
-@Component
+@ComponentScan
 @EnableJpaRepositories(basePackages = "com.withblacks.repository")
 @PropertySource("classpath:database.properties")
 @PropertySource("classpath:secret.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
 class DatabaseConfiguration {
-
-    private static final Logger LOGGER = Logger.getLogger(DatabaseConfiguration.class);
 
     @Value("${spring.database.driverClassName}")
     private String driverClassName;
@@ -38,7 +36,6 @@ class DatabaseConfiguration {
         try {
             Class.forName(driverClassName);
         } catch (ClassNotFoundException e) {
-            LOGGER.error(e);
             Throwables.propagate(e);
         }
         Connection connection;
@@ -46,7 +43,6 @@ class DatabaseConfiguration {
             connection = getConnection(databaseUrl, databaseUserName, databasePassword);
             connection.close();
         } catch (SQLException e) {
-            LOGGER.error(e);
             Throwables.propagate(e);
         }
     }

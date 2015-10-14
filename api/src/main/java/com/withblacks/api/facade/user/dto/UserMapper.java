@@ -4,7 +4,6 @@ import com.google.common.base.Function;
 import com.withblacks.api.business.entities.user.UserBuilder;
 import com.withblacks.api.business.entities.user.User;
 import com.withblacks.api.facade.project.dto.ProjectMapper;
-import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +17,6 @@ import static java.util.Collections.emptyList;
 @Component
 public class UserMapper {
 
-    private DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
     private ProjectMapper projectMapper;
 
     public UserMapper() {

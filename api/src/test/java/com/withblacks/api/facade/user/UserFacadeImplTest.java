@@ -12,6 +12,9 @@ import org.junit.Test;
 import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Iterables.size;
+import static com.withblacks.api.business.layers.user.UserMockHelper.mockUser;
+import static com.withblacks.api.business.layers.user.UserMockHelper.mockUserDto;
+import static com.withblacks.api.business.layers.user.UserMockHelper.mockUserMapper;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
