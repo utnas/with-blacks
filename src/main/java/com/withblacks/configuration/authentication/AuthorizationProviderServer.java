@@ -1,6 +1,7 @@
 package com.withblacks.configuration.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,8 +16,16 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @PropertySource("classpath:security.properties")
 public class AuthorizationProviderServer extends AuthorizationServerConfigurerAdapter {
 
+    private static final String REDIRECTION_URL = "http://localhost:8080/users";
+
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Value("${security.user.password}")
+    private String password;
+
+    @Value("${security.user.name}")
+    private String userName;
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -31,8 +40,8 @@ public class AuthorizationProviderServer extends AuthorizationServerConfigurerAd
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("user")
-                .secret("pwd")
+                .withClient(userName)
+                .secret(password)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
@@ -42,12 +51,12 @@ public class AuthorizationProviderServer extends AuthorizationServerConfigurerAd
                 .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "trust")
-                .redirectUris("http://localhost:8080/users")
+                .redirectUris(REDIRECTION_URL)
                 .and()
                 .withClient("client-with-secret")
                 .authorizedGrantTypes("client_credentials", "password")
                 .authorities("ROLE_CLIENT")
                 .scopes("read")
-                .secret("pwd");
+                .secret(password);
     }
 }
