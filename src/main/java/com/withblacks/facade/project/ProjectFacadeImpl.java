@@ -1,15 +1,17 @@
 package com.withblacks.facade.project;
 
 import com.withblacks.business.layers.project.ProjectLayer;
+import com.withblacks.facade.EntityFacade;
 import com.withblacks.facade.project.dto.ProjectDto;
 import com.withblacks.facade.project.dto.ProjectMapper;
+import com.withblacks.facade.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
 @Component
-public class ProjectFacadeImpl implements ProjectFacade {
+public class ProjectFacadeImpl implements EntityFacade<ProjectDto> {
 
     private ProjectLayer layer;
     private ProjectMapper mapper;

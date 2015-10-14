@@ -1,7 +1,9 @@
 package com.withblacks.rest.user;
 
-import com.withblacks.facade.user.UserFacade;
+import com.withblacks.facade.EntityFacade;
+import com.withblacks.facade.user.UserFacadeImpl;
 import com.withblacks.facade.user.dto.UserDto;
+import com.withblacks.rest.UserRest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,12 @@ import static org.springframework.http.HttpStatus.OK;
 public class UserRestTest {
 
     private UserRest rest;
-    private UserFacade facade;
+    private UserFacadeImpl facade;
     private UserDto dto;
 
     @Before
     public void setUp() throws Exception {
-        facade = mock(UserFacade.class);
+        facade = mock(UserFacadeImpl.class);
         dto = mockUserDto("Iron", "Man", MALE);
         rest = new UserRest(facade, mockActionResponse(new ResponseEntity<>(OK)));
     }

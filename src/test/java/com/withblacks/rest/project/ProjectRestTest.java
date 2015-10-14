@@ -1,8 +1,9 @@
 package com.withblacks.rest.project;
 
-import com.withblacks.facade.project.ProjectFacade;
+import com.withblacks.facade.EntityFacade;
 import com.withblacks.facade.project.ProjectFacadeImpl;
 import com.withblacks.facade.project.dto.ProjectDto;
+import com.withblacks.rest.ProjectRest;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +22,7 @@ import static org.springframework.http.HttpStatus.OK;
 public class ProjectRestTest {
 
     private ProjectRest restAPI;
-    private ProjectFacade facade;
+    private ProjectFacadeImpl facade;
     private ProjectDto projectDto;
 
     @Before

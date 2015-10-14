@@ -2,6 +2,7 @@ package com.withblacks.facade.user;
 
 import com.withblacks.business.entities.user.User;
 import com.withblacks.business.layers.user.UserLayer;
+import com.withblacks.facade.EntityFacade;
 import com.withblacks.facade.user.dto.UserDto;
 import com.withblacks.facade.user.dto.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
 
 @Service
-public class UserFacadeImpl implements UserFacade {
+public class UserFacadeImpl implements EntityFacade<UserDto> {
 
     private UserLayer<User> layer;
     private UserMapper mapper;

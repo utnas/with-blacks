@@ -20,7 +20,7 @@ package com.withblacks;
  * With the token value, you can now interrogate the RESTful interface like this:
  * <p>
  * <pre>
- * curl -H "Authorization: bearer [access_token]" localhost:8080/users
+ * curl -H "Authorization: bearer YOUR_ACCESS_TOKEN" localhost:8080/users
  * </pre>
  */
 

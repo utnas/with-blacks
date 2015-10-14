@@ -1,8 +1,7 @@
-package com.withblacks.rest.user;
+package com.withblacks.rest;
 
-import com.withblacks.facade.user.UserFacade;
+import com.withblacks.facade.EntityFacade;
 import com.withblacks.facade.user.dto.UserDto;
-import com.withblacks.rest.RestLayer;
 import com.withblacks.rest.toolbox.RestActionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,13 +25,13 @@ public class UserRest implements RestLayer<UserDto> {
 
     @Autowired
     private final RestActionResponse actionResponse;
-    private final UserFacade facade;
+    private final EntityFacade<UserDto> facade;
 
     @Value("${spring.rest.version}")
     private String apiRevision;
 
     @Autowired
-    public UserRest(final UserFacade facade, final RestActionResponse actionResponse) {
+    public UserRest(final EntityFacade<UserDto> facade, final RestActionResponse actionResponse) {
         this.facade = facade;
         this.actionResponse = actionResponse;
     }

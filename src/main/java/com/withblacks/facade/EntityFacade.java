@@ -1,7 +1,10 @@
 package com.withblacks.facade;
 
+import org.springframework.stereotype.Component;
+
 import java.util.NoSuchElementException;
 
+@Component
 public interface EntityFacade<T> {
 
     T getOne(final String userName);

@@ -3,28 +3,24 @@ package com.withblacks.configuration.database;
 import com.google.common.base.Throwables;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.orm.jpa.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import static java.sql.DriverManager.getConnection;
 
-@Configuration
-@ComponentScan
+@Component
 @EnableJpaRepositories(basePackages = "com.withblacks.repository")
-@EnableAutoConfiguration
 @PropertySource("classpath:database.properties")
 @PropertySource("classpath:secret.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
-class RepositoryConfiguration {
+class DatabaseConfiguration {
 
-    private static final Logger LOGGER = Logger.getLogger(RepositoryConfiguration.class);
+    private static final Logger LOGGER = Logger.getLogger(DatabaseConfiguration.class);
 
     @Value("${spring.database.driverClassName}")
     private String driverClassName;

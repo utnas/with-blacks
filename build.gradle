@@ -10,6 +10,9 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
+    configurations {
+       // compile.exclude module: "spring-boot-starter-tomcat"
+    }
 }
 
 apply plugin: 'java'
@@ -40,6 +43,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-rest") {
         exclude module: "spring-boot-starter-logging"
     }
+
+    //compile("org.springframework.boot:spring-boot-starter-undertow")
 
     compile("org.springframework.boot:spring-boot-devtools")
 

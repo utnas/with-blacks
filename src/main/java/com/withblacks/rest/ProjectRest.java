@@ -1,8 +1,7 @@
-package com.withblacks.rest.project;
+package com.withblacks.rest;
 
-import com.withblacks.facade.project.ProjectFacade;
+import com.withblacks.facade.EntityFacade;
 import com.withblacks.facade.project.dto.ProjectDto;
-import com.withblacks.rest.RestLayer;
 import com.withblacks.rest.toolbox.RestActionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,13 +25,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 public class ProjectRest implements RestLayer<ProjectDto> {
 
     private final RestActionResponse actionResponse;
-    private final ProjectFacade facade;
+    private final EntityFacade<ProjectDto> facade;
 
     @Value("${spring.rest.version}")
     private String apiRevision;
 
     @Autowired
-    public ProjectRest(final ProjectFacade facade, final RestActionResponse actionResponse) {
+    public ProjectRest(final EntityFacade<ProjectDto> facade, final RestActionResponse actionResponse) {
         this.facade = facade;
         this.actionResponse = actionResponse;
     }
