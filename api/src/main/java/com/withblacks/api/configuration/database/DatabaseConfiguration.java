@@ -6,7 +6,6 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,8 +14,7 @@ import static java.sql.DriverManager.getConnection;
 
 @ComponentScan
 @EnableJpaRepositories(basePackages = "com.withblacks.repository")
-@PropertySource("classpath:database.properties")
-@PropertySource("classpath:secret.properties")
+@PropertySource("classpath:database.properties, classpath:secret.properties")
 @EntityScan(basePackages = {"com.withblacks.business.entities"})
 class DatabaseConfiguration {
 
