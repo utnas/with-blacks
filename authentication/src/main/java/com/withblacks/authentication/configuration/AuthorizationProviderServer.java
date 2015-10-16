@@ -1,4 +1,4 @@
-package com.withblacks.api.configuration.authentication;
+package com.withblacks.authentication.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @PropertySource("classpath:security.properties")
 public class AuthorizationProviderServer extends AuthorizationServerConfigurerAdapter {
 
-    private static final String REDIRECTION_URL = "http://localhost:8080/users";
+    private static final String REDIRECTION_URL = "http://localhost:8080/";
 
     @Autowired
     private AuthenticationManager authenticationManager;
