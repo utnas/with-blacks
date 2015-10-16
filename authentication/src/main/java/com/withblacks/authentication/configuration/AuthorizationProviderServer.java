@@ -45,7 +45,7 @@ public class AuthorizationProviderServer extends AuthorizationServerConfigurerAd
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
-
+        //TODO: Should get information from Data source like database or external token provider.
         clients.inMemory()
                 .withClient(userName)
                 .secret(password)
