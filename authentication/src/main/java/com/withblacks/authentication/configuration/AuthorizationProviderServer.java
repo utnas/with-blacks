@@ -11,21 +11,27 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+import static java.lang.Integer.parseInt;
+
 @Configuration
 @EnableAuthorizationServer
 @PropertySource("classpath:security.properties")
 public class AuthorizationProviderServer extends AuthorizationServerConfigurerAdapter {
 
-    private static final String REDIRECTION_URL = "http://localhost:8080/";
+    @Value("${security.token.url}")
+    private String redirectionUrl;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    @Value("${security.token.duration}")
+    private String tokenValidityDuration;
 
     @Value("${security.user.password}")
     private String password;
 
     @Value("${security.user.name}")
     private String userName;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void configure(final AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -39,19 +45,20 @@ public class AuthorizationProviderServer extends AuthorizationServerConfigurerAd
 
     @Override
     public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
+
         clients.inMemory()
                 .withClient(userName)
                 .secret(password)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
                 .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
                 .scopes("read", "write", "trust")
-                .accessTokenValiditySeconds(600)
+                .accessTokenValiditySeconds(parseInt(tokenValidityDuration))
                 .and()
                 .withClient("client-with-registered-redirect")
                 .authorizedGrantTypes("authorization_code")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "trust")
-                .redirectUris(REDIRECTION_URL)
+                .redirectUris(redirectionUrl)
                 .and()
                 .withClient("client-with-secret")
                 .authorizedGrantTypes("client_credentials", "password")
