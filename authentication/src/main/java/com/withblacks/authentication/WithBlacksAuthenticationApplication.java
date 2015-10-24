@@ -2,6 +2,7 @@ package com.withblacks.authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * After you launch the app, you can seek a bearer token like this:
@@ -28,6 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class WithBlacksAuthenticationApplication {
 
     public static void main(String[] args) {
