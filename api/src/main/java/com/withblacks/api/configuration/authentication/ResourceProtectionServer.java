@@ -1,14 +1,9 @@
 package com.withblacks.api.configuration.authentication;
 
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+//@EnableResourceServer
+public class ResourceProtectionServer {
 
-@EnableResourceServer
-public class ResourceProtectionServer extends ResourceServerConfigurerAdapter {
-
-    @Override
+   /* @Override
     public void configure(final ResourceServerSecurityConfigurer resources) throws Exception {
         //do something
     }
@@ -17,4 +12,5 @@ public class ResourceProtectionServer extends ResourceServerConfigurerAdapter {
     public void configure(final HttpSecurity http) throws Exception {
         //do something
     }
+    */
 }

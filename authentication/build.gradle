@@ -34,10 +34,11 @@ dependencies {
     compile('org.slf4j:slf4j-api')
     compile('org.slf4j:jcl-over-slf4j')
     compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
-    compile('org.springframework.cloud:spring-cloud-starter')
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.cloud:spring-cloud-starter')
+    compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
