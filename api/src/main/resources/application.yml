@@ -1,4 +1,6 @@
+# For deployment in Docker containers
 spring:
+  profiles: docker
   datasource:
     platform: h2
 
@@ -11,6 +13,7 @@ service:
 
 eureka:
   instance:
+    preferIpAddress: true
     leaseRenewalIntervalInSeconds: 10
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
@@ -18,3 +21,4 @@ eureka:
     registryFetchIntervalSeconds: 5
     healthcheck:
       enabled: true
+    defaultZone: http://discovery:8761/eureka/

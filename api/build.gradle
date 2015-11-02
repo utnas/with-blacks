@@ -16,6 +16,7 @@ apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'docker'
 
 jar {
     baseName = 'with-blacks-api'
@@ -59,4 +60,20 @@ dependencyManagement {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.7'
+}
+
+buildscript {
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+}
+
+distDocker {
+    exposePort 8080
+    setEnvironment 'JAVA_OPTS', '-Dspring.profiles.active=docker'
+}
+
+docker {
+    maintainer = 'Dooley Nsewolo <nsewolo@gmail.com>'
+    baseImage = 'java:8'
 }

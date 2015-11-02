@@ -1,3 +1,11 @@
+spring:
+  datasource:
+    platform: h2
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
 server:
   port: 0
 
@@ -6,11 +14,11 @@ service:
   defaultMaxMs: 200
 
 eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    metadataMap:
-      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
   client:
     registryFetchIntervalSeconds: 5
     healthcheck:
       enabled: true
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
