@@ -1,3 +1,0 @@
-include "api"
-include "authentication"
-include "service-discovery"

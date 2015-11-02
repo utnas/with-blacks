@@ -12,7 +12,7 @@ import static com.withblacks.api.business.layers.user.UserMockHelper.mockUserDto
 import static com.withblacks.api.rest.utils.ActionResponseUtil.mockActionResponse;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.CREATED;

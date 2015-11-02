@@ -7,10 +7,10 @@ import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertTrue;
-import static org.springframework.test.util.MatcherAssertionErrors.assertThat;
 
 public class UserTest {
 

@@ -26,8 +26,6 @@ package com.withblacks.api;
 
 import com.withblacks.api.business.seeds.Seed;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -38,7 +36,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableAutoConfiguration
 @EnableDiscoveryClient
-public class WithBlacksAPIApplication implements ApplicationRunner {
+public class WithBlacksAPIApplication {
 
     @Autowired
     private Seed seed;
@@ -47,8 +45,4 @@ public class WithBlacksAPIApplication implements ApplicationRunner {
         SpringApplication.run(WithBlacksAPIApplication.class, args);
     }
 
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        seed.populate();
-    }
 }

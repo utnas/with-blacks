@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import static com.withblacks.api.business.layers.user.UserMockHelper.mockUser;
 import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.assertThat;
 
 public class ProjectBuilderTest {

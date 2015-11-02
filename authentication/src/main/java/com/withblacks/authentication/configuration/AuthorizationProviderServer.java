@@ -5,6 +5,11 @@
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.context.annotation.PropertySource;
 //import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+//import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+//import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 //
 //import static java.lang.Integer.parseInt;
 //
@@ -47,7 +52,7 @@
 //                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
 //                .authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
 //                .scopes("read", "write", "trust")
-//                .accessTokenValiditySeconds(parseInt(tokenValidityDuration))
+//                .accessTokenValiditySeconds(60)
 //                .and()
 //                .withClient("client-with-registered-redirect")
 //                .authorizedGrantTypes("authorization_code")

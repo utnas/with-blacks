@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import static com.withblacks.api.rest.utils.ActionResponseUtil.mockActionResponse;
 import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
